@@ -64,3 +64,17 @@ Plugins/Editor/JetBrains.meta
 # Crashlytics generated file
 crashlytics-build.properties
 
+
+UserSettings/
+ProjectSettings/
+Assets/Plugins/Sirenix/
+Assets/Plugins/
+
+*UserSettings
+*ProjectSettings
+*.[Ss]ettings
+Assets/Plugins.meta
+
+Assets/Resources/DOTweenSettings.asset.meta
+
+Assets/Resources/DOTweenSettings.asset
