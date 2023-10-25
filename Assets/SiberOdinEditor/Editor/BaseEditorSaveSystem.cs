@@ -6,55 +6,52 @@ using UnityEngine.Assertions;
 
 namespace SiberOdinEditor.Editor
 {
-    public abstract class BaseEditorSaveSystem<T> where T : IFileInfo, new()
+    public interface IEditorSaveFileInfo
     {
-        private static T instance;
+    #region ========== [Public Variables] ==========
 
-        public static T Instance
-        {
-            get
-            {
-                if (instance == null)
-                    instance = new T();
-                return instance;
-            }
-        }
+        string DataPath { get; }
+        string FileName { get; }
 
+    #endregion
+    }
+
+    public abstract class BaseEditorSaveSystem<T> where T : class, IEditorSaveFileInfo
+    {
     #region ========== [Public Variables] ==========
 
         public static EditorSaveFile SaveFile;
+
+        protected static T Instance;
 
     #endregion
 
     #region ========== [Private Variables] ==========
 
-        public abstract string FileName { get; }
-
-        public abstract string DataPath { get; }
+        private static string DataPath => Instance.DataPath;
+        private static string FileName => Instance.FileName;
 
     #endregion
 
     #region ========== [Public Methods] ==========
 
-        [MenuItem(MenuHotKeys.EditorSaveFile_Delete)]
         public static void Delete()
         {
             Contract();
-            SaveHelper.DeleteJson(Instance.FileName, Instance.DataPath);
+            SaveHelper.DeleteJson(FileName, DataPath);
             SaveFile = null;
             AssetDatabase.Refresh();
             LogFileMessage();
         }
 
-        [MenuItem(MenuHotKeys.EditorSaveFile_Load)]
         public static void Load()
         {
             Contract();
-            var editorSaveFile = SaveHelper.LoadFromJson<EditorSaveFile>(Instance.FileName, Instance.DataPath);
+            var editorSaveFile = SaveHelper.LoadFromJson<EditorSaveFile>(FileName, DataPath);
             if (editorSaveFile == null)
             {
                 editorSaveFile = new EditorSaveFile();
-                SaveHelper.SaveByJson(Instance.FileName, editorSaveFile, Instance.DataPath);
+                SaveHelper.SaveByJson(FileName, editorSaveFile, DataPath);
             }
 
             SaveFile = editorSaveFile;
@@ -62,12 +59,10 @@ namespace SiberOdinEditor.Editor
             LogFileMessage();
         }
 
-
-        [MenuItem(MenuHotKeys.EditorSaveFile_Save)]
         public static void Save()
         {
             Contract();
-            SaveHelper.SaveByJson(Instance.FileName, SaveFile, Instance.DataPath);
+            SaveHelper.SaveByJson(FileName, SaveFile, DataPath);
             AssetDatabase.Refresh();
             LogFileMessage();
         }
@@ -79,8 +74,9 @@ namespace SiberOdinEditor.Editor
         /// <summary> 檢查 </summary>
         private static void Contract()
         {
-            Assert.IsFalse(string.IsNullOrEmpty(Instance.FileName), "FileName is NullOrEmpty");
-            Assert.IsFalse(string.IsNullOrEmpty(Instance.DataPath), "DataPath is NullOrEmpty");
+            Assert.IsNotNull(Instance, "EditorSaveSystem's Instance is Null 需要建立一份 Static 的資料");
+            Assert.IsFalse(string.IsNullOrEmpty(FileName), "FileName is NullOrEmpty");
+            Assert.IsFalse(string.IsNullOrEmpty(DataPath), "DataPath is NullOrEmpty");
         }
 
         private static void LogFileMessage()
@@ -90,12 +86,5 @@ namespace SiberOdinEditor.Editor
         }
 
     #endregion
-    }
-
-    public interface IFileInfo
-    {
-        string FileName { get; }
-
-        string DataPath { get; }
     }
 }
