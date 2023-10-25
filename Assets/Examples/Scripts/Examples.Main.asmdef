@@ -1,18 +1,19 @@
 {
-    "name": "SiberOdinEditor.Editor",
+    "name": "Examples.Main",
     "rootNamespace": "",
     "references": [
-        "GUID:22e4b5d1e7fbbc748b3d24a8ec110f1a",
+        "GUID:b722c410cd194064cb2c4143e8ec0ae1",
+        "GUID:19624297fc67a6b42940f9f0bf963cba",
         "GUID:c471bd05e25733745a28b79041125957",
-        "GUID:b722c410cd194064cb2c4143e8ec0ae1"
+        "GUID:22e4b5d1e7fbbc748b3d24a8ec110f1a"
     ],
-    "includePlatforms": [
-        "Editor"
-    ],
+    "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,
-    "precompiledReferences": [],
+    "precompiledReferences": [
+        ""
+    ],
     "autoReferenced": false,
     "defineConstraints": [],
     "versionDefines": [],

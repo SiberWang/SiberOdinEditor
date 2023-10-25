@@ -1,0 +1,18 @@
+{
+    "name": "SiberOdinEditor.Core",
+    "rootNamespace": "",
+    "references": [
+        "GUID:19624297fc67a6b42940f9f0bf963cba"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [
+        "Sirenix.OdinInspector.Attributes.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

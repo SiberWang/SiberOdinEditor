@@ -1,5 +1,11 @@
 {
   "dependencies": {
+    "com.siber.utility": {
+      "version": "file:D:/My Unity/01-GitHub/SiberUtility/Assets/SiberUtility",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {}
+    },
     "com.unity.collab-proxy": {
       "version": "2.0.7",
       "depth": 0,

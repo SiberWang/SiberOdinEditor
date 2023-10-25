@@ -1,0 +1,22 @@
+{
+    "name": "SiberOdinEditor.Tools",
+    "rootNamespace": "",
+    "references": [
+        "GUID:19624297fc67a6b42940f9f0bf963cba",
+        "GUID:22e4b5d1e7fbbc748b3d24a8ec110f1a"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [
+        "Sirenix.OdinInspector.Attributes.dll",
+        "Sirenix.OdinInspector.Editor.dll",
+        "Sirenix.Utilities.dll",
+        "Sirenix.Utilities.Editor.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
