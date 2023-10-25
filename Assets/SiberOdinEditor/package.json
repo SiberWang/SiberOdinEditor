@@ -1,0 +1,11 @@
+{
+  "name": "com.siber.odineditor",
+  "version": "0.1.0",
+  "displayName": "SiberOdinEditor",
+  "description": "把一些跟Odin編輯器有關的方法給匯聚成一包工具",
+  "unity": "2019.4",
+  "author": {
+    "name": "Siber",
+    "email": ""
+  }
+}
