@@ -3,14 +3,13 @@ using System.Linq;
 using Examples.Editor.Core;
 using Examples.Editor.Names;
 using Examples.Editor.Windows;
-using Examples.Scripts;
-using Examples.Scripts.Core;
+using Examples.Scripts.Datas;
 using Sirenix.OdinInspector;
 
 namespace Examples.Editor.Datas
 {
     /// <summary> For Editor Window 使用 , 非真實資料 </summary>
-    public class Example_EditorData
+    public class EditorReferenceData
     {
     #region ========== [Public Variables] ==========
 
@@ -25,16 +24,16 @@ namespace Examples.Editor.Datas
         [PropertyOrder(10)]
         [FoldoutGroup("角色資料")]
         [HideLabel]
-        public ARealData ARealData;
+        public CharacterData ARealData;
 
         [PropertyOrder(10)]
         [FoldoutGroup("其他資料")]
         [HideLabel]
-        public BRealData BRealData;
+        public ExteriorData BRealData;
 
         public string ReferenceDataID => ARealData?.DataID;
 
-        private Action<string> onChangeNameAction;
+        private Action<string> OnChangeNameAction => DataManager.Window.OnMenuNameChanged;
 
         private string message;
         private bool   enableChangeDataName;
@@ -45,26 +44,26 @@ namespace Examples.Editor.Datas
     #region ========== [Constructor] ==========
 
         /// <summary> 新建立 </summary>
-        public Example_EditorData()
+        public EditorReferenceData()
         {
-            ARealData = new ARealData();
-            BRealData = new BRealData(ARealData.DataID);
+            ARealData = new CharacterData();
+            BRealData = new ExteriorData(ARealData.DataID);
         }
 
         /// <summary> 新建立 (DataName) </summary>
-        public Example_EditorData(string dataName)
+        public EditorReferenceData(string dataName)
         {
             DataName  = dataName;
-            ARealData = new ARealData(DataName);
-            BRealData = new BRealData(ARealData.DataID);
+            ARealData = new CharacterData(DataName);
+            BRealData = new ExteriorData(ARealData.DataID);
         }
 
         /// <summary> 直接 References (Editor ~ Real Data) </summary>
         /// <param name="aRealData"> 參考目標 </param>
-        public Example_EditorData(ARealData aRealData)
+        public EditorReferenceData(CharacterData aRealData)
         {
             ARealData = aRealData;
-            BRealData = new BRealData(null);
+            BRealData = new ExteriorData(null);
         }
 
     #endregion
@@ -81,7 +80,7 @@ namespace Examples.Editor.Datas
         {
             if (!tempDataName.Equals(DataName))
             {
-                onChangeNameAction?.Invoke(DataName);
+                OnChangeNameAction?.Invoke(DataName);
                 EditorSaveSystem.SaveFile.SetDisplayName(ARealData.DataID, DataName);
                 EditorSaveSystem.Save();
             }
@@ -112,16 +111,11 @@ namespace Examples.Editor.Datas
         [Button]
         private void Set_BDataID()
         {
-            BRealData = new BRealData(ReferenceDataID);
-            Example_EditorWindow.BDataSoData.Datas.Add(BRealData);
+            BRealData = new ExteriorData(ReferenceDataID);
+            DataManager.Window.exteriorContainer.Datas.Add(BRealData);
         }
 
     #endregion
-
-        public void SetChangeNameAction(Action<string> action)
-        {
-            onChangeNameAction = action;
-        }
 
         private bool IsNameExist()
         {
@@ -133,7 +127,7 @@ namespace Examples.Editor.Datas
 
         private bool IsSameDataName(string dataName)
         {
-            var editorDatas = Example_EditorWindow.EditorDatas;
+            var editorDatas = DataManager.Window.editorDatas;
             var editorData = editorDatas.FirstOrDefault(data => data != this && string.Equals(data.DataName, dataName));
             if (editorData == null) return false;
             message = $"{EditorWindowDescription.DataIsExist} , Name: {dataName} , editorData:{editorData.DataName}";

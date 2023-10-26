@@ -1,10 +1,9 @@
 ﻿using System;
-using Examples.Scripts.Core;
 using Sirenix.OdinInspector;
 using UnityEditor;
 using UnityEngine;
 
-namespace Examples.Scripts.OdinWindows.Utils
+namespace SiberOdinEditor.Core.Utils
 {
     [Serializable]
     public class CreateNewData<A, B> : ICreateDataAction

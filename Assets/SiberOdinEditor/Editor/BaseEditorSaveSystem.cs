@@ -10,12 +10,18 @@ namespace SiberOdinEditor.Editor
     {
     #region ========== [Public Variables] ==========
 
+        /// <summary> 資料儲存路徑 </summary>
+        /// <example> 例如: Assets/Resources </example>
         string DataPath { get; }
+        /// <summary> 檔案名稱 (記得+ .json) </summary>
+        /// /// <example> 例如: EditorSaveFile.json </example>
         string FileName { get; }
 
     #endregion
     }
 
+    /// <summary> 基底 - 編輯儲存系統 </summary>
+    /// <typeparam name="T"> 請放入有繼承 IEditorSaveFileInfo 的客製化腳本 </typeparam>
     public abstract class BaseEditorSaveSystem<T> where T : class, IEditorSaveFileInfo
     {
     #region ========== [Public Variables] ==========
@@ -59,10 +65,11 @@ namespace SiberOdinEditor.Editor
             LogFileMessage();
         }
 
-        public static void Save()
+        public static void Save(EditorSaveFile newSaveFile = null)
         {
+            newSaveFile ??= SaveFile;
             Contract();
-            SaveHelper.SaveByJson(FileName, SaveFile, DataPath);
+            SaveHelper.SaveByJson(FileName, newSaveFile, DataPath);
             AssetDatabase.Refresh();
             LogFileMessage();
         }
@@ -71,7 +78,7 @@ namespace SiberOdinEditor.Editor
 
     #region ========== [Private Methods] ==========
 
-        /// <summary> 檢查 </summary>
+        /// <summary> 檢查實例、名稱、路徑 </summary>
         private static void Contract()
         {
             Assert.IsNotNull(Instance, "EditorSaveSystem's Instance is Null 需要建立一份 Static 的資料");
@@ -79,6 +86,7 @@ namespace SiberOdinEditor.Editor
             Assert.IsFalse(string.IsNullOrEmpty(DataPath), "DataPath is NullOrEmpty");
         }
 
+        /// <summary> Debug.Log 紀錄檔案是否存在 </summary>
         private static void LogFileMessage()
         {
             if (SaveHelper.IsShowLog)

@@ -9,31 +9,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e733b8a53b054dfebb00a3f21366aeef, type: 3}
-  m_Name: Example_RealSOData_A
+  m_Script: {fileID: 11500000, guid: 6f11529c26774c14908b6ed7ec851741, type: 3}
+  m_Name: ExteriorContainer
   m_EditorClassIdentifier: 
   datas:
   - dataID: 882b0682-cd70-445d-a5f4-76990d7f2e7d
-    Name: AA
-    HP: 123
-    MoveSpeed: 33
+    someIcon: {fileID: 0}
+    someValue: 12323
+    someContext: BAACCDD
   - dataID: 50f05e89-9325-448b-97a0-71c368e2074c
-    Name: AACSS
-    HP: 100
-    MoveSpeed: 3
+    someIcon: {fileID: 0}
+    someValue: 66
+    someContext: 123123ssaa
   - dataID: 4b7be9e3-d501-4dfb-84c8-a3e744e32be3
-    Name: GGCC
-    HP: 5
-    MoveSpeed: 13
+    someIcon: {fileID: 0}
+    someValue: 516123
+    someContext: "\u5167\u5BB9"
   - dataID: 4a6ede8c-7b5a-46f5-b8a2-f4fcc9cd6bde
-    Name: Player_A
-    HP: 50
-    MoveSpeed: 4
+    someIcon: {fileID: 0}
+    someValue: 1
+    someContext: "\u76EE\u524D\u5C31\u662F123"
   - dataID: 38d52b39-c675-4107-80f5-4937cf1a8b6a
-    Name: Player_B
-    HP: 25
-    MoveSpeed: 5
+    someIcon: {fileID: 0}
+    someValue: 555
+    someContext: "\u9810"
   - dataID: 1cef45e2-b881-45dd-97c1-dd7467143d4f
-    Name: What
-    HP: 100
-    MoveSpeed: 3
+    someIcon: {fileID: 0}
+    someValue: 1231
+    someContext: "\u8A2D"

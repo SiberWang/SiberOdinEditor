@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Examples.Scripts.Core
 {
-    public abstract class RealData : IBaseData
+    public abstract class BaseData : IBaseData
     {
     #region ========== [Public Variables] ==========
 
@@ -13,7 +13,7 @@ namespace Examples.Scripts.Core
 
     #endregion
 
-    #region ========== [Private Variables] ==========
+    #region ========== [Protected Variables] ==========
 
         [HideInInspector]
         [SerializeField]
@@ -25,13 +25,13 @@ namespace Examples.Scripts.Core
 
     #region ========== [Constructor] ==========
 
-        protected RealData()
+        protected BaseData()
         {
             dataID ??= Guid.NewGuid().ToString();
             Init();
         }
 
-        protected RealData(string referenceDataID)
+        protected BaseData(string referenceDataID)
         {
             dataID = referenceDataID;
             Init();
@@ -39,7 +39,7 @@ namespace Examples.Scripts.Core
 
     #endregion
 
-    #region ========== [Private Methods] ==========
+    #region ========== [Protected Methods] ==========
 
         protected abstract void Init();
 

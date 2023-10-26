@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Linq;
-using Examples.Scripts.OdinWindows.Tools;
 using SiberOdinEditor.Core;
+using SiberOdinEditor.Tools;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
 using UnityEditor;

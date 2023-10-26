@@ -3,18 +3,15 @@ using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using UnityEngine;
 
-namespace Examples.Scripts.Core
+namespace Examples.Scripts.Misc
 {
     /// <summary> 這邊示範了如何儲存跟讀取 TempData  </summary>
-    [CreateAssetMenu(fileName = "Example_TempData_SOData",
-                     menuName = "BulletHellTools/Examples/Example_TempData_SOData", order = 0)]
-    public class Example_TempData_SOData : SerializedScriptableObject
+    [CreateAssetMenu(fileName = "TempData_SOData", menuName = "TempData/TempData_SOData")]
+    public class TempData_SOData : SerializedScriptableObject
     {
         [ShowInInspector] [OdinSerialize]
         private SubData subData = new();
-
-        public Example_TempData_SOData() => subData = new SubData();
-
+        
         [HideLabel]
         [HideReferenceObjectPicker]
         private class SubData
@@ -52,6 +49,7 @@ namespace Examples.Scripts.Core
             [ButtonGroup, Button]
             private void Load()
             {
+                if (tempSave == null) return;
                 mainData = new ExampleTempData(tempSave);
             }
 
@@ -61,7 +59,7 @@ namespace Examples.Scripts.Core
             {
                 tempSave = new ExampleTempData(mainData);
             }
-            
+
             [PropertyOrder(12)]
             [ButtonGroup, Button]
             private void Clear()

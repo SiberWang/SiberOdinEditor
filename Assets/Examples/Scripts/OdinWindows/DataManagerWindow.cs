@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using Examples.Scripts.OdinWindows.Tools;
 using SiberOdinEditor.Tools;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;

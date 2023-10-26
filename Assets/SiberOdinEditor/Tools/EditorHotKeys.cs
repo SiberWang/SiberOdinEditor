@@ -12,15 +12,17 @@ namespace SiberOdinEditor.Tools
 
         private static Event current = Event.current;
 
-        private static bool IsKeyUp   => current.type == EventType.KeyUp;
-        private static bool IsKeyDown => current.type == EventType.KeyDown;
+        public static bool IsKeyUp   => current.type == EventType.KeyUp;
+        public static bool IsKeyDown => current.type == EventType.KeyDown;
 
-        private static bool IsKeyControl => current.keyCode is KeyCode.LeftControl or KeyCode.RightControl;
-        private static bool IsKeyS       => current.keyCode == KeyCode.S;
+        public static bool IsKeyControl => current.keyCode is KeyCode.LeftControl or KeyCode.RightControl;
+        public static bool IsKeyS       => current.keyCode == KeyCode.S;
 
-        private static bool IsCtrlShift => current.modifiers == (EventModifiers.Control | EventModifiers.Shift);
-        private static bool IsCtrlAlt   => current.modifiers == (EventModifiers.Control | EventModifiers.Alt);
-        private static bool IsAltShift  => current.modifiers == (EventModifiers.Alt | EventModifiers.Shift);
+        public static bool IsCtrlShift => current.modifiers == (EventModifiers.Control | EventModifiers.Shift);
+        public static bool IsCtrlAlt   => current.modifiers == (EventModifiers.Control | EventModifiers.Alt);
+        public static bool IsAltShift  => current.modifiers == (EventModifiers.Alt | EventModifiers.Shift);
+
+        public static bool IsKeyESCDown => current.keyCode == KeyCode.Escape && IsKeyDown;
 
     #endregion
 
@@ -44,7 +46,7 @@ namespace SiberOdinEditor.Tools
 
         public static void Init()
         {
-            isDoOnce = false;
+            if (isDoOnce) isDoOnce = false;
         }
 
     #endregion

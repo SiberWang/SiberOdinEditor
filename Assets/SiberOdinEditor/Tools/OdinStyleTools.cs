@@ -3,7 +3,7 @@ using Sirenix.OdinInspector.Editor;
 using Sirenix.Utilities.Editor;
 using UnityEngine;
 
-namespace Examples.Scripts.OdinWindows.Tools
+namespace SiberOdinEditor.Tools
 {
     /// <summary> 自製 GUIStyles </summary>
     public static class OdinStyleTools

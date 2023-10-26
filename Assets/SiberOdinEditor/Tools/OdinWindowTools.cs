@@ -5,7 +5,7 @@ using Sirenix.Utilities.Editor;
 using UnityEditor;
 using UnityEngine;
 
-namespace Examples.Scripts.OdinWindows.Tools
+namespace SiberOdinEditor.Tools
 {
     public static class OdinCommonGUITools
     {
@@ -52,8 +52,7 @@ namespace Examples.Scripts.OdinWindows.Tools
         /// <param name="window"> 指定window </param>
         public static void EndGUI(ref OdinEditorWindow window)
         {
-            var current = Event.current;
-            if (!current.isKey || current.keyCode != KeyCode.Escape || current.type != EventType.KeyDown) return;
+            if (!EditorHotKeys.IsKeyESCDown) return;
             window.Close();
             window = null;
         }

@@ -1,4 +1,4 @@
-namespace Examples.Scripts.Core
+namespace SiberOdinEditor.Core
 {
     public interface IEditorDataInfo
     {

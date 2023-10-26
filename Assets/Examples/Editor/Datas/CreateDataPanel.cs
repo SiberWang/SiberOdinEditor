@@ -3,16 +3,15 @@ using System.Linq;
 using Examples.Editor.Core;
 using Examples.Editor.Names;
 using Examples.Editor.Windows;
-using Examples.Scripts;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
 using UnityEngine;
 
 namespace Examples.Editor.Datas
 {
-    /// <summary> 創建頁面 </summary>
+    /// <summary> OdinMenuItem - 創建 Data 頁面 </summary>
     [Serializable]
-    public class Example_CreateData
+    public class CreateDataPanel
     {
     #region ========== [Private Variables] ==========
 
@@ -26,14 +25,17 @@ namespace Examples.Editor.Datas
         private string       titleName;
         private string       message;
 
+        private readonly DataManager window;
+
     #endregion
 
     #region ========== [Constructor] ==========
 
-        public Example_CreateData(OdinMenuTree tree, string titleName)
+        public CreateDataPanel(OdinMenuTree tree, string titleName)
         {
             this.tree      = tree;
             this.titleName = titleName;
+            window         = DataManager.Window;
         }
 
     #endregion
@@ -45,14 +47,13 @@ namespace Examples.Editor.Datas
         private void CreateNew()
         {
             // 建立 EditorData，並加到 tree 菜單中
-            var editorData = new Example_EditorData(newDataName);
-            editorData.SetChangeNameAction(Example_EditorWindow.Window.OnMenuNameChanged);
+            var editorData = new EditorReferenceData(newDataName);
             var resultName = $"{titleName}/{editorData.DataName}";
             tree.Add(resultName, editorData, SdfIconType.JournalPlus);
 
             // 把新建的資料，加進List
-            Example_EditorWindow.ADataSoData.Datas.Add(editorData.ARealData);
-            Example_EditorWindow.BDataSoData.Datas.Add(editorData.BRealData);
+            window.characterContainer.Datas.Add(editorData.ARealData);
+            window.exteriorContainer.Datas.Add(editorData.BRealData);
             EditorSaveSystem.SaveFile.SetDisplayName(editorData.ARealData.DataID, newDataName);
             EditorSaveSystem.Save();
         }
@@ -67,7 +68,7 @@ namespace Examples.Editor.Datas
 
         private bool IsSameDataName(string dataName)
         {
-            var editorDatas = Example_EditorWindow.EditorDatas;
+            var editorDatas = window.editorDatas;
             var editorData  = editorDatas.FirstOrDefault(data => string.Equals(data.DataName, dataName));
             if (editorData == null) return false;
             message = $"{EditorWindowDescription.DataIsExist} , Name: {dataName} , editorData:{editorData.DataName}";

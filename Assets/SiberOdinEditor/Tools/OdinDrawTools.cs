@@ -5,7 +5,7 @@ using Sirenix.OdinInspector.Editor;
 using UnityEditor;
 using UnityEngine;
 
-namespace Examples.Scripts.OdinWindows.Tools
+namespace SiberOdinEditor.Tools
 {
     /// <summary> Draw 工具包 </summary>
     public static class OdinDrawTools

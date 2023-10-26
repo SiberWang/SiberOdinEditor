@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Examples.Scripts.Core;
-using Examples.Scripts.OdinWindows.Utils;
+using SiberOdinEditor.Core;
+using SiberOdinEditor.Core.Utils;
 using SiberUtility.Tools;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
@@ -13,7 +13,7 @@ using UnityEditor;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace Examples.Scripts.OdinWindows.Tools
+namespace SiberOdinEditor.Tools
 {
     /// <summary> MenuItem 工具 </summary>
     /// 用於歸納自定義編輯寫法的地方

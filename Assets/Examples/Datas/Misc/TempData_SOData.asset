@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b6eb766f70dc42dca638f274aaefb92a, type: 3}
-  m_Name: Example_TempData_SOData
+  m_Name: TempData_SOData
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -23,11 +23,10 @@ MonoBehaviour:
     SerializationNodes:
     - Name: subData
       Entry: 7
-      Data: 0|BulletHellTools.Shoots.Datas.Example_TempData_SOData+SubData, BulletHellTools
+      Data: 0|Examples.Scripts.Misc.TempData_SOData+SubData, Examples.Main
     - Name: mainData
       Entry: 7
-      Data: 1|BulletHellTools.Shoots.Datas.Example_TempData_SOData+SubData+ExampleTempData,
-        BulletHellTools
+      Data: 1|Examples.Scripts.Misc.TempData_SOData+SubData+ExampleTempData, Examples.Main
     - Name: Name
       Entry: 1
       Data: 12312
@@ -57,8 +56,7 @@ MonoBehaviour:
       Data: 
     - Name: tempSave
       Entry: 7
-      Data: 2|BulletHellTools.Shoots.Datas.Example_TempData_SOData+SubData+ExampleTempData,
-        BulletHellTools
+      Data: 2|Examples.Scripts.Misc.TempData_SOData+SubData+ExampleTempData, Examples.Main
     - Name: Name
       Entry: 1
       Data: 12312

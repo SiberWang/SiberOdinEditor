@@ -1,12 +1,13 @@
 ﻿using System;
+using Examples.Scripts.Core;
 using Sirenix.OdinInspector;
 
-namespace Examples.Scripts.Core
+namespace Examples.Scripts.Datas
 {
     /// <summary> 真正的純資料！ </summary>
     /// 頂多加個順序 PropertyOrder 或是 LabelText
     [Serializable]
-    public class ARealData : RealData
+    public class CharacterData : BaseData
     {
     #region ========== [Public Variables] ==========
 
@@ -18,9 +19,9 @@ namespace Examples.Scripts.Core
 
     #region ========== [Private Methods] ==========
 
-        public ARealData() : base() { }
+        public CharacterData() : base() { }
 
-        public ARealData(string name) : base()
+        public CharacterData(string name) : base()
         {
             Name = name;
         }

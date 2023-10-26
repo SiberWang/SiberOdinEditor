@@ -1,15 +1,16 @@
 ﻿using System;
+using Examples.Scripts.Core;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Examples.Scripts.Core
+namespace Examples.Scripts.Datas
 {
     [Serializable]
-    public class BRealData : RealData
+    public class ExteriorData : BaseData
     {
     #region ========== [Public Variables] ==========
 
-        public Sprite someIcon;
+        public Sprite bodySprite;
         public int    someValue;
         public string someContext;
 
@@ -17,11 +18,11 @@ namespace Examples.Scripts.Core
 
     #region ========== [Private Methods] ==========
 
-        public BRealData(string referenceDataID) : base(referenceDataID) { }
+        public ExteriorData(string referenceDataID) : base(referenceDataID) { }
 
         protected override void Init()
         {
-            someIcon    = null;
+            bodySprite    = null;
             someValue   = 5;
             someContext = "預設內容";
         }
