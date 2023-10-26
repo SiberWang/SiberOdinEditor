@@ -1,12 +1,12 @@
 ﻿using System;
+using Examples.Scripts.Misc;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Examples.Scripts.OdinWindows
+namespace Examples.Scripts.Datas
 {
     /// <summary> 用來儲存 DataManagerWindow 的設定 </summary>
-    [CreateAssetMenu(fileName = "DataManagerSetting", menuName = "BulletHellTools/Editor/DataManagerSetting",
-                     order = 0)]
+    [CreateAssetMenu(fileName = "DataManagerSetting", menuName = "Examples/DataManagerSetting", order = 0)]
     public class DataManagerSetting : SerializedScriptableObject
     {
         [BoxGroup] [HideLabel]

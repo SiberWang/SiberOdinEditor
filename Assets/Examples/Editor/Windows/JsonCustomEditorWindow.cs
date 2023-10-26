@@ -8,7 +8,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace Examples.Scripts.OdinWindows
+namespace Examples.Editor.Windows
 {
     /// <summary> Json 內容轉換視窗 </summary>
     public class JsonCustomEditorWindow : OdinEditorWindow

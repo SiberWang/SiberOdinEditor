@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace SiberOdinEditor.Editor
+namespace SiberOdinEditor.Tools
 {
     public interface IEditorSaveFileInfo
     {

@@ -5,21 +5,17 @@ using Examples.Editor.Names;
 using Examples.Editor.Windows;
 using Examples.Scripts.Datas;
 using Sirenix.OdinInspector;
+using UnityEngine;
 
 namespace Examples.Editor.Datas
 {
-    /// <summary> For Editor Window 使用 , 非真實資料 </summary>
+    /// <summary> For Editor Window 使用 , 非真實資料 <br/>
+    /// 這邊可以設置 Odin 的各種 Attribute , 與真實資料脫鉤 <br/>
+    /// </summary>
+    [Serializable]
     public class EditorReferenceData
     {
     #region ========== [Public Variables] ==========
-
-        [HorizontalGroup]
-        [ValidateInput(nameof(IsNameExist), "@message", InfoMessageType.Warning)]
-        [PropertyOrder(1)]
-        [LabelText("顯示名稱: ")]
-        [LabelWidth(60)]
-        [EnableIf(nameof(enableChangeDataName))]
-        public string DataName;
 
         [PropertyOrder(10)]
         [FoldoutGroup("角色資料")]
@@ -31,13 +27,28 @@ namespace Examples.Editor.Datas
         [HideLabel]
         public ExteriorData BRealData;
 
+        public string DataName => dataName;
+
         public string ReferenceDataID => ARealData?.DataID;
 
-        private Action<string> OnChangeNameAction => DataManager.Window.OnMenuNameChanged;
+    #endregion
+
+    #region ========== [Private Variables] ==========
+
+        [HorizontalGroup]
+        [ValidateInput(nameof(IsNameExist), "@message", InfoMessageType.Warning)]
+        [PropertyOrder(1)]
+        [LabelText("顯示名稱: ")]
+        [LabelWidth(60)]
+        [EnableIf(nameof(enableChangeDataName))]
+        [SerializeField]
+        private string dataName;
 
         private string message;
-        private bool   enableChangeDataName;
         private string tempDataName;
+        private bool   enableChangeDataName;
+
+        private Action<string> OnChangeNameAction => DataManager.Window.OnMenuNameChanged;
 
     #endregion
 
@@ -53,9 +64,9 @@ namespace Examples.Editor.Datas
         /// <summary> 新建立 (DataName) </summary>
         public EditorReferenceData(string dataName)
         {
-            DataName  = dataName;
-            ARealData = new CharacterData(DataName);
-            BRealData = new ExteriorData(ARealData.DataID);
+            this.dataName = dataName;
+            ARealData     = new CharacterData(dataName);
+            BRealData     = new ExteriorData(ARealData.DataID);
         }
 
         /// <summary> 直接 References (Editor ~ Real Data) </summary>
@@ -64,6 +75,15 @@ namespace Examples.Editor.Datas
         {
             ARealData = aRealData;
             BRealData = new ExteriorData(null);
+        }
+
+    #endregion
+
+    #region ========== [Public Methods] ==========
+
+        public void SetDataName(string newDataName)
+        {
+            dataName = newDataName;
         }
 
     #endregion
@@ -100,29 +120,19 @@ namespace Examples.Editor.Datas
             tempDataName         = DataName;
         }
 
-        private bool IsNotReferenceDataID()
-        {
-            var dataID = BRealData.DataID;
-            if (string.IsNullOrEmpty(dataID)) return true;
-            return !dataID.Equals(ReferenceDataID);
-        }
-
-        [ShowIf(nameof(IsNotReferenceDataID))]
-        [Button]
-        private void Set_BDataID()
-        {
-            BRealData = new ExteriorData(ReferenceDataID);
-            DataManager.Window.exteriorContainer.Datas.Add(BRealData);
-        }
-
-    #endregion
-
         private bool IsNameExist()
         {
             if (!string.IsNullOrEmpty(DataName))
                 return !IsSameDataName(DataName);
             message = EditorWindowDescription.StringEmpty;
             return false;
+        }
+
+        private bool IsNotReferenceDataID()
+        {
+            var dataID = BRealData.DataID;
+            if (string.IsNullOrEmpty(dataID)) return true;
+            return !dataID.Equals(ReferenceDataID);
         }
 
         private bool IsSameDataName(string dataName)
@@ -133,5 +143,15 @@ namespace Examples.Editor.Datas
             message = $"{EditorWindowDescription.DataIsExist} , Name: {dataName} , editorData:{editorData.DataName}";
             return true;
         }
+
+        [ShowIf(nameof(IsNotReferenceDataID))]
+        [Button]
+        private void Set_BDataID()
+        {
+            BRealData = new ExteriorData(ReferenceDataID);
+            DataManager.Window.exteriorDataContainer.Datas.Add(BRealData);
+        }
+
+    #endregion
     }
 }

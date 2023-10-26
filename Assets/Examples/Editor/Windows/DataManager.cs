@@ -17,30 +17,53 @@ using UnityEngine.Assertions;
 
 namespace Examples.Editor.Windows
 {
+    /// <summary> 資料編輯器 </summary>
     public class DataManager : OdinMenuEditorWindow
     {
     #region ========== [Public Variables] ==========
 
         public static DataManager Window;
 
-        public CharacterContainer        characterContainer; // 示範主要檔案 (ex : RobotDataContainer)
-        public ExteriorContainer         exteriorContainer;
+        public CharacterDataContainer    characterDataContainer;
+        public ExteriorDataContainer     exteriorDataContainer;
         public List<EditorReferenceData> editorDatas;
 
     #endregion
 
     #region ========== [Private Variables] ==========
 
-        private EditorSaveFile oldSaveFile;
+        private EditorSaveFile saveFile;
 
     #endregion
 
     #region ========== [Odin & Editor] ==========
 
+        [MenuItem(MenuHotKeys.ExampleEditorWindow)]
+        private static void OpenEditor()
+        {
+            Window = Window.OpenWindow<DataManager>();
+        }
+
+        /// <summary> 初始化 (Once) </summary>
+        protected override void Initialize()
+        {
+            // Some Setting
+            SaveHelper.EnableLog = false;
+
+            // MainData Get
+            characterDataContainer = EditorHelper.GetScriptableObject<CharacterDataContainer>();
+            exteriorDataContainer  = EditorHelper.GetScriptableObject<ExteriorDataContainer>();
+            Assert.IsNotNull(characterDataContainer, $"{nameof(characterDataContainer)} == null");
+            Assert.IsNotNull(exteriorDataContainer, $"{nameof(exteriorDataContainer)} == null");
+            editorDatas = new List<EditorReferenceData>();
+            EditorSaveSystem.Load(); // 初始化就讀取檔案
+            saveFile = EditorSaveSystem.SaveFile;
+            CalibrationDataFile();   // 校準資料
+        }
+
         protected override void OnBeginDrawEditors()
         {
-            if (Window == null)
-                Window = GetWindow<DataManager>();
+            Window ??= GetWindow<DataManager>();
             var selectedItem  = MenuTree.Selection.FirstOrDefault();
             var toolbarHeight = MenuTree.Config.SearchToolbarHeight;
             SirenixEditorGUI.BeginHorizontalToolbar(toolbarHeight);
@@ -56,7 +79,8 @@ namespace Examples.Editor.Windows
         protected override OdinMenuTree BuildMenuTree()
         {
             var tree = new OdinMenuTree();
-            tree.DefaultMenuStyle = OdinMenuStyle.TreeViewStyle;
+            // 這個會讓整個按鈕小小的
+            // tree.DefaultMenuStyle = OdinMenuStyle.TreeViewStyle;
 
             AddTitleEditorData(tree);
             AddEditorDatas(tree);
@@ -64,25 +88,6 @@ namespace Examples.Editor.Windows
             return tree;
         }
 
-        /// <summary> 初始化 (Once) </summary>
-        protected override void Initialize()
-        {
-            // Some Setting
-            SaveHelper.EnableLog = false;
-
-            // Main Datas Get
-            characterContainer = EditorHelper.GetScriptableObject<CharacterContainer>();
-            exteriorContainer  = EditorHelper.GetScriptableObject<ExteriorContainer>();
-            Assert.IsNotNull(characterContainer, $"{nameof(characterContainer)} == null");
-            Assert.IsNotNull(exteriorContainer, $"{nameof(exteriorContainer)} == null");
-            editorDatas = new List<EditorReferenceData>();
-
-            // 初始化就讀取檔案
-            EditorSaveSystem.Load();
-            oldSaveFile = EditorSaveSystem.SaveFile;
-            CalibrationDataFile();
-        }
-        
         protected override void OnGUI()
         {
             base.OnGUI();
@@ -94,8 +99,9 @@ namespace Examples.Editor.Windows
         }
 
     #endregion
-        
+
     #region ========== [Events] ==========
+
         public void OnMenuNameChanged(string newName)
         {
             var odinMenuItem = MenuTree?.Selection?.FirstOrDefault();
@@ -111,18 +117,19 @@ namespace Examples.Editor.Windows
         private void AddEditorDatas(OdinMenuTree tree)
         {
             // Child
-            // 檔案建立
-            foreach (var aRealData in characterContainer.Datas)
+            // 編輯檔案建立
+            foreach (var characterData in characterDataContainer.Datas)
             {
-                var editorData  = new EditorReferenceData(aRealData); // 雙向 References
-                var displayName = oldSaveFile.GetEditorDisplayName(aRealData.DataID);
-                editorData.DataName = displayName ?? $"{aRealData.Name}";
+                // 雙向 References
+                var dataName   = saveFile.GetEditorDisplayName(characterData.DataID);
+                var editorData = new EditorReferenceData(characterData);
+                editorData.SetDataName(dataName ?? $"{characterData.Name}");
                 var resultName = $"{MenuItemNames.TitleName_SubDatas}/{editorData.DataName}";
                 tree.Add(resultName, editorData, SdfIconType.JournalPlus);
                 editorDatas.Add(editorData);
             }
 
-            foreach (var bRealData in exteriorContainer.Datas)
+            foreach (var bRealData in exteriorDataContainer.Datas)
             {
                 var editorData = editorDatas.FirstOrDefault(s => s.ReferenceDataID.Equals(bRealData.DataID));
                 if (editorData == null) continue;
@@ -137,7 +144,6 @@ namespace Examples.Editor.Windows
             tree.Add(titleName, data, SdfIconType.Ticket);
         }
 
-        // TODO:要刪除的對象會是 Json 裡面的，因為 List是我隨時在調整的對象
         /// <summary> 校準資料 (EditorData ← RealData) <br/>
         /// 依據真實資料，去做Editor紀錄調整 <br/>
         /// ---(自動覆蓋存檔)---
@@ -145,8 +151,8 @@ namespace Examples.Editor.Windows
         private void CalibrationDataFile()
         {
             var newSaveFile = new EditorSaveFile();
-            var subDatas    = characterContainer.Datas;
-            foreach (var editorDisplayName in oldSaveFile.assets)
+            var subDatas    = characterDataContainer.Datas;
+            foreach (var editorDisplayName in saveFile.assets)
             {
                 var subData = subDatas.FirstOrDefault(data => data.DataID.Equals(editorDisplayName.SearchID));
                 if (subData != null) newSaveFile.SetDisplayName(subData.DataID, editorDisplayName.Name);
@@ -159,26 +165,22 @@ namespace Examples.Editor.Windows
         {
             if (selected.Value is EditorReferenceData editorData)
             {
-                characterContainer.Remove(editorData.ARealData);
-                exteriorContainer.Remove(editorData.BRealData);
-                EditorUtility.SetDirty(characterContainer);
-                EditorUtility.SetDirty(exteriorContainer);
+                characterDataContainer.Remove(editorData.ARealData);
+                exteriorDataContainer.Remove(editorData.BRealData);
+                editorDatas.Remove(editorData);
+                EditorUtility.SetDirty(characterDataContainer);
+                EditorUtility.SetDirty(exteriorDataContainer);
             }
 
             selected.Remove();
+            Window.ShowCustomNotification("Succeed Deleted!", Color.green, SdfIconType.Trash);
         }
 
         private bool IsShowDelete(OdinMenuItem selected)
         {
             if (selected == null) return false;
-            if (selected.Value is EditorReferenceData) return true;
-            return false;
-        }
-
-        [MenuItem(MenuHotKeys.ExampleEditorWindow)]
-        private static void OpenEditor()
-        {
-            Window = Window.OpenWindow<DataManager>();
+            if (selected.Value is not EditorReferenceData) return false;
+            return true;
         }
 
     #endregion

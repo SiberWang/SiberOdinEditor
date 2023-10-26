@@ -1,4 +1,4 @@
-﻿namespace Examples.Scripts.OdinWindows
+﻿namespace Examples.Scripts.Misc
 {
     public static class EditorStringActions
     {

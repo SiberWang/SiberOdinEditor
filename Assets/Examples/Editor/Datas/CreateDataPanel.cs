@@ -50,10 +50,11 @@ namespace Examples.Editor.Datas
             var editorData = new EditorReferenceData(newDataName);
             var resultName = $"{titleName}/{editorData.DataName}";
             tree.Add(resultName, editorData, SdfIconType.JournalPlus);
+            window.editorDatas.Add(editorData);
 
             // 把新建的資料，加進List
-            window.characterContainer.Datas.Add(editorData.ARealData);
-            window.exteriorContainer.Datas.Add(editorData.BRealData);
+            window.characterDataContainer.Add(editorData.ARealData);
+            window.exteriorDataContainer.Add(editorData.BRealData);
             EditorSaveSystem.SaveFile.SetDisplayName(editorData.ARealData.DataID, newDataName);
             EditorSaveSystem.Save();
         }

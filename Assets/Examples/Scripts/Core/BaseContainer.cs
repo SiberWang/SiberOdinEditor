@@ -1,9 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Sirenix.OdinInspector;
+using UnityEngine;
+
+#if UNITY_EDITOR
 using Sirenix.Utilities.Editor;
 using UnityEditor;
-using UnityEngine;
+#endif
 
 namespace Examples.Scripts.Core
 {
@@ -24,13 +27,15 @@ namespace Examples.Scripts.Core
         [SerializeField]
         private List<T> datas = new List<T>();
 
+        private bool enableDebugCheck;
+
     #endregion
 
     #region ========== [Public Methods] ==========
 
         public void Add(T data)
         {
-            if (!datas.Contains(data)) return;
+            if (datas.Contains(data)) return;
             datas.Add(data);
         }
 
@@ -49,6 +54,17 @@ namespace Examples.Scripts.Core
         private void ListButtons()
         {
         #if UNITY_EDITOR
+            if (SirenixEditorGUI.ToolbarButton(SdfIconType.BugFill))
+            {
+                for (var i = 0; i < datas.Count; i++)
+                {
+                    var data = datas[i];
+                    if (data == null) continue;
+                    if (data is not BaseData baseData) continue;
+                    baseData.EnableDebugCheck = !baseData.EnableDebugCheck;
+                }
+            }
+
             if (SirenixEditorGUI.ToolbarButton(EditorIcons.Refresh))
             {
                 datas = datas.OrderByDescending(s => s.DataID).ToList();

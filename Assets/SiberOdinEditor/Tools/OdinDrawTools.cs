@@ -1,9 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using SiberOdinEditor.Core.Utils;
 using Sirenix.OdinInspector;
+using UnityEngine;
+using Object = UnityEngine.Object;
+
+#if UNITY_EDITOR
 using Sirenix.OdinInspector.Editor;
 using UnityEditor;
-using UnityEngine;
+#endif
 
 namespace SiberOdinEditor.Tools
 {
@@ -13,25 +18,22 @@ namespace SiberOdinEditor.Tools
     #region ========== [Public Methods] ==========
 
         /// <summary> 全檔案儲存 Button </summary>
-        public static void Draw_Button_AllDataSave(List<OdinMenuItem> menuTreeMenuItems)
+        public static void Draw_Button_AllDataSave
+            (List<OdinMenuItem> menuTreeMenuItems, Action<Object> onSaveAction = null)
         {
-            // MenuTree.MenuItems 等於一個 Group
-            // menuItem.ChildMenuItems 則是 Group底下的子物件
-            // GUI.backgroundColor = new Color(0.7f, 0.7f, 0.7f);
             var iconColor = new Color(1f, 1f, 0.5f);
             if (OdinStyleTools.CustomToolbarButton("All Save (Ctrl+S)", SdfIconType.CalendarCheckFill, iconColor))
-                DoAllDataSave(menuTreeMenuItems);
-            // GUI.backgroundColor = Color.white;
+                DoAllDataSave(menuTreeMenuItems, onSaveAction);
         }
 
         /// <summary> 建立檔案 Button </summary>
         public static void Draw_Button_CreateNewData(OdinMenuItem selected)
         {
-            // if (selected is not { Value: ICreateDataAction createDataAction }) return;
-            // GUI.backgroundColor = new Color(0.6f, 1.2f, 0.6f, 1f);
-            // if (OdinStyleTools.CustomToolbarButton("Create", SdfIconType.FileEarmarkPlus))
-            //     createDataAction.Create();
-            // GUI.backgroundColor = Color.white;
+            if (selected is not { Value: ICreateDataAction createDataAction }) return;
+            GUI.backgroundColor = new Color(0.6f, 1.2f, 0.6f, 1f);
+            if (OdinStyleTools.CustomToolbarButton("Create", SdfIconType.FileEarmarkPlus))
+                createDataAction.Create();
+            GUI.backgroundColor = Color.white;
         }
 
         /// <summary> 刪除當前檔案 Button (Delete SOData) </summary>
@@ -53,18 +55,19 @@ namespace SiberOdinEditor.Tools
 
             GUI.backgroundColor = Color.white;
         }
-        
+
         /// <summary> 刪除當前檔案 Button (Delete Custom object) </summary>
-        public static void Draw_Button_DeleteCurrentObject(bool condition = true, Action onDeleteAcion = null)
+        public static void Draw_Button_DeleteCurrentObject(bool condition = true, Action onDeleteAction = null)
         {
             if (!condition) return;
             GUI.backgroundColor = new Color(1f, 0.3f, 0.3f, 0.6f);
             if (OdinStyleTools.CustomToolbarButton("Delete", SdfIconType.DashCircle))
             {
-                onDeleteAcion?.Invoke();
+                onDeleteAction?.Invoke();
                 AssetDatabase.SaveAssets();
                 AssetDatabase.Refresh();
             }
+
             GUI.backgroundColor = Color.white;
         }
 
@@ -86,7 +89,9 @@ namespace SiberOdinEditor.Tools
         }
 
         /// <summary> 全檔案儲存 </summary>
-        public static void DoAllDataSave(List<OdinMenuItem> menuTreeMenuItems)
+        /// MenuTree.MenuItems 等於一個 Group
+        /// menuItem.ChildMenuItems 則是 Group底下的子物件
+        public static void DoAllDataSave(List<OdinMenuItem> menuTreeMenuItems, Action<Object> onSaveAction = null)
         {
             foreach (var menuItem in menuTreeMenuItems)
             {
@@ -94,10 +99,11 @@ namespace SiberOdinEditor.Tools
                 {
                     var asset = childMenuItem.Value as ScriptableObject;
                     if (asset == null) continue;
+                    onSaveAction?.Invoke(asset);
                     EditorUtility.SetDirty(asset);
                 }
             }
-            
+
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
         }

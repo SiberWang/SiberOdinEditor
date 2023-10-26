@@ -1,4 +1,5 @@
 ﻿using System;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Examples.Scripts.Core
@@ -7,9 +8,12 @@ namespace Examples.Scripts.Core
     {
     #region ========== [Public Variables] ==========
 
-        // [PropertyOrder(-10)]
-        // [ShowInInspector]
+        [ShowIf(nameof(EnableDebugCheck))]
+        [PropertyOrder(-10)]
+        [ShowInInspector]
         public string DataID => dataID;
+
+        public bool EnableDebugCheck { get; set; }
 
     #endregion
 
