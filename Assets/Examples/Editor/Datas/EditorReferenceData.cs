@@ -5,7 +5,6 @@ using Examples.Editor.Names;
 using Examples.Editor.Windows;
 using Examples.Scripts.Datas;
 using Sirenix.OdinInspector;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -146,8 +145,8 @@ namespace Examples.Editor.Datas
                     editorDatas.FirstOrDefault(data => data != this && string.Equals(data.DataName, currentName));
                 if (editorData != null)
                 {
-                    errorMessage = $"{EditorWindowDescription.DataIsExist} ,This Name: {currentName} (FindName: {editorData.DataName})";
-                    messageType             = InfoMessageType.Warning;
+                    errorMessage = $"{EditorWindowDescription.DataIsExist} (FindName: {editorData.DataName})";
+                    messageType = InfoMessageType.Warning;
                     canClick_ChangeDataName = false;
                 }
                 else
