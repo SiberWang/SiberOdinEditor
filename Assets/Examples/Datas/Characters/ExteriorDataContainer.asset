@@ -32,4 +32,4 @@ MonoBehaviour:
   - dataID: 1ff6ff6a-6e07-4ab1-83d6-09fbf6d55db9
     bodySprite: {fileID: 0}
     someValue: 5
-    someContext: "\u9810\u8A2D\u5167\u5BB9"
+    someContext: "\u5DE8\u5927\u7684\u602A\u7269\u7684"

@@ -4,28 +4,20 @@ using Sirenix.OdinInspector;
 
 namespace Examples.Scripts.Datas
 {
-    /// <summary> 真正的純資料！ </summary>
-    /// 頂多加個順序 PropertyOrder 或是 LabelText
     [Serializable]
-    public class CharacterData : BaseData
+    public class WeaponData : BaseData
     {
     #region ========== [Public Variables] ==========
 
-        [PropertyOrder(0)]
         public string Name;
-        [PropertyOrder(1)]
-        public float MoveSpeed;
-        [PropertyOrder(2)]
-        public int   HP;
-
 
     #endregion
 
     #region ========== [Constructor] ==========
 
-        public CharacterData() : base() { }
+        public WeaponData() : base() { }
 
-        public CharacterData(string name) : base()
+        public WeaponData(string name) : base()
         {
             Name = name;
         }
@@ -36,9 +28,7 @@ namespace Examples.Scripts.Datas
 
         protected override void Init()
         {
-            Name      ??= "New Data";
-            HP        =   100;
-            MoveSpeed =   3;
+            Name ??= "New Data";
         }
 
     #endregion

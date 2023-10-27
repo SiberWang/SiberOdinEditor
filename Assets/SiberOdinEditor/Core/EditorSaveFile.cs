@@ -9,7 +9,7 @@ namespace SiberOdinEditor.Core
     {
     #region ========== [Public Variables] ==========
 
-        public List<EditorInfoData> assets = new();
+        public List<EditorInfoData> infoDataList = new();
 
     #endregion
 
@@ -26,7 +26,7 @@ namespace SiberOdinEditor.Core
             if (data == null)
             {
                 data = new EditorInfoData(searchID, newName);
-                assets.Add(data);
+                infoDataList.Add(data);
             }
 
             data.SetName(newName);
@@ -38,7 +38,7 @@ namespace SiberOdinEditor.Core
 
         private EditorInfoData FindEditorInfoData(string searchID)
         {
-            var data = assets.Find(a => a.SearchID.Equals(searchID));
+            var data = infoDataList.Find(a => a.SearchID.Equals(searchID));
             return data;
         }
 

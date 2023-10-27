@@ -15,21 +15,21 @@ MonoBehaviour:
   datas:
   - dataID: f0950ec3-ae10-46ea-a47d-348db0e18b9a
     Name: "\u5730\u7CBE"
-    HP: 10
     MoveSpeed: 2.5
+    HP: 10
   - dataID: ec7651f0-89ab-465b-9891-2887b7dbe7f7
     Name: "\u98DF\u4EBA\u602A\u7269"
-    HP: 125
     MoveSpeed: 1
+    HP: 125
   - dataID: 600d8071-52e1-40e8-a7a6-502748dc4f57
     Name: "\u54E5\u5E03\u6797"
-    HP: 25
     MoveSpeed: 2
+    HP: 25
   - dataID: 575f96d5-851c-40b9-a579-a7e72d042ce9
     Name: "\u5996\u9B54"
-    HP: 62
     MoveSpeed: 1.5
+    HP: 62
   - dataID: 1ff6ff6a-6e07-4ab1-83d6-09fbf6d55db9
     Name: "\u5DE8\u5927\u7684\u602A\u7269"
-    HP: 100
     MoveSpeed: 3
+    HP: 100
