@@ -13,27 +13,23 @@ MonoBehaviour:
   m_Name: CharacterDataContainer
   m_EditorClassIdentifier: 
   datas:
-  - dataID: 882b0682-cd70-445d-a5f4-76990d7f2e7d
-    Name: AA
-    HP: 123
-    MoveSpeed: 33
-  - dataID: 50f05e89-9325-448b-97a0-71c368e2074c
-    Name: AACSS
-    HP: 100
-    MoveSpeed: 3
-  - dataID: 4b7be9e3-d501-4dfb-84c8-a3e744e32be3
-    Name: GGCC
-    HP: 5
-    MoveSpeed: 13
-  - dataID: 4a6ede8c-7b5a-46f5-b8a2-f4fcc9cd6bde
-    Name: Player_A
-    HP: 50
-    MoveSpeed: 4
-  - dataID: 38d52b39-c675-4107-80f5-4937cf1a8b6a
-    Name: Player_B
+  - dataID: f0950ec3-ae10-46ea-a47d-348db0e18b9a
+    Name: "\u5730\u7CBE"
+    HP: 10
+    MoveSpeed: 2.5
+  - dataID: ec7651f0-89ab-465b-9891-2887b7dbe7f7
+    Name: "\u98DF\u4EBA\u602A\u7269"
+    HP: 125
+    MoveSpeed: 1
+  - dataID: 600d8071-52e1-40e8-a7a6-502748dc4f57
+    Name: "\u54E5\u5E03\u6797"
     HP: 25
-    MoveSpeed: 5
-  - dataID: 1cef45e2-b881-45dd-97c1-dd7467143d4f
-    Name: What
+    MoveSpeed: 2
+  - dataID: 575f96d5-851c-40b9-a579-a7e72d042ce9
+    Name: "\u5996\u9B54"
+    HP: 62
+    MoveSpeed: 1.5
+  - dataID: 1ff6ff6a-6e07-4ab1-83d6-09fbf6d55db9
+    Name: "\u5DE8\u5927\u7684\u602A\u7269"
     HP: 100
     MoveSpeed: 3

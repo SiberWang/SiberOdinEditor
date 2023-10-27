@@ -15,7 +15,7 @@ namespace Examples.Editor.Datas
     {
     #region ========== [Private Variables] ==========
 
-        [ValidateInput(nameof(CanCreate), "@message", InfoMessageType.Warning)]
+        [ValidateInput(nameof(CanCreate), "@message", InfoMessageType.Warning , ContinuousValidationCheck = true)]
         [LabelText("新建名稱: ")]
         [LabelWidth(60)]
         [SerializeField]
@@ -25,7 +25,7 @@ namespace Examples.Editor.Datas
         private string       titleName;
         private string       message;
 
-        private readonly DataManager window;
+        private DataManager DataManager => DataManager.Window;
 
     #endregion
 
@@ -35,7 +35,6 @@ namespace Examples.Editor.Datas
         {
             this.tree      = tree;
             this.titleName = titleName;
-            window         = DataManager.Window;
         }
 
     #endregion
@@ -50,13 +49,15 @@ namespace Examples.Editor.Datas
             var editorData = new EditorReferenceData(newDataName);
             var resultName = $"{titleName}/{editorData.DataName}";
             tree.Add(resultName, editorData, SdfIconType.JournalPlus);
-            window.editorDatas.Add(editorData);
+            DataManager.editorDatas.Add(editorData);
 
-            // 把新建的資料，加進List
-            window.characterDataContainer.Add(editorData.ARealData);
-            window.exteriorDataContainer.Add(editorData.BRealData);
-            EditorSaveSystem.SaveFile.SetDisplayName(editorData.ARealData.DataID, newDataName);
+            // 把新建的資料，加進List (SetDirty)
+            DataManager.characterDataContainer.Add(editorData.characterData);
+            DataManager.exteriorDataContainer.Add(editorData.exteriorData);
+            DataManager.SetDatasDirty();
+            EditorSaveSystem.SaveFile.SetDisplayName(editorData.characterData.DataID, newDataName);
             EditorSaveSystem.Save();
+            newDataName = string.Empty;
         }
 
         private bool CanCreate()
@@ -69,8 +70,7 @@ namespace Examples.Editor.Datas
 
         private bool IsSameDataName(string dataName)
         {
-            var editorDatas = window.editorDatas;
-            var editorData  = editorDatas.FirstOrDefault(data => string.Equals(data.DataName, dataName));
+            var editorData = DataManager.editorDatas.FirstOrDefault(data => string.Equals(data.DataName, dataName));
             if (editorData == null) return false;
             message = $"{EditorWindowDescription.DataIsExist} , Name: {dataName} , editorData:{editorData.DataName}";
             return true;

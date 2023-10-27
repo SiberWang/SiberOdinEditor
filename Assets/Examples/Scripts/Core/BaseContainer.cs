@@ -56,10 +56,8 @@ namespace Examples.Scripts.Core
         #if UNITY_EDITOR
             if (SirenixEditorGUI.ToolbarButton(SdfIconType.BugFill))
             {
-                for (var i = 0; i < datas.Count; i++)
+                foreach (var data in datas)
                 {
-                    var data = datas[i];
-                    if (data == null) continue;
                     if (data is not BaseData baseData) continue;
                     baseData.EnableDebugCheck = !baseData.EnableDebugCheck;
                 }

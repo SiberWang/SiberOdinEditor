@@ -10,6 +10,7 @@ namespace Examples.Editor.Names
         public static string StringEmpty =
             $"<color=#{StrColor.Blue}>[Note]</color> Name is empty. Please name something.";
 
+        public static string DataCanUse = $"<color=#{StrColor.Green}>[OK]</color> The Data name is OK!";
         public static string DataIsExist = $"<color=#{StrColor.Red}>[Error]</color> The Data name is exist";
         public static string SomeError   = $"<color=#{StrColor.Red}>[Error]</color> Cannot Delete.  Something wrong!";
         public static string CopyData    = $"<color=#{StrColor.Green}>[Success!]</color> Copy Data : ";

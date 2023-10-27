@@ -58,7 +58,7 @@ namespace Examples.Editor.Windows
             editorDatas = new List<EditorReferenceData>();
             EditorSaveSystem.Load(); // 初始化就讀取檔案
             saveFile = EditorSaveSystem.SaveFile;
-            CalibrationDataFile();   // 校準資料
+            CalibrationDataFile(); // 校準資料
         }
 
         protected override void OnBeginDrawEditors()
@@ -70,8 +70,8 @@ namespace Examples.Editor.Windows
             {
                 OdinDrawTools.Draw_Label_WindowSize(Window.position);
                 OdinDrawTools.Draw_Label_CurrentSelectName(selectedItem);
-                OdinDrawTools.Draw_Button_DeleteCurrentObject(IsShowDelete(selectedItem),
-                                                              () => DoDeleteAction(selectedItem));
+                OdinDrawTools.Draw_Button_DeleteCurrentObject(IsShowDelete(selectedItem), () => DoDeleteAction(selectedItem));
+                OdinDrawTools.Draw_Button_AllDataSave(SetDatasDirty);
             }
             SirenixEditorGUI.EndHorizontalToolbar();
         }
@@ -81,6 +81,8 @@ namespace Examples.Editor.Windows
             var tree = new OdinMenuTree();
             // 這個會讓整個按鈕小小的
             // tree.DefaultMenuStyle = OdinMenuStyle.TreeViewStyle;
+            tree.Config.UseCachedExpandedStates = true;
+            tree.Config.DrawSearchToolbar       = true;
 
             AddTitleEditorData(tree);
             AddEditorDatas(tree);
@@ -93,9 +95,19 @@ namespace Examples.Editor.Windows
             base.OnGUI();
 
             // Ctrl+S 快捷鍵 (儲存)
-            EditorHotKeys.CtrlS(() => Debug.Log($"Ctrl+S"));
+            EditorHotKeys.CtrlS(() => OdinDrawTools.DoAllDataSave(SetDatasDirty));
             if (Window != null && !GUIHelper.CurrentWindowHasFocus)
                 EditorHotKeys.Init();
+        }
+
+    #endregion
+
+    #region ========== [Public Methods] ==========
+
+        public void SetDatasDirty()
+        {
+            EditorUtility.SetDirty(characterDataContainer);
+            EditorUtility.SetDirty(exteriorDataContainer);
         }
 
     #endregion
@@ -129,11 +141,11 @@ namespace Examples.Editor.Windows
                 editorDatas.Add(editorData);
             }
 
-            foreach (var bRealData in exteriorDataContainer.Datas)
+            foreach (var exteriorData in exteriorDataContainer.Datas)
             {
-                var editorData = editorDatas.FirstOrDefault(s => s.ReferenceDataID.Equals(bRealData.DataID));
+                var editorData = editorDatas.FirstOrDefault(s => s.ReferenceDataID.Equals(exteriorData.DataID));
                 if (editorData == null) continue;
-                editorData.BRealData = bRealData;
+                editorData.exteriorData = exteriorData;
             }
         }
 
@@ -163,17 +175,13 @@ namespace Examples.Editor.Windows
 
         private void DoDeleteAction(OdinMenuItem selected)
         {
-            if (selected.Value is EditorReferenceData editorData)
-            {
-                characterDataContainer.Remove(editorData.ARealData);
-                exteriorDataContainer.Remove(editorData.BRealData);
-                editorDatas.Remove(editorData);
-                EditorUtility.SetDirty(characterDataContainer);
-                EditorUtility.SetDirty(exteriorDataContainer);
-            }
-
+            if (selected.Value is not EditorReferenceData editorData) return;
+            characterDataContainer.Remove(editorData.characterData);
+            exteriorDataContainer.Remove(editorData.exteriorData);
+            editorDatas.Remove(editorData);
             selected.Remove();
-            Window.ShowCustomNotification("Succeed Deleted!", Color.green, SdfIconType.Trash);
+            SetDatasDirty();
+            CalibrationDataFile();
         }
 
         private bool IsShowDelete(OdinMenuItem selected)

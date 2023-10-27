@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using SiberOdinEditor.Core.Utils;
 using Sirenix.OdinInspector;
+using Sirenix.Utilities.Editor;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -17,13 +18,24 @@ namespace SiberOdinEditor.Tools
     {
     #region ========== [Public Methods] ==========
 
-        /// <summary> 全檔案儲存 Button </summary>
+        /// <summary> 全檔案儲存 Button <br/>
+        /// 依照 OdinMenuItem 中內容來儲存 (常用於內容為 ScriptableObject)
+        /// </summary>
+        /// <param name="menuTreeMenuItems"> 放入 MenuTree.MenuItems </param>
+        /// <param name="onSaveAction"> 額外事件 (可有可無) </param>
         public static void Draw_Button_AllDataSave
             (List<OdinMenuItem> menuTreeMenuItems, Action<Object> onSaveAction = null)
         {
             var iconColor = new Color(1f, 1f, 0.5f);
             if (OdinStyleTools.CustomToolbarButton("All Save (Ctrl+S)", SdfIconType.CalendarCheckFill, iconColor))
                 DoAllDataSave(menuTreeMenuItems, onSaveAction);
+        }
+
+        public static void Draw_Button_AllDataSave(Action onSaveAction)
+        {
+            var iconColor = new Color(1f, 1f, 0.5f);
+            if (OdinStyleTools.CustomToolbarButton("All Save (Ctrl+S)", SdfIconType.CalendarCheckFill, iconColor))
+                DoAllDataSave(onSaveAction);
         }
 
         /// <summary> 建立檔案 Button </summary>
@@ -38,7 +50,7 @@ namespace SiberOdinEditor.Tools
 
         /// <summary> 刪除當前檔案 Button (Delete SOData) </summary>
         public static void Draw_Button_DeleteCurrentSOData
-            (OdinMenuItem selected, bool condition = true, Action onDeleteAcion = null)
+            (OdinMenuItem selected, bool condition = true, Action onDeleteAction = null)
         {
             if (selected is not { Value: ScriptableObject }) return;
             if (!condition) return;
@@ -48,11 +60,8 @@ namespace SiberOdinEditor.Tools
                 var asset = selected.Value as ScriptableObject;
                 var path  = AssetDatabase.GetAssetPath(asset);
                 AssetDatabase.DeleteAsset(path);
-                onDeleteAcion?.Invoke();
-                AssetDatabase.SaveAssets();
-                AssetDatabase.Refresh();
+                DoDeleteData(onDeleteAction);
             }
-
             GUI.backgroundColor = Color.white;
         }
 
@@ -61,13 +70,8 @@ namespace SiberOdinEditor.Tools
         {
             if (!condition) return;
             GUI.backgroundColor = new Color(1f, 0.3f, 0.3f, 0.6f);
-            if (OdinStyleTools.CustomToolbarButton("Delete", SdfIconType.DashCircle))
-            {
-                onDeleteAction?.Invoke();
-                AssetDatabase.SaveAssets();
-                AssetDatabase.Refresh();
-            }
-
+            if (OdinStyleTools.CustomToolbarButton("Delete", SdfIconType.DashCircle)) 
+                DoDeleteData(onDeleteAction);
             GUI.backgroundColor = Color.white;
         }
 
@@ -88,9 +92,11 @@ namespace SiberOdinEditor.Tools
             GUILayout.Label(text, style);
         }
 
-        /// <summary> 全檔案儲存 </summary>
-        /// MenuTree.MenuItems 等於一個 Group
-        /// menuItem.ChildMenuItems 則是 Group底下的子物件
+        /// <summary> 全檔案儲存 <br/>
+        /// 儲存清單內所有為 ScriptableObject 的項目 <br/>
+        /// </summary>
+        // MenuTree.MenuItems 等於一個 Group
+        // menuItem.ChildMenuItems 則是 Group底下的子物件
         public static void DoAllDataSave(List<OdinMenuItem> menuTreeMenuItems, Action<Object> onSaveAction = null)
         {
             foreach (var menuItem in menuTreeMenuItems)
@@ -106,6 +112,28 @@ namespace SiberOdinEditor.Tools
 
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
+        }
+
+        /// <summary> 全檔案儲存 <br/>
+        /// 自定義儲存事件
+        /// </summary>
+        public static void DoAllDataSave(Action onSaveAction)
+        {
+            onSaveAction?.Invoke();
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
+            GUIHelper.CurrentWindow.ShowSaveNotification();
+        }
+        
+        /// <summary> 檔案刪除 <br/>
+        /// 自定義儲存事件
+        /// </summary>
+        public static void DoDeleteData(Action onDeleteAction)
+        {
+            onDeleteAction?.Invoke();
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
+            GUIHelper.CurrentWindow.ShowCustomNotification("Succeed Deleted!", Color.red, SdfIconType.Trash2);
         }
 
     #endregion

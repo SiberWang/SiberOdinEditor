@@ -13,27 +13,23 @@ MonoBehaviour:
   m_Name: ExteriorDataContainer
   m_EditorClassIdentifier: 
   datas:
-  - dataID: 882b0682-cd70-445d-a5f4-76990d7f2e7d
+  - dataID: f0950ec3-ae10-46ea-a47d-348db0e18b9a
     bodySprite: {fileID: 0}
-    someValue: 12323
-    someContext: BAACCDD
-  - dataID: 50f05e89-9325-448b-97a0-71c368e2074c
+    someValue: 8
+    someContext: "\u5594\u9F41\u9F41"
+  - dataID: ec7651f0-89ab-465b-9891-2887b7dbe7f7
     bodySprite: {fileID: 0}
-    someValue: 66
-    someContext: 123123ssaa
-  - dataID: 4b7be9e3-d501-4dfb-84c8-a3e744e32be3
+    someValue: 25
+    someContext: "\u5DE8\u5927\u7684\u68D2\u5B50"
+  - dataID: 600d8071-52e1-40e8-a7a6-502748dc4f57
     bodySprite: {fileID: 0}
-    someValue: 516123
-    someContext: "\u5167\u5BB9"
-  - dataID: 4a6ede8c-7b5a-46f5-b8a2-f4fcc9cd6bde
+    someValue: 3
+    someContext: "\u5475\u5475"
+  - dataID: 575f96d5-851c-40b9-a579-a7e72d042ce9
     bodySprite: {fileID: 0}
-    someValue: 1
-    someContext: "\u76EE\u524D\u5C31\u662F123"
-  - dataID: 38d52b39-c675-4107-80f5-4937cf1a8b6a
+    someValue: 2
+    someContext: "\u6B38\u563F\u563F"
+  - dataID: 1ff6ff6a-6e07-4ab1-83d6-09fbf6d55db9
     bodySprite: {fileID: 0}
-    someValue: 555
-    someContext: "\u9810"
-  - dataID: 1cef45e2-b881-45dd-97c1-dd7467143d4f
-    bodySprite: {fileID: 0}
-    someValue: 1231
-    someContext: "\u8A2D"
+    someValue: 5
+    someContext: "\u9810\u8A2D\u5167\u5BB9"
