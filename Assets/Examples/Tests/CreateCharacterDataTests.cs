@@ -3,6 +3,8 @@ using NUnit.Framework;
 
 public class CreateCharacterDataTests
 {
+#region ========== [Main] ==========
+
     [Test(Description = "成功建立擁有DataID的角色資料")]
     public void Create_Default_CharacterData_And_GetDataID()
     {
@@ -15,8 +17,7 @@ public class CreateCharacterDataTests
     {
         var newDataName   = "ABCBBCCAA";
         var characterData = new CharacterData(newDataName);
-        Assert.AreEqual(characterData.Name, newDataName,
-                        $"characterData.Name {characterData.Name} not equal [{newDataName}]");
+        Assert.AreEqual(characterData.Name, newDataName, "Name is not equal");
     }
 
     [Test(Description = "成功建立角色資料 , 並獲得預設參數")]
@@ -27,6 +28,10 @@ public class CreateCharacterDataTests
         Assert.AreEqual(characterData.MoveSpeed, 3, "MoveSpeed is not equal");
         Assert.AreEqual(characterData.HP, 100, "HP is not equal");
     }
+
+#endregion
+
+#region ========== [Childs] ==========
 
     [Test(Description = "透過角色資料資料ID , 來建立外觀資料並紀錄ID")]
     public void Create_ExteriorData_And_Reference_By_CharacterData_DataID()
@@ -45,4 +50,6 @@ public class CreateCharacterDataTests
         Assert.AreEqual(exteriorData.someValue, 5, "someValue is not equal");
         Assert.AreEqual(exteriorData.someContext, "預設內容", "someContext is not equal");
     }
+
+#endregion
 }

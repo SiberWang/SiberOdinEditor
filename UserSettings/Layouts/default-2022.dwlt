@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 997
   m_ShowMode: 4
-  m_Title: Project
+  m_Title: Console
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 542}
   m_MaxSize: {x: 10000, y: 10000}
@@ -118,7 +118,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 78
+  controlID: 159
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 79
+  controlID: 160
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 100}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 19
+  controlID: 43
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -188,17 +188,18 @@ MonoBehaviour:
     x: 0
     y: 0
     width: 931
-    height: 555
+    height: 521
   m_MinSize: {x: 101, y: 121}
   m_MaxSize: {x: 4001, y: 4021}
-  m_ActualView: {fileID: 15}
+  m_ActualView: {fileID: 16}
   m_Panes:
-  - {fileID: 16}
-  - {fileID: 15}
-  - {fileID: 18}
   - {fileID: 17}
+  - {fileID: 16}
+  - {fileID: 19}
+  - {fileID: 18}
+  - {fileID: 14}
   m_Selected: 1
-  m_LastSelected: 0
+  m_LastSelected: 4
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -215,16 +216,16 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
     x: 0
-    y: 555
+    y: 521
     width: 931
-    height: 392
+    height: 426
   m_MinSize: {x: 101, y: 121}
   m_MaxSize: {x: 4001, y: 4021}
-  m_ActualView: {fileID: 19}
+  m_ActualView: {fileID: 20}
   m_Panes:
-  - {fileID: 19}
   - {fileID: 20}
   - {fileID: 21}
+  - {fileID: 22}
   m_Selected: 0
   m_LastSelected: 1
 --- !u!114 &10
@@ -271,11 +272,11 @@ MonoBehaviour:
     y: 0
     width: 524
     height: 442
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
-  m_ActualView: {fileID: 22}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_ActualView: {fileID: 23}
   m_Panes:
-  - {fileID: 22}
+  - {fileID: 23}
   m_Selected: 0
   m_LastSelected: 0
 --- !u!114 &12
@@ -299,9 +300,9 @@ MonoBehaviour:
     height: 505
   m_MinSize: {x: 232, y: 271}
   m_MaxSize: {x: 10002, y: 10021}
-  m_ActualView: {fileID: 23}
+  m_ActualView: {fileID: 24}
   m_Panes:
-  - {fileID: 23}
+  - {fileID: 24}
   m_Selected: 0
   m_LastSelected: 0
 --- !u!114 &13
@@ -314,7 +315,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: InspectorWindow
+  m_Name: TestRunnerWindow
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -323,16 +324,84 @@ MonoBehaviour:
     y: 0
     width: 465
     height: 947
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
-  m_ActualView: {fileID: 24}
+  m_MinSize: {x: 101, y: 121}
+  m_MaxSize: {x: 4001, y: 4021}
+  m_ActualView: {fileID: 15}
   m_Panes:
-  - {fileID: 24}
-  - {fileID: 14}
   - {fileID: 25}
-  m_Selected: 0
-  m_LastSelected: 1
+  - {fileID: 15}
+  - {fileID: 26}
+  m_Selected: 1
+  m_LastSelected: 0
 --- !u!114 &14
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1806621427, guid: a4865f1ab4504ed8a368670db22f409c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_TitleContent:
+    m_Text: Attributes Example Window
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  m_Pos:
+    serializedVersion: 2
+    x: -1920
+    y: 73
+    width: 930
+    height: 682
+  m_SerializedDataModeController:
+    m_DataMode: 0
+    m_PreferredDataMode: 0
+    m_SupportedDataModes: 
+    isAutomatic: 1
+  m_ViewDataDictionary: {fileID: 0}
+  m_OverlayCanvas:
+    m_LastAppliedPresetName: Default
+    m_SaveData: []
+    m_OverlaysVisible: 1
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: inspectorTargetSerialized
+      Entry: 6
+      Data: 
+  labelWidth: 0.33
+  windowPadding: {x: 4, y: 4, z: 4, w: 4}
+  useScrollView: 1
+  drawUnityEditorPreview: 0
+  wrappedAreaMaxHeight: 1000
+  menuTreeConfig:
+    AutoScrollOnSelectionChanged: 1
+    DrawScrollView: 1
+    AutoHandleKeyboardNavigation: 1
+    DrawSearchToolbar: 1
+    UseCachedExpandedStates: 1
+    AutoFocusSearchBar: 1
+    SelectMenuItemsOnMouseDown: 0
+    ScrollPos: {x: 0, y: 0}
+    SearchTerm: 
+    SearchToolbarHeight: 24
+    EXPERIMENTAL_INTERNAL_DrawFlatTreeFastNoLayout: 0
+    ConfirmSlecectionOnDoubleClick: 1
+  menuWidth: 250
+  selectedItems:
+  - Essentials/Validate Input
+  resizableMenuWidth: 1
+--- !u!114 &15
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -352,7 +421,7 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1455
+    x: -465
     y: 73
     width: 464
     height: 926
@@ -367,7 +436,7 @@ MonoBehaviour:
     m_SaveData: []
     m_OverlaysVisible: 1
   m_Spl:
-    ID: 194599
+    ID: 20521
     splitterInitialOffset: 0
     currentActiveSplitter: -1
     realSizes:
@@ -392,14 +461,14 @@ MonoBehaviour:
     oldSplitSize: 0
   m_TestTypeToolbarIndex: 1
   m_PlayModeTestListGUI:
-    m_Window: {fileID: 14}
+    m_Window: {fileID: 15}
     m_NewResultList:
-    - id: 1132
-      uniqueId: '[Energy Absorber Demo][suite]'
-      name: Energy Absorber Demo
-      fullName: Energy Absorber Demo
+    - id: 1005
+      uniqueId: '[SiberOdinEditor][suite]'
+      name: SiberOdinEditor
+      fullName: SiberOdinEditor
       resultStatus: 0
-      duration: 0
+      duration: 0.0500699
       messages: 
       output: 
       stacktrace: 
@@ -410,12 +479,12 @@ MonoBehaviour:
       categories: []
       parentId: 
       parentUniqueId: 
-    - id: 1137
-      uniqueId: '[UnityComponentTests][D:/My Unity/01-GitHub/BatteryHunter_ForMobile/Library/ScriptAssemblies/UnityComponentTests.dll][suite]'
-      name: UnityComponentTests.dll
-      fullName: D:/My Unity/01-GitHub/BatteryHunter_ForMobile/Library/ScriptAssemblies/UnityComponentTests.dll
+    - id: 1008
+      uniqueId: '[Examples.Tests.dll][suite]'
+      name: Examples.Tests.dll
+      fullName: D:/My Unity/01-GitHub/SiberOdinEditor/Library/ScriptAssemblies/Examples.Tests.dll
       resultStatus: 0
-      duration: 0
+      duration: 0.0396583
       messages: 
       output: 
       stacktrace: 
@@ -424,14 +493,14 @@ MonoBehaviour:
       description: 
       isSuite: 1
       categories: []
-      parentId: 1132
-      parentUniqueId: '[Energy Absorber Demo][suite]'
-    - id: 1133
-      uniqueId: UnityComponentTests.dll/[UnityComponentTests][suite]
-      name: UnityComponentTests
-      fullName: UnityComponentTests
+      parentId: 1005
+      parentUniqueId: '[SiberOdinEditor][suite]'
+    - id: 1009
+      uniqueId: Examples.Tests.dll/[Examples][suite]
+      name: Examples
+      fullName: Examples
       resultStatus: 0
-      duration: 0
+      duration: 0.0354589
       messages: 
       output: 
       stacktrace: 
@@ -440,66 +509,64 @@ MonoBehaviour:
       description: 
       isSuite: 1
       categories: []
-      parentId: 1137
-      parentUniqueId: '[UnityComponentTests][D:/My Unity/01-GitHub/BatteryHunter_ForMobile/Library/ScriptAssemblies/UnityComponentTests.dll][suite]'
-    - id: 1136
-      uniqueId: UnityComponentTests.dll/UnityComponentTests/[UnityComponentTests][UnityComponentTests.Should_Play_Animation_Via_Animator_When_Call_PlayAnimation]
-      name: Should_Play_Animation_Via_Animator_When_Call_PlayAnimation
-      fullName: UnityComponentTests.Should_Play_Animation_Via_Animator_When_Call_PlayAnimation
+      parentId: 1008
+      parentUniqueId: '[Examples.Tests.dll][suite]'
+    - id: 1010
+      uniqueId: Examples.Tests.dll/Examples/[Examples.Tests][Examples.Tests][suite]
+      name: Tests
+      fullName: Examples.Tests
       resultStatus: 0
-      duration: 0
+      duration: 0.0331235
       messages: 
       output: 
       stacktrace: 
       notRunnable: 0
       ignoredOrSkipped: 0
       description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1133
-      parentUniqueId: UnityComponentTests.dll/[UnityComponentTests][suite]
-    - id: 1134
-      uniqueId: UnityComponentTests.dll/UnityComponentTests/[UnityComponentTests][UnityComponentTests.Should_Position_Is_Correct_When_Call_MoveCharacter]
-      name: Should_Position_Is_Correct_When_Call_MoveCharacter
-      fullName: UnityComponentTests.Should_Position_Is_Correct_When_Call_MoveCharacter
+      isSuite: 1
+      categories: []
+      parentId: 1009
+      parentUniqueId: Examples.Tests.dll/[Examples][suite]
+    - id: 1006
+      uniqueId: Examples.Tests.dll/Examples/Tests/[Examples.Tests][Examples.Tests.CreateDataTests][suite]
+      name: CreateDataTests
+      fullName: Examples.Tests.CreateDataTests
       resultStatus: 0
-      duration: 0
+      duration: 0.0302372
       messages: 
       output: 
       stacktrace: 
       notRunnable: 0
       ignoredOrSkipped: 0
       description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1133
-      parentUniqueId: UnityComponentTests.dll/[UnityComponentTests][suite]
-    - id: 1135
-      uniqueId: UnityComponentTests.dll/UnityComponentTests/[UnityComponentTests][UnityComponentTests.Should_Velocity_Is_Correct_When_Dash]
-      name: Should_Velocity_Is_Correct_When_Dash
-      fullName: UnityComponentTests.Should_Velocity_Is_Correct_When_Dash
+      isSuite: 1
+      categories: []
+      parentId: 1010
+      parentUniqueId: Examples.Tests.dll/Examples/[Examples.Tests][Examples.Tests][suite]
+    - id: 1007
+      uniqueId: Examples.Tests.dll/Examples/Tests/CreateDataTests/[Examples.Tests][Examples.Tests.CreateDataTests.Create_Character]
+      name: Create_Character
+      fullName: Examples.Tests.CreateDataTests.Create_Character
       resultStatus: 0
-      duration: 0
+      duration: 0.0151704
       messages: 
       output: 
       stacktrace: 
       notRunnable: 0
       ignoredOrSkipped: 0
-      description: 
+      description: "\u6210\u529F\u5EFA\u7ACB\u89D2\u8272\u8CC7\u6599\uFF0C\u4E26\u8CE6\u4E88\u96A8\u6A5FDataID"
       isSuite: 0
       categories:
       - Uncategorized
-      parentId: 1133
-      parentUniqueId: UnityComponentTests.dll/[UnityComponentTests][suite]
+      parentId: 1006
+      parentUniqueId: Examples.Tests.dll/Examples/Tests/[Examples.Tests][Examples.Tests.CreateDataTests][suite]
     m_ResultText: 
     m_ResultStacktrace: 
     m_TestListState:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 77be65dbb37f28f3231add14ffffff7f
+      m_ExpandedIDs: a6e724af77be65dbb37f28f3231add1402352477ffffff7f
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -527,14 +594,14 @@ MonoBehaviour:
       - Uncategorized
     m_SelectedOption: 0
   m_EditModeTestListGUI:
-    m_Window: {fileID: 14}
+    m_Window: {fileID: 15}
     m_NewResultList:
     - id: 1000
-      uniqueId: '[Energy Absorber][suite]'
-      name: Energy Absorber
-      fullName: Energy Absorber
-      resultStatus: 0
-      duration: 0
+      uniqueId: '[SiberOdinEditor][suite]'
+      name: SiberOdinEditor
+      fullName: SiberOdinEditor
+      resultStatus: 1
+      duration: 0.0743876
       messages: 
       output: 
       stacktrace: 
@@ -545,12 +612,12 @@ MonoBehaviour:
       categories: []
       parentId: 
       parentUniqueId: 
-    - id: 1011
-      uniqueId: '[ActorTests.dll][suite]'
-      name: ActorTests.dll
-      fullName: D:/My Unity/01-GitHub/BatteryHunter_ForMobile/Library/ScriptAssemblies/ActorTests.dll
-      resultStatus: 0
-      duration: 0
+    - id: 1003
+      uniqueId: '[Examples.Tests][D:/My Unity/01-GitHub/SiberOdinEditor/Library/ScriptAssemblies/Examples.Tests.dll][suite]'
+      name: Examples.Tests.dll
+      fullName: D:/My Unity/01-GitHub/SiberOdinEditor/Library/ScriptAssemblies/Examples.Tests.dll
+      resultStatus: 1
+      duration: 0.0411724
       messages: 
       output: 
       stacktrace: 
@@ -560,176 +627,13 @@ MonoBehaviour:
       isSuite: 1
       categories: []
       parentId: 1000
-      parentUniqueId: '[Energy Absorber][suite]'
-    - id: 1012
-      uniqueId: ActorTests.dll/[CoreSystem][suite]
-      name: CoreSystem
-      fullName: CoreSystem
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1011
-      parentUniqueId: '[ActorTests.dll][suite]'
-    - id: 1013
-      uniqueId: ActorTests.dll/CoreSystem/[Actor][suite]
-      name: Actor
-      fullName: CoreSystem.Actor
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1012
-      parentUniqueId: ActorTests.dll/[CoreSystem][suite]
-    - id: 1014
-      uniqueId: ActorTests.dll/CoreSystem/Actor/[Core][suite]
-      name: Core
-      fullName: CoreSystem.Actor.Core
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1013
-      parentUniqueId: ActorTests.dll/CoreSystem/[Actor][suite]
-    - id: 1015
-      uniqueId: ActorTests.dll/CoreSystem/Actor/Core/[Tests][suite]
-      name: Tests
-      fullName: CoreSystem.Actor.Core.Tests
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1014
-      parentUniqueId: ActorTests.dll/CoreSystem/Actor/[Core][suite]
-    - id: 1017
-      uniqueId: ActorTests.dll/CoreSystem/Actor/Core/Tests/[ActorTests][CoreSystem.Actor.Core.Tests.Entity][suite]
-      name: Entity
-      fullName: CoreSystem.Actor.Core.Tests.Entity
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1015
-      parentUniqueId: ActorTests.dll/CoreSystem/Actor/Core/[Tests][suite]
-    - id: 1007
-      uniqueId: ActorTests.dll/CoreSystem/Actor/Core/Tests/Entity/[ActorTests][suite]
-      name: ActorTests
-      fullName: CoreSystem.Actor.Core.Tests.Entity.ActorTests
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1017
-      parentUniqueId: ActorTests.dll/CoreSystem/Actor/Core/Tests/[ActorTests][CoreSystem.Actor.Core.Tests.Entity][suite]
-    - id: 1008
-      uniqueId: ActorTests.dll/CoreSystem/Actor/Core/Tests/Entity/ActorTests/[ActorTests][CoreSystem.Actor.Core.Tests.Entity.ActorTests.Publish_ActorCreated]
-      name: Publish_ActorCreated
-      fullName: CoreSystem.Actor.Core.Tests.Entity.ActorTests.Publish_ActorCreated
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1007
-      parentUniqueId: ActorTests.dll/CoreSystem/Actor/Core/Tests/Entity/[ActorTests][suite]
-    - id: 1009
-      uniqueId: ActorTests.dll/CoreSystem/Actor/Core/Tests/Entity/ActorTests/[ActorTests][CoreSystem.Actor.Core.Tests.Entity.ActorTests.Publish_ActorDead]
-      name: Publish_ActorDead
-      fullName: CoreSystem.Actor.Core.Tests.Entity.ActorTests.Publish_ActorDead
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1007
-      parentUniqueId: ActorTests.dll/CoreSystem/Actor/Core/Tests/Entity/[ActorTests][suite]
-    - id: 1010
-      uniqueId: ActorTests.dll/CoreSystem/Actor/Core/Tests/Entity/ActorTests/[ActorTests][CoreSystem.Actor.Core.Tests.Entity.ActorTests.Publish_ActorRevived]
-      name: Publish_ActorRevived
-      fullName: CoreSystem.Actor.Core.Tests.Entity.ActorTests.Publish_ActorRevived
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1007
-      parentUniqueId: ActorTests.dll/CoreSystem/Actor/Core/Tests/Entity/[ActorTests][suite]
-    - id: 1016
-      uniqueId: ActorTests.dll/CoreSystem/Actor/Core/Tests/[ActorTests][CoreSystem.Actor.Core.Tests.UseCases][suite]
-      name: UseCases
-      fullName: CoreSystem.Actor.Core.Tests.UseCases
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1015
-      parentUniqueId: ActorTests.dll/CoreSystem/Actor/Core/[Tests][suite]
+      parentUniqueId: '[SiberOdinEditor][suite]'
     - id: 1001
-      uniqueId: ActorTests.dll/CoreSystem/Actor/Core/Tests/UseCases/[ActorTests][CoreSystem.Actor.Core.Tests.UseCases.CreateActorUseCaseTests][suite]
-      name: CreateActorUseCaseTests
-      fullName: CoreSystem.Actor.Core.Tests.UseCases.CreateActorUseCaseTests
-      resultStatus: 0
-      duration: 0
+      uniqueId: Examples.Tests.dll/[Examples.Tests][CreateCharacterDataTests][suite]
+      name: CreateCharacterDataTests
+      fullName: CreateCharacterDataTests
+      resultStatus: 1
+      duration: 0.0395881
       messages: 
       output: 
       stacktrace: 
@@ -738,744 +642,101 @@ MonoBehaviour:
       description: 
       isSuite: 1
       categories: []
-      parentId: 1016
-      parentUniqueId: ActorTests.dll/CoreSystem/Actor/Core/Tests/[ActorTests][CoreSystem.Actor.Core.Tests.UseCases][suite]
-    - id: 1002
-      uniqueId: ActorTests.dll/CoreSystem/Actor/Core/Tests/UseCases/CreateActorUseCaseTests/[ActorTests][CoreSystem.Actor.Core.Tests.UseCases.CreateActorUseCaseTests.Should_Succeed_When_CreateActor]
-      name: Should_Succeed_When_CreateActor
-      fullName: CoreSystem.Actor.Core.Tests.UseCases.CreateActorUseCaseTests.Should_Succeed_When_CreateActor
-      resultStatus: 0
-      duration: 0
+      parentId: 1006
+      parentUniqueId: '[Examples.Tests][D:/My Unity/01-GitHub/SiberOdinEditor/Library/ScriptAssemblies/Examples.Tests.dll][suite]'
+    - id: 1004
+      uniqueId: Examples.Tests.dll/CreateCharacterDataTests/[Examples.Tests][CreateCharacterDataTests.Create_CharacterData_And_Init_Values]
+      name: Create_CharacterData_And_Init_Values
+      fullName: CreateCharacterDataTests.Create_CharacterData_And_Init_Values
+      resultStatus: 1
+      duration: 0.0192574
       messages: 
       output: 
       stacktrace: 
       notRunnable: 0
       ignoredOrSkipped: 0
-      description: 
+      description: "\u6210\u529F\u5EFA\u7ACB\u89D2\u8272\u8CC7\u6599 , \u4E26\u7372\u5F97\u9810\u8A2D\u53C3\u6578"
       isSuite: 0
       categories:
       - Uncategorized
       parentId: 1001
-      parentUniqueId: ActorTests.dll/CoreSystem/Actor/Core/Tests/UseCases/[ActorTests][CoreSystem.Actor.Core.Tests.UseCases.CreateActorUseCaseTests][suite]
+      parentUniqueId: Examples.Tests.dll/[Examples.Tests][CreateCharacterDataTests][suite]
     - id: 1003
-      uniqueId: ActorTests.dll/CoreSystem/Actor/Core/Tests/UseCases/[ActorTests][CoreSystem.Actor.Core.Tests.UseCases.MakeActorDieUseCaseTests][suite]
-      name: MakeActorDieUseCaseTests
-      fullName: CoreSystem.Actor.Core.Tests.UseCases.MakeActorDieUseCaseTests
-      resultStatus: 0
-      duration: 0
+      uniqueId: Examples.Tests.dll/CreateCharacterDataTests/[Examples.Tests][CreateCharacterDataTests.Create_CharacterData_By_DataName]
+      name: Create_CharacterData_By_DataName
+      fullName: CreateCharacterDataTests.Create_CharacterData_By_DataName
+      resultStatus: 1
+      duration: 0.0002814
       messages: 
       output: 
       stacktrace: 
       notRunnable: 0
       ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1016
-      parentUniqueId: ActorTests.dll/CoreSystem/Actor/Core/Tests/[ActorTests][CoreSystem.Actor.Core.Tests.UseCases][suite]
-    - id: 1004
-      uniqueId: ActorTests.dll/CoreSystem/Actor/Core/Tests/UseCases/MakeActorDieUseCaseTests/[ActorTests][CoreSystem.Actor.Core.Tests.UseCases.MakeActorDieUseCaseTests.Should_Succeed_When_MakeActorDie]
-      name: Should_Succeed_When_MakeActorDie
-      fullName: CoreSystem.Actor.Core.Tests.UseCases.MakeActorDieUseCaseTests.Should_Succeed_When_MakeActorDie
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
+      description: "\u6210\u529F\u7528\u6307\u5B9A\u540D\u7A31\u5EFA\u7ACB\u89D2\u8272\u8CC7\u6599"
       isSuite: 0
       categories:
       - Uncategorized
-      parentId: 1003
-      parentUniqueId: ActorTests.dll/CoreSystem/Actor/Core/Tests/UseCases/[ActorTests][CoreSystem.Actor.Core.Tests.UseCases.MakeActorDieUseCaseTests][suite]
-    - id: 1005
-      uniqueId: ActorTests.dll/CoreSystem/Actor/Core/Tests/UseCases/[ActorTests][CoreSystem.Actor.Core.Tests.UseCases.ReliveActorUseCaseTests][suite]
-      name: ReliveActorUseCaseTests
-      fullName: CoreSystem.Actor.Core.Tests.UseCases.ReliveActorUseCaseTests
-      resultStatus: 0
-      duration: 0
+      parentId: 1001
+      parentUniqueId: Examples.Tests.dll/[Examples.Tests][CreateCharacterDataTests][suite]
+    - id: 1002
+      uniqueId: Examples.Tests.dll/CreateCharacterDataTests/[Examples.Tests][CreateCharacterDataTests.Create_Default_CharacterData_And_GetDataID]
+      name: Create_Default_CharacterData_And_GetDataID
+      fullName: CreateCharacterDataTests.Create_Default_CharacterData_And_GetDataID
+      resultStatus: 1
+      duration: 0.0022884
       messages: 
       output: 
       stacktrace: 
       notRunnable: 0
       ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1016
-      parentUniqueId: ActorTests.dll/CoreSystem/Actor/Core/Tests/[ActorTests][CoreSystem.Actor.Core.Tests.UseCases][suite]
+      description: "\u6210\u529F\u5EFA\u7ACB\u64C1\u6709DataID\u7684\u89D2\u8272\u8CC7\u6599"
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: Examples.Tests.dll/[Examples.Tests][CreateCharacterDataTests][suite]
     - id: 1006
-      uniqueId: ActorTests.dll/CoreSystem/Actor/Core/Tests/UseCases/ReliveActorUseCaseTests/[ActorTests][CoreSystem.Actor.Core.Tests.UseCases.ReliveActorUseCaseTests.Should_Succeed_When_ReliveActor]
-      name: Should_Succeed_When_ReliveActor
-      fullName: CoreSystem.Actor.Core.Tests.UseCases.ReliveActorUseCaseTests.Should_Succeed_When_ReliveActor
-      resultStatus: 0
-      duration: 0
+      uniqueId: Examples.Tests.dll/CreateCharacterDataTests/[Examples.Tests][CreateCharacterDataTests.Create_ExteriorData_And_Init_Values]
+      name: Create_ExteriorData_And_Init_Values
+      fullName: CreateCharacterDataTests.Create_ExteriorData_And_Init_Values
+      resultStatus: 1
+      duration: 0.0002192
       messages: 
       output: 
       stacktrace: 
       notRunnable: 0
       ignoredOrSkipped: 0
-      description: 
+      description: "\u6210\u529F\u5EFA\u7ACB\u5916\u89C0\u8CC7\u6599 , \u4E26\u7372\u5F97\u9810\u8A2D\u53C3\u6578"
       isSuite: 0
       categories:
       - Uncategorized
-      parentId: 1005
-      parentUniqueId: ActorTests.dll/CoreSystem/Actor/Core/Tests/UseCases/[ActorTests][CoreSystem.Actor.Core.Tests.UseCases.ReliveActorUseCaseTests][suite]
-    - id: 1051
-      uniqueId: '[StatTests.dll][suite]'
-      name: StatTests.dll
-      fullName: D:/My Unity/01-GitHub/BatteryHunter_ForMobile/Library/ScriptAssemblies/StatTests.dll
-      resultStatus: 0
-      duration: 0
+      parentId: 1001
+      parentUniqueId: Examples.Tests.dll/[Examples.Tests][CreateCharacterDataTests][suite]
+    - id: 1005
+      uniqueId: Examples.Tests.dll/CreateCharacterDataTests/[Examples.Tests][CreateCharacterDataTests.Create_ExteriorData_And_Reference_By_CharacterData_DataID]
+      name: Create_ExteriorData_And_Reference_By_CharacterData_DataID
+      fullName: CreateCharacterDataTests.Create_ExteriorData_And_Reference_By_CharacterData_DataID
+      resultStatus: 1
+      duration: 0.0001928
       messages: 
       output: 
       stacktrace: 
       notRunnable: 0
       ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1000
-      parentUniqueId: '[Energy Absorber][suite]'
-    - id: 1052
-      uniqueId: StatTests.dll/[Game][suite]
-      name: Game
-      fullName: Game
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1051
-      parentUniqueId: '[StatTests.dll][suite]'
-    - id: 1053
-      uniqueId: StatTests.dll/Game/[CoreSystem][suite]
-      name: CoreSystem
-      fullName: Game.CoreSystem
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1052
-      parentUniqueId: StatTests.dll/[Game][suite]
-    - id: 1054
-      uniqueId: StatTests.dll/Game/CoreSystem/[Stat][suite]
-      name: Stat
-      fullName: Game.CoreSystem.Stat
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1053
-      parentUniqueId: StatTests.dll/Game/[CoreSystem][suite]
-    - id: 1055
-      uniqueId: StatTests.dll/Game/CoreSystem/Stat/[Core][suite]
-      name: Core
-      fullName: Game.CoreSystem.Stat.Core
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1054
-      parentUniqueId: StatTests.dll/Game/CoreSystem/[Stat][suite]
-    - id: 1056
-      uniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/[Scripts][suite]
-      name: Scripts
-      fullName: Game.CoreSystem.Stat.Core.Scripts
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1055
-      parentUniqueId: StatTests.dll/Game/CoreSystem/Stat/[Core][suite]
-    - id: 1057
-      uniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/[Tests][suite]
-      name: Tests
-      fullName: Game.CoreSystem.Stat.Core.Scripts.Tests
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1056
-      parentUniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/[Scripts][suite]
-    - id: 1059
-      uniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/Tests/[StatTests][Game.CoreSystem.Stat.Core.Scripts.Tests.Entity][suite]
-      name: Entity
-      fullName: Game.CoreSystem.Stat.Core.Scripts.Tests.Entity
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1057
-      parentUniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/[Tests][suite]
-    - id: 1035
-      uniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/Tests/Entity/[StatTests][suite]
-      name: StatTests
-      fullName: Game.CoreSystem.Stat.Core.Scripts.Tests.Entity.StatTests
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1059
-      parentUniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/Tests/[StatTests][Game.CoreSystem.Stat.Core.Scripts.Tests.Entity][suite]
-    - id: 1043
-      uniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/Tests/Entity/StatTests/[StatTests][Game.CoreSystem.Stat.Core.Scripts.Tests.Entity.StatTests.Publish_BaseAmountModified][suite]
-      name: Publish_BaseAmountModified
-      fullName: Game.CoreSystem.Stat.Core.Scripts.Tests.Entity.StatTests.Publish_BaseAmountModified
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1035
-      parentUniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/Tests/Entity/[StatTests][suite]
-    - id: 1040
-      uniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/Tests/Entity/StatTests/Publish_BaseAmountModified/[StatTests][Game.CoreSystem.Stat.Core.Scripts.Tests.Entity.StatTests.Publish_BaseAmountModified(4,4)]
-      name: Publish_BaseAmountModified(4,4)
-      fullName: Game.CoreSystem.Stat.Core.Scripts.Tests.Entity.StatTests.Publish_BaseAmountModified(4,4)
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
+      description: "\u900F\u904E\u89D2\u8272\u8CC7\u6599\u8CC7\u6599ID , \u4F86\u5EFA\u7ACB\u5916\u89C0\u8CC7\u6599\u4E26\u7D00\u9304ID"
       isSuite: 0
       categories:
       - Uncategorized
-      parentId: 1043
-      parentUniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/Tests/Entity/StatTests/[StatTests][Game.CoreSystem.Stat.Core.Scripts.Tests.Entity.StatTests.Publish_BaseAmountModified][suite]
-    - id: 1041
-      uniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/Tests/Entity/StatTests/Publish_BaseAmountModified/[StatTests][Game.CoreSystem.Stat.Core.Scripts.Tests.Entity.StatTests.Publish_BaseAmountModified(0,0)]
-      name: Publish_BaseAmountModified(0,0)
-      fullName: Game.CoreSystem.Stat.Core.Scripts.Tests.Entity.StatTests.Publish_BaseAmountModified(0,0)
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1043
-      parentUniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/Tests/Entity/StatTests/[StatTests][Game.CoreSystem.Stat.Core.Scripts.Tests.Entity.StatTests.Publish_BaseAmountModified][suite]
-    - id: 1042
-      uniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/Tests/Entity/StatTests/Publish_BaseAmountModified/[StatTests][Game.CoreSystem.Stat.Core.Scripts.Tests.Entity.StatTests.Publish_BaseAmountModified(-1,0)]
-      name: Publish_BaseAmountModified(-1,0)
-      fullName: Game.CoreSystem.Stat.Core.Scripts.Tests.Entity.StatTests.Publish_BaseAmountModified(-1,0)
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1043
-      parentUniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/Tests/Entity/StatTests/[StatTests][Game.CoreSystem.Stat.Core.Scripts.Tests.Entity.StatTests.Publish_BaseAmountModified][suite]
-    - id: 1049
-      uniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/Tests/Entity/StatTests/[StatTests][Game.CoreSystem.Stat.Core.Scripts.Tests.Entity.StatTests.Publish_BaseAmountModified_By_AddBaseAmount][suite]
-      name: Publish_BaseAmountModified_By_AddBaseAmount
-      fullName: Game.CoreSystem.Stat.Core.Scripts.Tests.Entity.StatTests.Publish_BaseAmountModified_By_AddBaseAmount
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1035
-      parentUniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/Tests/Entity/[StatTests][suite]
-    - id: 1044
-      uniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/Tests/Entity/StatTests/Publish_BaseAmountModified_By_AddBaseAmount/[StatTests][Game.CoreSystem.Stat.Core.Scripts.Tests.Entity.StatTests.Publish_BaseAmountModified_By_AddBaseAmount(3,4,7)]
-      name: Publish_BaseAmountModified_By_AddBaseAmount(3,4,7)
-      fullName: Game.CoreSystem.Stat.Core.Scripts.Tests.Entity.StatTests.Publish_BaseAmountModified_By_AddBaseAmount(3,4,7)
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1049
-      parentUniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/Tests/Entity/StatTests/[StatTests][Game.CoreSystem.Stat.Core.Scripts.Tests.Entity.StatTests.Publish_BaseAmountModified_By_AddBaseAmount][suite]
-    - id: 1045
-      uniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/Tests/Entity/StatTests/Publish_BaseAmountModified_By_AddBaseAmount/[StatTests][Game.CoreSystem.Stat.Core.Scripts.Tests.Entity.StatTests.Publish_BaseAmountModified_By_AddBaseAmount(2,0,2)]
-      name: Publish_BaseAmountModified_By_AddBaseAmount(2,0,2)
-      fullName: Game.CoreSystem.Stat.Core.Scripts.Tests.Entity.StatTests.Publish_BaseAmountModified_By_AddBaseAmount(2,0,2)
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1049
-      parentUniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/Tests/Entity/StatTests/[StatTests][Game.CoreSystem.Stat.Core.Scripts.Tests.Entity.StatTests.Publish_BaseAmountModified_By_AddBaseAmount][suite]
-    - id: 1046
-      uniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/Tests/Entity/StatTests/Publish_BaseAmountModified_By_AddBaseAmount/[StatTests][Game.CoreSystem.Stat.Core.Scripts.Tests.Entity.StatTests.Publish_BaseAmountModified_By_AddBaseAmount(5,-3,2)]
-      name: Publish_BaseAmountModified_By_AddBaseAmount(5,-3,2)
-      fullName: Game.CoreSystem.Stat.Core.Scripts.Tests.Entity.StatTests.Publish_BaseAmountModified_By_AddBaseAmount(5,-3,2)
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1049
-      parentUniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/Tests/Entity/StatTests/[StatTests][Game.CoreSystem.Stat.Core.Scripts.Tests.Entity.StatTests.Publish_BaseAmountModified_By_AddBaseAmount][suite]
-    - id: 1047
-      uniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/Tests/Entity/StatTests/Publish_BaseAmountModified_By_AddBaseAmount/[StatTests][Game.CoreSystem.Stat.Core.Scripts.Tests.Entity.StatTests.Publish_BaseAmountModified_By_AddBaseAmount(9,-9,0)]
-      name: Publish_BaseAmountModified_By_AddBaseAmount(9,-9,0)
-      fullName: Game.CoreSystem.Stat.Core.Scripts.Tests.Entity.StatTests.Publish_BaseAmountModified_By_AddBaseAmount(9,-9,0)
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1049
-      parentUniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/Tests/Entity/StatTests/[StatTests][Game.CoreSystem.Stat.Core.Scripts.Tests.Entity.StatTests.Publish_BaseAmountModified_By_AddBaseAmount][suite]
-    - id: 1048
-      uniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/Tests/Entity/StatTests/Publish_BaseAmountModified_By_AddBaseAmount/[StatTests][Game.CoreSystem.Stat.Core.Scripts.Tests.Entity.StatTests.Publish_BaseAmountModified_By_AddBaseAmount(0,-5,0)]
-      name: Publish_BaseAmountModified_By_AddBaseAmount(0,-5,0)
-      fullName: Game.CoreSystem.Stat.Core.Scripts.Tests.Entity.StatTests.Publish_BaseAmountModified_By_AddBaseAmount(0,-5,0)
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1049
-      parentUniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/Tests/Entity/StatTests/[StatTests][Game.CoreSystem.Stat.Core.Scripts.Tests.Entity.StatTests.Publish_BaseAmountModified_By_AddBaseAmount][suite]
-    - id: 1050
-      uniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/Tests/Entity/StatTests/[StatTests][Game.CoreSystem.Stat.Core.Scripts.Tests.Entity.StatTests.Publish_CalculatedAmountModified]
-      name: Publish_CalculatedAmountModified
-      fullName: Game.CoreSystem.Stat.Core.Scripts.Tests.Entity.StatTests.Publish_CalculatedAmountModified
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1035
-      parentUniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/Tests/Entity/[StatTests][suite]
-    - id: 1038
-      uniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/Tests/Entity/StatTests/[StatTests][Game.CoreSystem.Stat.Core.Scripts.Tests.Entity.StatTests.Publish_ModifiedAdded]
-      name: Publish_ModifiedAdded
-      fullName: Game.CoreSystem.Stat.Core.Scripts.Tests.Entity.StatTests.Publish_ModifiedAdded
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1035
-      parentUniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/Tests/Entity/[StatTests][suite]
-    - id: 1039
-      uniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/Tests/Entity/StatTests/[StatTests][Game.CoreSystem.Stat.Core.Scripts.Tests.Entity.StatTests.Publish_ModifiedAdded_With_NegativeAmount]
-      name: Publish_ModifiedAdded_With_NegativeAmount
-      fullName: Game.CoreSystem.Stat.Core.Scripts.Tests.Entity.StatTests.Publish_ModifiedAdded_With_NegativeAmount
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1035
-      parentUniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/Tests/Entity/[StatTests][suite]
-    - id: 1037
-      uniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/Tests/Entity/StatTests/[StatTests][Game.CoreSystem.Stat.Core.Scripts.Tests.Entity.StatTests.Publish_RemoveModifiers]
-      name: Publish_RemoveModifiers
-      fullName: Game.CoreSystem.Stat.Core.Scripts.Tests.Entity.StatTests.Publish_RemoveModifiers
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1035
-      parentUniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/Tests/Entity/[StatTests][suite]
-    - id: 1036
-      uniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/Tests/Entity/StatTests/[StatTests][Game.CoreSystem.Stat.Core.Scripts.Tests.Entity.StatTests.Publish_StatCreated]
-      name: Publish_StatCreated
-      fullName: Game.CoreSystem.Stat.Core.Scripts.Tests.Entity.StatTests.Publish_StatCreated
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1035
-      parentUniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/Tests/Entity/[StatTests][suite]
-    - id: 1058
-      uniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/Tests/[StatTests][Game.CoreSystem.Stat.Core.Scripts.Tests.UseCases][suite]
-      name: UseCases
-      fullName: Game.CoreSystem.Stat.Core.Scripts.Tests.UseCases
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1057
-      parentUniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/[Tests][suite]
-    - id: 1021
-      uniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/Tests/UseCases/[StatTests][Game.CoreSystem.Stat.Core.Scripts.Tests.UseCases.AddAmountUseCaseTests][suite]
-      name: AddAmountUseCaseTests
-      fullName: Game.CoreSystem.Stat.Core.Scripts.Tests.UseCases.AddAmountUseCaseTests
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1058
-      parentUniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/Tests/[StatTests][Game.CoreSystem.Stat.Core.Scripts.Tests.UseCases][suite]
-    - id: 1023
-      uniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/Tests/UseCases/AddAmountUseCaseTests/[StatTests][Game.CoreSystem.Stat.Core.Scripts.Tests.UseCases.AddAmountUseCaseTests.Should_Failed_When_AddAmount]
-      name: Should_Failed_When_AddAmount
-      fullName: Game.CoreSystem.Stat.Core.Scripts.Tests.UseCases.AddAmountUseCaseTests.Should_Failed_When_AddAmount
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1021
-      parentUniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/Tests/UseCases/[StatTests][Game.CoreSystem.Stat.Core.Scripts.Tests.UseCases.AddAmountUseCaseTests][suite]
-    - id: 1022
-      uniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/Tests/UseCases/AddAmountUseCaseTests/[StatTests][Game.CoreSystem.Stat.Core.Scripts.Tests.UseCases.AddAmountUseCaseTests.Should_Succeed_When_AddAmount]
-      name: Should_Succeed_When_AddAmount
-      fullName: Game.CoreSystem.Stat.Core.Scripts.Tests.UseCases.AddAmountUseCaseTests.Should_Succeed_When_AddAmount
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1021
-      parentUniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/Tests/UseCases/[StatTests][Game.CoreSystem.Stat.Core.Scripts.Tests.UseCases.AddAmountUseCaseTests][suite]
-    - id: 1024
-      uniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/Tests/UseCases/[StatTests][Game.CoreSystem.Stat.Core.Scripts.Tests.UseCases.AddModifiersUseCaseTests][suite]
-      name: AddModifiersUseCaseTests
-      fullName: Game.CoreSystem.Stat.Core.Scripts.Tests.UseCases.AddModifiersUseCaseTests
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1058
-      parentUniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/Tests/[StatTests][Game.CoreSystem.Stat.Core.Scripts.Tests.UseCases][suite]
-    - id: 1026
-      uniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/Tests/UseCases/AddModifiersUseCaseTests/[StatTests][Game.CoreSystem.Stat.Core.Scripts.Tests.UseCases.AddModifiersUseCaseTests.Should_Failed_When_AddModifiers]
-      name: Should_Failed_When_AddModifiers
-      fullName: Game.CoreSystem.Stat.Core.Scripts.Tests.UseCases.AddModifiersUseCaseTests.Should_Failed_When_AddModifiers
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1024
-      parentUniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/Tests/UseCases/[StatTests][Game.CoreSystem.Stat.Core.Scripts.Tests.UseCases.AddModifiersUseCaseTests][suite]
-    - id: 1025
-      uniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/Tests/UseCases/AddModifiersUseCaseTests/[StatTests][Game.CoreSystem.Stat.Core.Scripts.Tests.UseCases.AddModifiersUseCaseTests.Should_Succeed_When_AddModifiers]
-      name: Should_Succeed_When_AddModifiers
-      fullName: Game.CoreSystem.Stat.Core.Scripts.Tests.UseCases.AddModifiersUseCaseTests.Should_Succeed_When_AddModifiers
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1024
-      parentUniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/Tests/UseCases/[StatTests][Game.CoreSystem.Stat.Core.Scripts.Tests.UseCases.AddModifiersUseCaseTests][suite]
-    - id: 1027
-      uniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/Tests/UseCases/[StatTests][Game.CoreSystem.Stat.Core.Scripts.Tests.UseCases.CreateStatUseCaseTests][suite]
-      name: CreateStatUseCaseTests
-      fullName: Game.CoreSystem.Stat.Core.Scripts.Tests.UseCases.CreateStatUseCaseTests
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1058
-      parentUniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/Tests/[StatTests][Game.CoreSystem.Stat.Core.Scripts.Tests.UseCases][suite]
-    - id: 1028
-      uniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/Tests/UseCases/CreateStatUseCaseTests/[StatTests][Game.CoreSystem.Stat.Core.Scripts.Tests.UseCases.CreateStatUseCaseTests.Should_Succeed_When_CreateStat]
-      name: Should_Succeed_When_CreateStat
-      fullName: Game.CoreSystem.Stat.Core.Scripts.Tests.UseCases.CreateStatUseCaseTests.Should_Succeed_When_CreateStat
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1027
-      parentUniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/Tests/UseCases/[StatTests][Game.CoreSystem.Stat.Core.Scripts.Tests.UseCases.CreateStatUseCaseTests][suite]
-    - id: 1029
-      uniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/Tests/UseCases/[StatTests][Game.CoreSystem.Stat.Core.Scripts.Tests.UseCases.ModifyAmountUseCaseTests][suite]
-      name: ModifyAmountUseCaseTests
-      fullName: Game.CoreSystem.Stat.Core.Scripts.Tests.UseCases.ModifyAmountUseCaseTests
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1058
-      parentUniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/Tests/[StatTests][Game.CoreSystem.Stat.Core.Scripts.Tests.UseCases][suite]
-    - id: 1031
-      uniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/Tests/UseCases/ModifyAmountUseCaseTests/[StatTests][Game.CoreSystem.Stat.Core.Scripts.Tests.UseCases.ModifyAmountUseCaseTests.Should_Failed_When_ModifyAmount]
-      name: Should_Failed_When_ModifyAmount
-      fullName: Game.CoreSystem.Stat.Core.Scripts.Tests.UseCases.ModifyAmountUseCaseTests.Should_Failed_When_ModifyAmount
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1029
-      parentUniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/Tests/UseCases/[StatTests][Game.CoreSystem.Stat.Core.Scripts.Tests.UseCases.ModifyAmountUseCaseTests][suite]
-    - id: 1030
-      uniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/Tests/UseCases/ModifyAmountUseCaseTests/[StatTests][Game.CoreSystem.Stat.Core.Scripts.Tests.UseCases.ModifyAmountUseCaseTests.Should_Succeed_When_ModifyAmount]
-      name: Should_Succeed_When_ModifyAmount
-      fullName: Game.CoreSystem.Stat.Core.Scripts.Tests.UseCases.ModifyAmountUseCaseTests.Should_Succeed_When_ModifyAmount
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1029
-      parentUniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/Tests/UseCases/[StatTests][Game.CoreSystem.Stat.Core.Scripts.Tests.UseCases.ModifyAmountUseCaseTests][suite]
-    - id: 1032
-      uniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/Tests/UseCases/[StatTests][Game.CoreSystem.Stat.Core.Scripts.Tests.UseCases.RemoveModifiersUseCaseTests][suite]
-      name: RemoveModifiersUseCaseTests
-      fullName: Game.CoreSystem.Stat.Core.Scripts.Tests.UseCases.RemoveModifiersUseCaseTests
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 1
-      categories: []
-      parentId: 1058
-      parentUniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/Tests/[StatTests][Game.CoreSystem.Stat.Core.Scripts.Tests.UseCases][suite]
-    - id: 1034
-      uniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/Tests/UseCases/RemoveModifiersUseCaseTests/[StatTests][Game.CoreSystem.Stat.Core.Scripts.Tests.UseCases.RemoveModifiersUseCaseTests.Should_Failed_When_RemoveModifiers]
-      name: Should_Failed_When_RemoveModifiers
-      fullName: Game.CoreSystem.Stat.Core.Scripts.Tests.UseCases.RemoveModifiersUseCaseTests.Should_Failed_When_RemoveModifiers
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1032
-      parentUniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/Tests/UseCases/[StatTests][Game.CoreSystem.Stat.Core.Scripts.Tests.UseCases.RemoveModifiersUseCaseTests][suite]
-    - id: 1033
-      uniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/Tests/UseCases/RemoveModifiersUseCaseTests/[StatTests][Game.CoreSystem.Stat.Core.Scripts.Tests.UseCases.RemoveModifiersUseCaseTests.Should_Succeed_When_RemoveModifiers]
-      name: Should_Succeed_When_RemoveModifiers
-      fullName: Game.CoreSystem.Stat.Core.Scripts.Tests.UseCases.RemoveModifiersUseCaseTests.Should_Succeed_When_RemoveModifiers
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
-      notRunnable: 0
-      ignoredOrSkipped: 0
-      description: 
-      isSuite: 0
-      categories:
-      - Uncategorized
-      parentId: 1032
-      parentUniqueId: StatTests.dll/Game/CoreSystem/Stat/Core/Scripts/Tests/UseCases/[StatTests][Game.CoreSystem.Stat.Core.Scripts.Tests.UseCases.RemoveModifiersUseCaseTests][suite]
-    m_ResultText: Should_Succeed_When_ChangePosition (0.002s)
+      parentId: 1001
+      parentUniqueId: Examples.Tests.dll/[Examples.Tests][CreateCharacterDataTests][suite]
+    m_ResultText: "Create_ExteriorData_And_Reference_By_CharacterData_DataID (0.000s)\n\u900F\u904E\u89D2\u8272\u8CC7\u6599\u8CC7\u6599ID
+      , \u4F86\u5EFA\u7ACB\u5916\u89C0\u8CC7\u6599\u4E26\u7D00\u9304ID"
     m_ResultStacktrace: 
     m_TestListState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 23ce7c5c
-      m_LastClickedID: 1551683107
-      m_ExpandedIDs: ccc5c1d3afc80bd477be65db7e3c5d343462184de83f72512f1f2d5f561e7e74ffffff7f
+      m_SelectedIDs: 25ce7ce6
+      m_LastClickedID: -428028379
+      m_ExpandedIDs: a6e724afccc5c1d3afc80bd477be65dbc6354b0f65c9cd117e3c5d343462184de83f72512f1f2d5f0ca92d6f561e7e7402352477ffffff7f
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1501,7 +762,7 @@ MonoBehaviour:
       selectedCategoryMask: 0
       availableCategories:
       - Uncategorized
---- !u!114 &15
+--- !u!114 &16
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1524,7 +785,7 @@ MonoBehaviour:
     x: -1920
     y: 73
     width: 930
-    height: 534
+    height: 500
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -1578,28 +839,28 @@ MonoBehaviour:
       x: 0
       y: 21
       width: 930
-      height: 513
-    m_Scale: {x: 0.475, y: 0.475}
-    m_Translation: {x: 465, y: 256.5}
+      height: 479
+    m_Scale: {x: 0.44351852, y: 0.44351852}
+    m_Translation: {x: 465, y: 239.5}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -978.9474
+      x: -1048.4342
       y: -540
-      width: 1957.8948
+      width: 2096.8684
       height: 1080
     m_MinimalGUI: 1
-  m_defaultScale: 0.475
-  m_LastWindowPixelSize: {x: 930, y: 534}
+  m_defaultScale: 0.44351852
+  m_LastWindowPixelSize: {x: 930, y: 500}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000000000000
   m_XRRenderMode: 0
   m_RenderTexture: {fileID: 0}
---- !u!114 &16
+--- !u!114 &17
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2086,7 +1347,7 @@ MonoBehaviour:
   m_SceneVisActive: 0
   m_LastLockedObject: {fileID: 0}
   m_ViewIsLockedToObject: 0
---- !u!114 &17
+--- !u!114 &18
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2268,7 +1529,7 @@ MonoBehaviour:
   m_ShowReferencedBuses: 1
   m_ShowBusConnections: 0
   m_ShowBusConnectionsOfSelection: 0
---- !u!114 &18
+--- !u!114 &19
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2338,7 +1599,7 @@ MonoBehaviour:
   m_CurrentEditor: 0
   m_LayerEditor:
     m_SelectedLayerIndex: 0
---- !u!114 &19
+--- !u!114 &20
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2359,9 +1620,9 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: -1920
-    y: 628
+    y: 594
     width: 930
-    height: 371
+    height: 405
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -2372,7 +1633,7 @@ MonoBehaviour:
     m_LastAppliedPresetName: Default
     m_SaveData: []
     m_OverlaysVisible: 1
---- !u!114 &20
+--- !u!114 &21
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2409,7 +1670,7 @@ MonoBehaviour:
   m_LockTracker:
     m_IsLocked: 0
   m_LastSelectedObjectID: 25688
---- !u!114 &21
+--- !u!114 &22
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2466,7 +1727,7 @@ MonoBehaviour:
       m_IsRenamingFilename: 0
       m_ClientGUIView: {fileID: 0}
     m_SearchString: 
---- !u!114 &22
+--- !u!114 &23
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2505,7 +1766,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: c246fffffe46ffff9a48ffff18faffff
+      m_ExpandedIDs: 5871f6ff2ca2f9ff56a2f9ffaca2f9ff86a3f9ff9ca4f9ff72a5f9ff4aa6f9ff3ea8f9ff12a9f9fffea9f9ffeeaaf9ff32abf9ff10acf9ffdeacf9ff58aef9ff58aff9ffa8b2f9ffdcb2f9ff9eb3f9ffccfaffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -2529,7 +1790,7 @@ MonoBehaviour:
       m_IsLocked: 0
     m_CurrentSortingName: TransformSorting
   m_WindowGUID: 1be44e6764e5dbf4fa13f09ec801e615
---- !u!114 &23
+--- !u!114 &24
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2574,7 +1835,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Plugins/Sirenix/Odin Inspector
+    - Assets/Examples/Datas/Characters
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -2582,16 +1843,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Plugins/Sirenix/Odin Inspector
+  - Assets/Examples/Datas/Characters
   m_LastFoldersGridSize: 16
   m_LastProjectPath: D:\My Unity\01-GitHub\SiberOdinEditor
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 3e5d0000
-    m_LastClickedID: 23870
-    m_ExpandedIDs: 000000009e5a0000a05a0000a25a0000a45a0000b45a0000365c0000745d0000
+    m_SelectedIDs: b45b0000
+    m_LastClickedID: 23476
+    m_ExpandedIDs: 00000000de5a0000e05a0000e25a0000e45a0000e85a0000f05a0000f85a0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -2619,7 +1880,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 1501}
     m_SelectedIDs: 1a5e0000
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000009e5a0000a05a0000a25a0000a45a0000
+    m_ExpandedIDs: 00000000de5a0000e05a0000e25a0000e45a0000e65a0000e85a0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -2646,19 +1907,19 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000b4e40100841f0200ccf80100085200008e61000004530000ba9e0300529b00000c5600003e850000e297050032570000ee580000a262000082250000b6690000e0690000a4710000b64e00005a760000a6770000a8530000fe5300003c5600002c69000020500000d2530000b65700008e780000240d04006856000070890000a0590000ae6a000056da04006c4d0e00205d0000147400001457000054d80000faab0000964003009c160200a0cc00007ef10000b6680000d8dc000082d60000e86900005c140500d21b05000ecc050062f70300ccd20500d0d20500a0bd0600ae070700a8a30700decc0900e6cc09000055000078f500007ef400002cf40000f6f400005239030042f4000034f4000076f400007af40000fef4000098f40000a4f40000d40a0100a8f40000f0f30000ecf30000e8f3000046f50000c6f30000c2f40000501507008c310300ea1101005a720000c40b0100820301001a71000000000000c0430b002c8102001c560d00b0f80000029f00001e7a5400d8c80000840609007e060900
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: HelpBox
-      m_OriginalName: HelpBox
+      m_Name: ExteriorDataContainer
+      m_OriginalName: ExteriorDataContainer
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 23604
+      m_UserData: 23122
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
       m_OriginalEventType: 0
@@ -2675,7 +1936,7 @@ MonoBehaviour:
     m_GridSize: 16
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 216
---- !u!114 &24
+--- !u!114 &25
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2722,7 +1983,7 @@ MonoBehaviour:
   m_LockTracker:
     m_IsLocked: 0
   m_PreviewWindow: {fileID: 0}
---- !u!114 &25
+--- !u!114 &26
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
