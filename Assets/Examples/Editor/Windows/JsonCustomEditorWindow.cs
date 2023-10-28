@@ -44,7 +44,7 @@ namespace Examples.Editor.Windows
         [MenuItem(MenuHotKeys.JsonEditorWindow)]
         private static void OpenWindow()
         {
-            window = window.OpenWindow<JsonCustomEditorWindow>(460, 240);
+            window = window.OpenWindowWithSize<JsonCustomEditorWindow>(460, 240);
         }
 
     #endregion

@@ -9,10 +9,12 @@ using UnityEngine.Assertions;
 namespace Examples.Editor.Windows
 {
     /// <summary> Editor 資料庫 </summary>
-    [InitializeOnLoad]
     public static class EditorRepository
     {
     #region ========== [Public Variables] ==========
+
+        //Setting
+        public static WindowSettingData WindowSettingData;
 
         // Containers
         public static CharacterDataContainer CharacterDataContainer;
@@ -27,18 +29,19 @@ namespace Examples.Editor.Windows
 
     #region ========== [Constructor] ==========
 
-        static EditorRepository()
+        public static void Init()
         {
             CharacterDataContainer = EditorHelper.GetScriptableObject<CharacterDataContainer>();
             ExteriorDataContainer  = EditorHelper.GetScriptableObject<ExteriorDataContainer>();
             WeaponDataContainer    = EditorHelper.GetScriptableObject<WeaponDataContainer>();
+            WindowSettingData      = EditorHelper.GetScriptableObject<WindowSettingData>();
             Assert.IsNotNull(CharacterDataContainer, $"{nameof(CharacterDataContainer)} == null");
             Assert.IsNotNull(ExteriorDataContainer, $"{nameof(ExteriorDataContainer)} == null");
             Assert.IsNotNull(WeaponDataContainer, $"{nameof(WeaponDataContainer)} == null");
+            if (WindowSettingData == null) Debug.Log($"EditorSettingData == null , Use default setting");
 
             EditorCharacterDatas = new List<EditorReferenceData_Character>();
             EditorWeaponDatas    = new List<EditorReferenceData_Weapon>();
-            Debug.Log($"Editor Repository 準備就緒");
         }
 
     #endregion
@@ -50,6 +53,7 @@ namespace Examples.Editor.Windows
             EditorUtility.SetDirty(CharacterDataContainer);
             EditorUtility.SetDirty(ExteriorDataContainer);
             EditorUtility.SetDirty(WeaponDataContainer);
+            EditorUtility.SetDirty(WindowSettingData);
         }
 
         public static void AddCharacterData(EditorReferenceData_Character data)

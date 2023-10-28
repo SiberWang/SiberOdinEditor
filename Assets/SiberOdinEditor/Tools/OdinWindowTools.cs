@@ -76,8 +76,7 @@ namespace SiberOdinEditor.Tools
         /// <param name="window"> 指定視窗 </param>
         /// <param name="weight"> 寬度 </param>
         /// <param name="height"> 高度 </param>
-        public static T OpenWindow<T>
-            (this OdinEditorWindow window, float weight = 800f, float height = 600f)
+        public static T OpenWindowWithSize<T>(this OdinEditorWindow window, float weight = 800f, float height = 600f)
         where T : OdinEditorWindow
         {
             if (window != null)
@@ -88,6 +87,23 @@ namespace SiberOdinEditor.Tools
 
             window          =  EditorWindow.GetWindow<T>();
             window.position =  GUIHelper.GetEditorWindowRect().AlignCenter(weight, height);
+            window.OnEndGUI += () => EndGUI(ref window);
+            window.Show();
+            return window as T;
+        }
+
+        /// <summary> 自製開啟視窗 (純ESC事件) </summary>
+        /// <param name="window"> 指定視窗 </param>
+        public static T OpenWindow<T>(this OdinEditorWindow window)
+        where T : OdinEditorWindow
+        {
+            if (window != null)
+            {
+                window.Close();
+                return null;
+            }
+
+            window          =  EditorWindow.GetWindow<T>();
             window.OnEndGUI += () => EndGUI(ref window);
             window.Show();
             return window as T;

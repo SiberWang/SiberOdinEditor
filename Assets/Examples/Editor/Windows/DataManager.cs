@@ -31,8 +31,9 @@ namespace Examples.Editor.Windows
         protected override void Initialize()
         {
             // 每次 Initialize 防止 Static Window 跑掉
-            Window ??= GetWindow<DataManager>();
+            if (Window == null) OpenEditor();
             // Setting
+            EditorRepository.Init();
             SaveHelper.EnableLog = false;
             EditorSaveSystem.Load(); // 初始化就讀取檔案
             CalibrationDataFile();   // 校準資料
@@ -56,11 +57,7 @@ namespace Examples.Editor.Windows
         protected override OdinMenuTree BuildMenuTree()
         {
             var tree = new OdinMenuTree();
-            // 這個會讓整個按鈕小小的
-            // tree.DefaultMenuStyle = OdinMenuStyle.TreeViewStyle;
-            tree.Config.UseCachedExpandedStates = true;
-            tree.Config.DrawSearchToolbar       = true;
-            tree.SetCustomMenuItems(); // 分成另一包，把客製化內容寫進去
+            tree.SetCustomMenuItems(); // 分成另一包
             return tree;
         }
 

@@ -107,5 +107,29 @@ namespace SiberOdinEditor.Tools
         {
             return CustomToolbarButton(string.Empty, sdfIconType, iconColor, size);
         }
+
+        public static OdinMenuStyle CloneNewStyle(this OdinMenuStyle current, OdinMenuStyle newStyle)
+        {
+            current.Height                         = newStyle.Height;
+            current.Offset                         = newStyle.Offset;
+            current.LabelVerticalOffset            = newStyle.LabelVerticalOffset;
+            current.IndentAmount                   = newStyle.IndentAmount;
+            current.IconSize                       = newStyle.IconSize;
+            current.IconOffset                     = newStyle.IconOffset;
+            current.NotSelectedIconAlpha           = newStyle.NotSelectedIconAlpha;
+            current.IconPadding                    = newStyle.IconPadding;
+            current.DrawFoldoutTriangle            = newStyle.DrawFoldoutTriangle;
+            current.TriangleSize                   = newStyle.TriangleSize;
+            current.TrianglePadding                = newStyle.TrianglePadding;
+            current.AlignTriangleLeft              = newStyle.AlignTriangleLeft;
+            current.Borders                        = newStyle.Borders;
+            current.BorderPadding                  = newStyle.BorderPadding;
+            current.BorderAlpha                    = newStyle.BorderAlpha;
+            current.SelectedColorDarkSkin          = newStyle.SelectedColorDarkSkin;
+            current.SelectedInactiveColorDarkSkin  = newStyle.SelectedInactiveColorDarkSkin;
+            current.SelectedColorLightSkin         = newStyle.SelectedColorLightSkin;
+            current.SelectedInactiveColorLightSkin = newStyle.SelectedInactiveColorLightSkin;
+            return current;
+        }
     }
 }
