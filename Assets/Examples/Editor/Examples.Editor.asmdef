@@ -2,7 +2,6 @@
     "name": "Examples.Editor",
     "rootNamespace": "",
     "references": [
-        "GUID:389fc707b46be5a43bf9cea27a9ae1a3",
         "GUID:22e4b5d1e7fbbc748b3d24a8ec110f1a",
         "GUID:c471bd05e25733745a28b79041125957",
         "GUID:b722c410cd194064cb2c4143e8ec0ae1",
