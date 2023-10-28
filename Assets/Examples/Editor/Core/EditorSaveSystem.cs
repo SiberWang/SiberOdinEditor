@@ -51,7 +51,7 @@ namespace Examples.Editor.Core
         {
             if (Instance != null) return;
             Instance = new EditorSaveSystem();
-            Debug.Log($"Editor SaveSystem 準備就緒");
+            Debug.Log("Editor SaveSystem 準備就緒");
         }
 
     #endregion
