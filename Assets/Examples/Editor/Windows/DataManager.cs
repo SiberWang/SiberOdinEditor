@@ -80,7 +80,6 @@ namespace Examples.Editor.Windows
             var odinMenuItem = MenuTree?.Selection?.FirstOrDefault();
             if (odinMenuItem != null)
                 odinMenuItem.Name = newName;
-            MenuTree.SortMenuItemsByName();
         }
 
     #endregion
