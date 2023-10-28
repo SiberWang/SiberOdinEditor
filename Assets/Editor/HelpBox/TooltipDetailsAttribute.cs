@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BulletHellTools.Editor.HelpBox
+namespace OdinExtra.HelpBox
 {
 	public class TooltipDetailsAttribute : Attribute
 	{

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BulletHellTools.Editor.HelpBox
+namespace OdinExtra.HelpBox
 {
 	[AttributeUsage(AttributeTargets.Property | AttributeTargets.Field)]
 	public class HelpBoxAttribute : Attribute

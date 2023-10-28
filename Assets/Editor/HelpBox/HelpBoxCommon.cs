@@ -6,7 +6,7 @@ using Sirenix.Utilities.Editor;
 using UnityEditor;
 using UnityEngine;
 
-namespace BulletHellTools.Editor.HelpBox
+namespace OdinExtra.HelpBox
 {
 	public static class HelpBoxCommon
 	{

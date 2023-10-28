@@ -2,7 +2,7 @@
 using Sirenix.OdinInspector.Editor.ValueResolvers;
 using UnityEngine;
 
-namespace BulletHellTools.Editor.HelpBox
+namespace OdinExtra.HelpBox
 {
 	[DrawerPriority(0, 100, 0)]
 	public class HelpBoxAttributeDrawer : OdinAttributeDrawer<HelpBoxAttribute>
