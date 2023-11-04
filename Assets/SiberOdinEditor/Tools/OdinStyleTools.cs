@@ -108,6 +108,7 @@ namespace SiberOdinEditor.Tools
             return CustomToolbarButton(string.Empty, sdfIconType, iconColor, size);
         }
 
+        /// <summary> OdinMenuStyle 設定複製 </summary>
         public static OdinMenuStyle CloneNewStyle(this OdinMenuStyle current, OdinMenuStyle newStyle)
         {
             current.Height                         = newStyle.Height;

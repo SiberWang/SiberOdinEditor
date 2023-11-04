@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace SiberOdinEditor.Tools
 {
-    public static class OdinCommonGUITools
+    public static class OdinWindowTools
     {
         /// <summary> 來自Odin 教呈 </summary>
         /// 在 title 製造一個 button , 然後選了以後，才會設定 selectedType

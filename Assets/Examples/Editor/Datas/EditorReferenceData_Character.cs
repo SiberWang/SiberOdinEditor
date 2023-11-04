@@ -49,7 +49,7 @@ namespace Examples.Editor.Datas
         /// <summary> 新建立 (DataName) </summary>
         public EditorReferenceData_Character(string dataName)
         {
-            this.dataName = dataName;
+            SetDataName(dataName);
             characterData = new CharacterData(dataName);
             exteriorData  = new ExteriorData(characterData.DataID);
         }

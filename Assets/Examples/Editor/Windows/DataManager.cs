@@ -24,7 +24,7 @@ namespace Examples.Editor.Windows
         [MenuItem(MenuHotKeys.ExampleEditorWindow)]
         private static void OpenEditor()
         {
-            Window = Window.OpenWindow<DataManager>();
+            Window.OpenWindow<DataManager>();
         }
 
         /// <summary> 初始化 (Once) </summary>
@@ -64,11 +64,15 @@ namespace Examples.Editor.Windows
         protected override void OnGUI()
         {
             base.OnGUI();
+            if (Window == null) return;
+            if (!GUIHelper.CurrentWindowHasFocus)
+            {
+                EditorHotKeys.Init();
+                return;
+            }
 
             // Ctrl+S 快捷鍵 (儲存)
             EditorHotKeys.CtrlS(() => OdinDrawTools.DoAllDataSave(EditorRepository.SetAllDataDirty));
-            if (Window != null && !GUIHelper.CurrentWindowHasFocus)
-                EditorHotKeys.Init();
         }
 
     #endregion

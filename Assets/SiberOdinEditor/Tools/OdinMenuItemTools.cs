@@ -176,7 +176,7 @@ namespace SiberOdinEditor.Tools
                 SelectedLabelStyle    = SirenixGUIStyles.BoldLabelCentered,
                 SelectedColorDarkSkin = SelectColor_Yellow
             };
-            odinMenuItem.OnRightClick = _ => OdinCommonGUITools.RightClickPingAsset(asset);
+            odinMenuItem.OnRightClick = _ => OdinWindowTools.RightClickPingAsset(asset);
             odinMenuItem.AddIcon(SdfIconType.JournalText);
             return odinMenuItem;
         }

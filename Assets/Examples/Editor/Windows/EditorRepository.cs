@@ -27,7 +27,7 @@ namespace Examples.Editor.Windows
 
     #endregion
 
-    #region ========== [Constructor] ==========
+    #region ========== [Public Methods] ==========
 
         public static void Init()
         {
@@ -43,10 +43,6 @@ namespace Examples.Editor.Windows
             EditorCharacterDatas = new List<EditorReferenceData_Character>();
             EditorWeaponDatas    = new List<EditorReferenceData_Weapon>();
         }
-
-    #endregion
-
-    #region ========== [Public Methods] ==========
 
         public static void SetAllDataDirty()
         {

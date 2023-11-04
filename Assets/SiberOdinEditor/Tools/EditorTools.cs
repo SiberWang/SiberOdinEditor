@@ -46,12 +46,20 @@ namespace SiberOdinEditor.Tools
         /// <param name="context"> 內容 </param>
         /// <param name="color"> Icon顏色 </param>
         /// <param name="sdfIconType"> Odin SdfIconType </param>
-        public static void ShowCustomNotification(this EditorWindow window, string context, Color color, SdfIconType sdfIconType)
+        public static void ShowCustomNotification
+            (this EditorWindow window, string context, Color color, SdfIconType sdfIconType)
         {
             if (window == null) return;
             var texture2D  = OdinStyleTools.GetSdfIcon(sdfIconType, color, IconSize);
             var guiContent = new GUIContent(context, texture2D);
             window.ShowNotification(guiContent, 1f);
+        }
+
+        public static bool IsFocusedWindow<T>() where T : EditorWindow
+        {
+            var focusedWindow = EditorWindow.focusedWindow;
+            var isWindowExist = focusedWindow != null && focusedWindow.GetType() == typeof(T);
+            return isWindowExist;
         }
     }
 }

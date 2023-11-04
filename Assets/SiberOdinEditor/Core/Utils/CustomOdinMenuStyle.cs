@@ -3,7 +3,7 @@ using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
 using UnityEngine;
 
-namespace Examples.Editor.Datas
+namespace SiberOdinEditor.Core.Utils
 {
     /// <summary> 自製 OdinMenuStyle </summary>
     [Serializable]
