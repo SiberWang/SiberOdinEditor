@@ -1,5 +1,6 @@
 ﻿using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
+using Sirenix.Utilities;
 using Sirenix.Utilities.Editor;
 using UnityEngine;
 
@@ -53,7 +54,7 @@ namespace SiberOdinEditor.Tools
             grayLittleLabel.normal.textColor = normalTextColor;
             grayLittleLabel.hover.textColor  = normalTextColor;
             grayLittleLabel.active.textColor = normalTextColor;
-            grayLittleLabel.fontSize         = 12;
+            grayLittleLabel.fontSize         = Default_TextSize;
             grayLittleLabel.fontStyle        = FontStyle.Italic;
             grayLittleLabel.alignment        = TextAnchor.MiddleLeft;
             grayLittleLabel.margin           = new RectOffset(0, 0, 0, 0);
@@ -62,14 +63,18 @@ namespace SiberOdinEditor.Tools
             return grayLittleLabel;
         }
 
-        /// <summary> 轉換 SdfIconType 為 Texture2D </summary>
+        /// <summary> 轉換 SdfIconType 為 Texture2D <br/>
         /// 解決有些icon Odin 只給抓 image (texture) 的困擾！！
+        /// </summary>
         public static Texture2D GetSdfIcon(SdfIconType sdfIconType, Color iconColor, int size)
         {
             var texture2D = SdfIcons.CreateTransparentIconTexture(sdfIconType, iconColor, size, size, 0);
             return texture2D;
         }
 
+        /// <summary> 自製GUIContent <br/>
+        /// 可以放 SdfIconType , 改顏色 , 設定Icon Size
+        /// </summary>
         public static GUIContent CustomGUIContent
             (string text, string tooltip, SdfIconType sdfIconType, Color iconColor, int size)
         {
@@ -82,31 +87,83 @@ namespace SiberOdinEditor.Tools
             return content;
         }
 
+        public static GUIContent CustomGUIContent(SdfIconType sdfIconType, Color iconColor, int size)
+        {
+            var content = new GUIContent
+            {
+                text    = string.Empty,
+                image   = GetSdfIcon(sdfIconType, iconColor, size),
+                tooltip = string.Empty
+            };
+            return content;
+        }
+
+    #region ========== [CustomToolbarButton] ==========
+
+        private const  int   Default_IconSize  = 18;
+        private const  int   Default_TextSize  = 12;
+        private const  bool  Default_IsExpand  = false;
+        private static Color Default_IconColor = Color.white;
+
         /// <summary> 實現可以使用 SdfIconType 的 ToolbarButton </summary>
-        public static bool CustomToolbarButton(string label, SdfIconType sdfIconType, Color iconColor, int size = 18)
+        public static bool CustomToolbarButton
+        (string      label,
+         string      tooltip,
+         SdfIconType sdfIconType,
+         Color       iconColor,
+         int         iconSize = Default_IconSize,
+         int         textSize = Default_TextSize,
+         bool        isExpand = Default_IsExpand)
         {
             var resultLabel = !string.IsNullOrEmpty(label) ? $" {label} " : string.Empty;
-            var guiContent  = CustomGUIContent(resultLabel, label, sdfIconType, iconColor, size);
-            return SirenixEditorGUI.ToolbarButton(guiContent);
+            var guiContent  = CustomGUIContent(resultLabel, tooltip, sdfIconType, iconColor, iconSize);
+            var guiStyle    = SirenixGUIStyles.ToolbarButton;
+            guiStyle.fontSize = textSize;
+            var options = GUILayoutOptions.Height(SirenixEditorGUI.currentDrawingToolbarHeight).ExpandWidth(isExpand);
+
+            if (!GUILayout.Button(guiContent, guiStyle, options))
+                return false;
+            GUIHelper.RemoveFocusControl();
+            GUIHelper.RequestRepaint();
+            return true;
+            // return SirenixEditorGUI.ToolbarButton(guiContent);
         }
 
         /// <summary> 實現可以使用 SdfIconType 的 ToolbarButton </summary>
-        public static bool CustomToolbarButton(string label, SdfIconType sdfIconType, int size = 18)
-        {
-            return CustomToolbarButton(label, sdfIconType, Color.white, size);
-        }
+        public static bool CustomToolbarButton
+        (string      label,
+         SdfIconType sdfIconType,
+         Color       iconColor,
+         int         iconSize = Default_IconSize,
+         int         textSize = Default_TextSize,
+         bool        isExpand = Default_IsExpand) =>
+            CustomToolbarButton(label, label, sdfIconType, iconColor, iconSize, textSize, isExpand);
 
         /// <summary> 實現可以使用 SdfIconType 的 ToolbarButton </summary>
-        public static bool CustomToolbarButton(SdfIconType sdfIconType)
-        {
-            return CustomToolbarButton(string.Empty, sdfIconType, Color.white, 18);
-        }
+        public static bool CustomToolbarButton
+        (string      label,
+         SdfIconType sdfIconType,
+         int         iconSize = Default_IconSize,
+         int         textSize = Default_TextSize,
+         bool        isExpand = Default_IsExpand) =>
+            CustomToolbarButton(label, label, sdfIconType, Default_IconColor, iconSize, textSize, isExpand);
 
         /// <summary> 實現可以使用 SdfIconType 的 ToolbarButton </summary>
-        public static bool CustomToolbarButton(SdfIconType sdfIconType, Color iconColor, int size = 18)
-        {
-            return CustomToolbarButton(string.Empty, sdfIconType, iconColor, size);
-        }
+        public static bool CustomToolbarButton
+        (SdfIconType sdfIconType,
+         int         iconSize = Default_IconSize,
+         bool        isExpand = Default_IsExpand) =>
+            CustomToolbarButton(string.Empty, sdfIconType, Default_IconColor, iconSize: iconSize, isExpand: isExpand);
+
+        /// <summary> 實現可以使用 SdfIconType 的 ToolbarButton </summary>
+        public static bool CustomToolbarButton
+        (SdfIconType sdfIconType,
+         Color       iconColor,
+         int         iconSize = Default_IconSize,
+         bool        isExpand = Default_IsExpand) =>
+            CustomToolbarButton(string.Empty, sdfIconType, iconColor, iconSize: iconSize, isExpand: isExpand);
+
+    #endregion
 
         /// <summary> OdinMenuStyle 設定複製 </summary>
         public static OdinMenuStyle CloneNewStyle(this OdinMenuStyle current, OdinMenuStyle newStyle)

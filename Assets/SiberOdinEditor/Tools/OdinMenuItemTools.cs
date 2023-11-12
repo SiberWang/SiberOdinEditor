@@ -181,11 +181,36 @@ namespace SiberOdinEditor.Tools
             return odinMenuItem;
         }
 
-        private static void SplitMenuPath(string menuPath, out string path)
+        /// <summary> 截自於 OdinMenuTreeExtensions.SplitMenuPath <br/>
+        /// 由於 Odin 把它設為 Private 所以自己複製一份過來
+        /// </summary>
+        public static void SplitMenuPath(string menuPath, out string path)
         {
             menuPath = menuPath.Trim('/');
             var length = menuPath.LastIndexOf('/');
             path = length == -1 ? "" : menuPath.Substring(0, length);
+        }
+        
+        /// <summary> 截自於 OdinMenuTreeExtensions.SplitMenuPath <br/>
+        /// 由於 Odin 把它設為 Private 所以自己複製一份過來
+        /// </summary>
+        /// <param name="menuPath"></param>
+        /// <param name="path"></param>
+        /// <param name="name"></param>
+        public static void SplitMenuPath(string menuPath, out string path, out string name)
+        {
+            menuPath = menuPath.Trim('/');
+            var length = menuPath.LastIndexOf('/');
+            if (length == -1)
+            {
+                path = "";
+                name = menuPath;
+            }
+            else
+            {
+                path = menuPath.Substring(0, length);
+                name = menuPath.Substring(length + 1);
+            }
         }
     }
 }

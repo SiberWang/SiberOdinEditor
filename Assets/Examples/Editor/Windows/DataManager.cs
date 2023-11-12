@@ -72,7 +72,7 @@ namespace Examples.Editor.Windows
             }
 
             // Ctrl+S 快捷鍵 (儲存)
-            EditorHotKeys.CtrlS(() => OdinDrawTools.DoAllDataSave(EditorRepository.SetAllDataDirty));
+            EditorHotKeys.CtrlS(() => OdinDrawTools.DoAllDataSaveByAction(EditorRepository.SetAllDataDirty));
         }
 
     #endregion

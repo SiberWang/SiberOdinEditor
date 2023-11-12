@@ -17,6 +17,9 @@ namespace SiberOdinEditor.Tools
 
         public static bool IsKeyControl => current.keyCode is KeyCode.LeftControl or KeyCode.RightControl;
         public static bool IsKeyS       => current.keyCode == KeyCode.S;
+        public static bool IsKeyDelete  => current.keyCode == KeyCode.Delete;
+        public static bool IsKeyY       => current.keyCode == KeyCode.Y;
+        public static bool IsKeyN       => current.keyCode == KeyCode.N;
 
         public static bool IsCtrlShift => current.modifiers == (EventModifiers.Control | EventModifiers.Shift);
         public static bool IsCtrlAlt   => current.modifiers == (EventModifiers.Control | EventModifiers.Alt);
@@ -43,10 +46,58 @@ namespace SiberOdinEditor.Tools
             if (IsKeyUp && IsKeyS)
                 isDoOnce = false;
         }
+        
+        public static void Delete(Action action)
+        {
+            if (IsKeyDown && IsKeyDelete)
+            {
+                
+                if (!isDoOnce)
+                {
+                    action?.Invoke();
+                    isDoOnce = true;
+                }
+            }
+            
+            if (IsKeyUp && IsKeyDelete)
+                isDoOnce = false;
+        }
 
         public static void Init()
         {
             if (isDoOnce) isDoOnce = false;
+        }
+        
+        public static void Y(Action action)
+        {
+            if (IsKeyDown && IsKeyY)
+            {
+                
+                if (!isDoOnce)
+                {
+                    action?.Invoke();
+                    isDoOnce = true;
+                }
+            }
+            
+            if (IsKeyUp && IsKeyY)
+                isDoOnce = false;
+        }
+
+        public static void N(Action action)
+        {
+            if (IsKeyDown && IsKeyN)
+            {
+                
+                if (!isDoOnce)
+                {
+                    action?.Invoke();
+                    isDoOnce = true;
+                }
+            }
+            
+            if (IsKeyUp && IsKeyN)
+                isDoOnce = false;
         }
 
     #endregion

@@ -35,44 +35,64 @@ namespace SiberOdinEditor.Tools
         {
             var iconColor = new Color(1f, 1f, 0.5f);
             if (OdinStyleTools.CustomToolbarButton("All Save (Ctrl+S)", SdfIconType.CalendarCheckFill, iconColor))
-                DoAllDataSave(onSaveAction);
+                DoAllDataSaveByAction(onSaveAction);
         }
 
         /// <summary> 建立檔案 Button </summary>
         public static void Draw_Button_CreateNewData(OdinMenuItem selected)
         {
             if (selected is not { Value: ICreateDataAction createDataAction }) return;
-            GUI.backgroundColor = new Color(0.6f, 1.2f, 0.6f, 1f);
-            if (OdinStyleTools.CustomToolbarButton("Create", SdfIconType.FileEarmarkPlus))
+            CustomGUIHelper.ColorBackGround(new Color(0.6f, 1.2f, 0.6f), () =>
+            {
+                if (!OdinStyleTools.CustomToolbarButton("Create", SdfIconType.FileEarmarkPlus)) return;
                 createDataAction.Create();
-            GUI.backgroundColor = Color.white;
+            });
         }
 
-        /// <summary> 刪除當前檔案 Button (Delete SOData) </summary>
-        public static void Draw_Button_DeleteCurrentSOData
+        /// <summary> 刪除檔案 Button (Delete SOData) </summary>
+        /// <param name="selected"> 當前選取的 OdinMenuItem 項目 </param>
+        /// <param name="condition"> 顯示此 Button 的判斷 </param>
+        /// <param name="onDeleteAction"> 可自定義額外事件 </param>
+        public static void Draw_Button_ImmediatelyDeleteSOData
             (OdinMenuItem selected, bool condition = true, Action onDeleteAction = null)
         {
             if (selected is not { Value: ScriptableObject }) return;
             if (!condition) return;
-            GUI.backgroundColor = new Color(1f, 0.3f, 0.3f, 0.6f);
-            if (OdinStyleTools.CustomToolbarButton("Delete", SdfIconType.DashCircle))
+
+            CustomGUIHelper.ColorBackGround(new Color(1f, 0.3f, 0.3f) * 1.2f, () =>
             {
+                if (!OdinStyleTools.CustomToolbarButton("Delete", SdfIconType.XSquareFill)) return;
                 var asset = selected.Value as ScriptableObject;
                 var path  = AssetDatabase.GetAssetPath(asset);
                 AssetDatabase.DeleteAsset(path);
                 DoDeleteData(onDeleteAction);
-            }
-            GUI.backgroundColor = Color.white;
+            });
         }
 
-        /// <summary> 刪除當前檔案 Button (Delete Custom object) </summary>
-        public static void Draw_Button_DeleteCurrentObject(bool condition = true, Action onDeleteAction = null)
+        /// <summary> 刪除檔案 Button (Do DeleteAction) </summary>
+        /// <param name="condition"> 顯示此 Button 的判斷 </param>
+        /// <param name="onDeleteAction"> 自定義事件 - 立即刪除 </param>
+        public static void Draw_Button_ImmediatelyDeleteData(bool condition = true, Action onDeleteAction = null)
         {
             if (!condition) return;
-            GUI.backgroundColor = new Color(1f, 0.3f, 0.3f, 0.6f);
-            if (OdinStyleTools.CustomToolbarButton("Delete", SdfIconType.DashCircle)) 
+            CustomGUIHelper.ColorBackGround(new Color(1f, 0.3f, 0.3f) * 1.2f, () =>
+            {
+                if (!OdinStyleTools.CustomToolbarButton("Delete", SdfIconType.XSquareFill)) return;
                 DoDeleteData(onDeleteAction);
-            GUI.backgroundColor = Color.white;
+            });
+        }
+
+        /// <summary> 刪除當前檔案 Button (Safe Do DeleteAction) </summary>
+        /// <param name="condition"> 顯示此 Button 的判斷 </param>
+        /// <param name="onDeleteAction"> 自定義事件 - 立即刪除 </param>
+        public static void Draw_Button_SafeDeleteData(bool condition = true, Action onDeleteAction = null)
+        {
+            if (!condition) return;
+            CustomGUIHelper.ColorBackGround(new Color(1f, 0.3f, 0.3f) * 1.2f, () =>
+            {
+                if (!OdinStyleTools.CustomToolbarButton("Delete", SdfIconType.XSquareFill)) return;
+                onDeleteAction?.Invoke();
+            });
         }
 
         /// <summary> 當前選擇檔案名稱 Label </summary>
@@ -88,6 +108,14 @@ namespace SiberOdinEditor.Tools
         public static void Draw_Label_WindowSize(Rect winPos)
         {
             var text  = $"Size:(W: {winPos.width}, H: {winPos.height})";
+            var style = OdinStyleTools.GrayLittleLabel();
+            GUILayout.Label(text, style);
+        }
+
+        /// <summary> 視窗 MenuWidth Size </summary>
+        public static void Draw_Label_WidthSize(float width)
+        {
+            var text  = $"Menu Width: ({width})";
             var style = OdinStyleTools.GrayLittleLabel();
             GUILayout.Label(text, style);
         }
@@ -117,14 +145,14 @@ namespace SiberOdinEditor.Tools
         /// <summary> 全檔案儲存 <br/>
         /// 自定義儲存事件
         /// </summary>
-        public static void DoAllDataSave(Action onSaveAction)
+        public static void DoAllDataSaveByAction(Action onSaveAction)
         {
             onSaveAction?.Invoke();
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
             GUIHelper.CurrentWindow.ShowSaveNotification();
         }
-        
+
         /// <summary> 檔案刪除 <br/>
         /// 自定義儲存事件
         /// </summary>
@@ -133,7 +161,18 @@ namespace SiberOdinEditor.Tools
             onDeleteAction?.Invoke();
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
-            GUIHelper.CurrentWindow.ShowCustomNotification("Succeed Deleted!", Color.red, SdfIconType.Trash2);
+            GUIHelper.CurrentWindow.ShowDeleteNotification();
+        }
+
+        /// <summary> 設定預設選擇項目 </summary>
+        /// <param name="tree"> 當前的 tree </param>
+        /// <param name="titleName"> 項目名稱 </param>
+        public static void DefaultFirstSelect(this OdinMenuTree tree, string titleName)
+        {
+            var defaultItem = tree.GetMenuItem(titleName);
+            if (defaultItem == null) return;
+            tree.Selection.Clear();
+            tree.Selection.Add(defaultItem);
         }
 
     #endregion
