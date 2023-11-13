@@ -24,14 +24,12 @@ namespace Examples.Editor.Windows
         [MenuItem(MenuHotKeys.ExampleEditorWindow)]
         private static void OpenEditor()
         {
-            Window.OpenWindow<DataManager>();
+            Window = Window.OpenWindow<DataManager>();
         }
 
         /// <summary> 初始化 (Once) </summary>
         protected override void Initialize()
         {
-            // 每次 Initialize 防止 Static Window 跑掉
-            if (Window == null) OpenEditor();
             // Setting
             EditorRepository.Init();
             SaveHelper.EnableLog = false;
@@ -41,14 +39,15 @@ namespace Examples.Editor.Windows
 
         protected override void OnBeginDrawEditors()
         {
+            if (Window == null) return;
             var selectedItem  = MenuTree.Selection.FirstOrDefault();
             var toolbarHeight = MenuTree.Config.SearchToolbarHeight;
             SirenixEditorGUI.BeginHorizontalToolbar(toolbarHeight);
             {
                 OdinDrawTools.Draw_Label_WindowSize(Window.position);
                 OdinDrawTools.Draw_Label_CurrentSelectName(selectedItem);
-                OdinDrawTools.Draw_Button_DeleteCurrentObject(IsShowDelete(selectedItem),
-                                                              () => DoDeleteAction(selectedItem));
+                OdinDrawTools.Draw_Button_ImmediatelyDeleteData(IsShowDelete(selectedItem),
+                                                                () => DoDeleteAction(selectedItem));
                 OdinDrawTools.Draw_Button_AllDataSave(EditorRepository.SetAllDataDirty);
             }
             SirenixEditorGUI.EndHorizontalToolbar();
@@ -63,9 +62,14 @@ namespace Examples.Editor.Windows
 
         protected override void OnGUI()
         {
+            if (Window == null)
+            {
+                Close();
+                return;
+            }
+
             base.OnGUI();
-            if (Window == null) return;
-            if (!GUIHelper.CurrentWindowHasFocus)
+            if (GUIHelper.CurrentWindow == null || !GUIHelper.CurrentWindowHasFocus)
             {
                 EditorHotKeys.Init();
                 return;
@@ -82,8 +86,9 @@ namespace Examples.Editor.Windows
         public void SetMenuName(string newName)
         {
             var odinMenuItem = MenuTree?.Selection?.FirstOrDefault();
-            if (odinMenuItem != null)
-                odinMenuItem.Name = newName;
+            if (odinMenuItem == null) return;
+            odinMenuItem.Name         = newName;
+            odinMenuItem.SearchString = newName;
         }
 
     #endregion

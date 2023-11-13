@@ -3,7 +3,7 @@
     public static class MenuHotKeys
     {
         private const string Title               = "SiberOdinEditor";
-        public const  string ExampleEditorWindow = Title + "/ExampleEditorWindow _F10";
+        public const  string ExampleEditorWindow = Title + "/ExampleEditorWindow _F12";
         public const  string JsonEditorWindow    = Title + "/JsonEditor _F11";
 
         public const string EditorSaveFile_Delete = Title + "/EditorSaveSystem/Delete";

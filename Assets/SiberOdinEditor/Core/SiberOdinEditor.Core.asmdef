@@ -2,9 +2,11 @@
     "name": "SiberOdinEditor.Core",
     "rootNamespace": "",
     "references": [
-        "GUID:19624297fc67a6b42940f9f0bf963cba"
+        "SiberUtility.Tools"
     ],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,
