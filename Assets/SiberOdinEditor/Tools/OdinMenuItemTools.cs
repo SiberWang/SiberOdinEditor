@@ -212,5 +212,15 @@ namespace SiberOdinEditor.Tools
                 name = menuPath.Substring(length + 1);
             }
         }
+
+        /// <summary> 針對沒有SdfIcon的項目，填充 SdfIcon </summary>
+        public static void FillSdfIcon(this OdinMenuTree tree, SdfIconType sdfIconType)
+        {
+            foreach (var odinMenuItem in tree.EnumerateTree())
+            {
+                if (odinMenuItem.SdfIcon != SdfIconType.None) continue;
+                odinMenuItem.AddIcon(sdfIconType);
+            }
+        }
     }
 }

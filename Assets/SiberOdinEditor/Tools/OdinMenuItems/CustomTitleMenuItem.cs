@@ -1,4 +1,5 @@
-﻿using Sirenix.OdinInspector.Editor;
+﻿using System.Linq;
+using Sirenix.OdinInspector.Editor;
 using Sirenix.Utilities;
 using UnityEngine;
 
@@ -21,10 +22,8 @@ namespace SiberOdinEditor.Tools.OdinMenuItems
             // 這招是跟隨字串長度
             var calcSizeA = GUI.skin.label.CalcSize(new GUIContent(SmartName));
             labelRect.x += calcSizeA.x + 10;
-            var odinMenuItem = tree.GetMenuItem(SmartName);
-            if (odinMenuItem == null || odinMenuItem.ChildMenuItems == null) return;
-            var count = odinMenuItem.ChildMenuItems.Count;
-            GUI.Label(labelRect.AlignMiddle(25).AlignLeft(100), $"({count})");
+            var totalCount = GetChildMenuItemsRecursive(false).Count(s => s.Value != null);
+            GUI.Label(labelRect.AlignMiddle(25).AlignLeft(100), $"({totalCount})");
         }
     }
 }

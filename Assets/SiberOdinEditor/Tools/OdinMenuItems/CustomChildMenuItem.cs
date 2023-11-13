@@ -12,7 +12,7 @@ namespace SiberOdinEditor.Tools.OdinMenuItems
     /// </summary>
     public class CustomChildMenuItem : OdinMenuItem
     {
-        private readonly Action onDeleteAction;
+        public readonly Action OnDeleteAction;
 
         public float       ButtonOffset = 150;
         public int         ButtonSize   = 20;
@@ -23,7 +23,7 @@ namespace SiberOdinEditor.Tools.OdinMenuItems
         public CustomChildMenuItem
             (OdinMenuTree tree, string name, object value, Action onDeleteAction = null) : base(tree, name, value)
         {
-            this.onDeleteAction = onDeleteAction;
+            OnDeleteAction = onDeleteAction;
         }
 
         protected override void OnDrawMenuItem(Rect rect, Rect labelRect)
@@ -33,7 +33,7 @@ namespace SiberOdinEditor.Tools.OdinMenuItems
             var skinButton = OdinStyleTools.CustomGUIContent(SDFIconType, IconColor, IconSize);
             var guiStyle   = new GUIStyle(SirenixGUIStyles.IconButton);
             if (GUI.Button(labelRect.AlignMiddle(ButtonSize).AlignLeft(ButtonSize), skinButton, guiStyle))
-                onDeleteAction?.Invoke();
+                OnDeleteAction?.Invoke();
         }
     }
 }
