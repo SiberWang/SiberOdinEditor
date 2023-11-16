@@ -1,0 +1,223 @@
+﻿using System.Collections.Generic;
+using System.Linq;
+using Sirenix.OdinInspector;
+using UnityEditor.Animations;
+using UnityEngine;
+
+namespace SiberOdinEditor.Mono.Anim
+{
+    public class AnimationCheckController : MonoBehaviour
+    {
+    #region ========== [Private Variables] ==========
+
+        private const string GroupName = "SetterGroup [From AnimationCheck]";
+        private const string Setting   = "動畫設定";
+        private const string Spawn     = "生產設定";
+
+        [BoxGroup(Setting)]
+        [PropertyOrder(1)]
+        [SerializeField]
+        private AnimCheckSetter prefab;
+
+        [BoxGroup(Setting)]
+        [PropertyOrder(0)]
+        [Required]
+        [SerializeField]
+        [OnValueChanged(nameof(UpdateAnimatorStates))]
+        private RuntimeAnimatorController mainController;
+
+        [BoxGroup(Setting)]
+        [PropertyOrder(2)]
+        [SerializeField]
+        [ValueDropdown(nameof(States))]
+        [InlineButton(nameof(UpdateAnimatorStates), SdfIconType.Recycle, "")]
+        private string playStateName;
+
+        [BoxGroup(Setting)]
+        [PropertyOrder(3)]
+        [SerializeField]
+        [ValueDropdown(nameof(States))]
+        [InlineButton(nameof(UpdateAnimatorStates), SdfIconType.Recycle, "")]
+        private string defautlStateName = "Idle";
+
+
+        [BoxGroup(Setting)]
+        [PropertyOrder(4)]
+        [SerializeField]
+        private bool isStartSpawn = true;
+
+        [BoxGroup(Setting)]
+        [PropertyOrder(5)]
+        [SerializeField]
+        private List<RuntimeAnimatorController> animatorControllers;
+
+        [BoxGroup(Spawn)]
+        [SerializeField]
+        private Vector2Int spawnPath = new Vector2Int(5, 5);
+
+        [BoxGroup(Spawn)]
+        [SerializeField]
+        private float offset = 1.5f;
+
+
+        private bool                  isKeepPlaying;
+        private List<string>          states;
+        private GameObject            group;
+        private List<AnimCheckSetter> setterList = new List<AnimCheckSetter>();
+
+        private List<string> States
+        {
+            get
+            {
+                if (states == null)
+                    UpdateAnimatorStates();
+                return states;
+            }
+        }
+
+    #endregion
+
+    #region ========== [Unity Events] ==========
+
+        private void Start()
+        {
+            if (isStartSpawn)
+                CreateSetters();
+        }
+
+        private void Update()
+        {
+            if (!isKeepPlaying) return;
+            foreach (var setter in setterList)
+                setter.PlayAnim(playStateName);
+        }
+
+    #endregion
+
+    #region ========== [Events] ==========
+
+        private void OnGUI()
+        {
+            var state = string.IsNullOrEmpty(playStateName) ? "Null" : playStateName;
+            GUI.skin.label.fontSize = 32;
+            GUI.Label(new Rect(20, 20, 500, 500), $"Play State : {state}");
+        }
+
+        [PropertyOrder(10)]
+        [GUIColor(0.3f, 1f, 0.3f)]
+        [Button("播放動畫")] [ButtonGroup]
+        private void OnPlayAnimation()
+        {
+            if (!Application.isPlaying) return;
+            if (string.IsNullOrEmpty(playStateName))
+            {
+                Debug.Log("Animation Name is Empty");
+                return;
+            }
+
+            isKeepPlaying = true;
+        }
+
+        [PropertyOrder(13)]
+        [Button("全部重新生產")] [ButtonGroup]
+        private void OnReset()
+        {
+            if (!Application.isPlaying) return;
+            isKeepPlaying = false;
+            CreateSetters();
+        }
+
+        [PropertyOrder(11)]
+        [GUIColor(1f, 0.3f, 0.3f)]
+        [Button("停止動畫")] [ButtonGroup]
+        private void OnStopAnimation()
+        {
+            if (!Application.isPlaying) return;
+            isKeepPlaying = false;
+            foreach (var setter in setterList)
+                setter.StopAnim();
+        }
+
+        [PropertyOrder(12)]
+        [GUIColor(1f, 1f, 0.3f)]
+        [Button("回預設動畫")] [ButtonGroup]
+        private void OnPlayDefault()
+        {
+            if (!Application.isPlaying) return;
+            isKeepPlaying = false;
+            foreach (var setter in setterList)
+                setter.PlayAnim(defautlStateName, false);
+        }
+        
+        [PropertyOrder(14)]
+        [Button("預先生產")] [ButtonGroup]
+        private void OnSpawn()
+        {
+            CreateSetters();
+        }
+
+    #endregion
+
+    #region ========== [Private Methods] ==========
+
+        private void UpdateAnimatorStates()
+        {
+            states = new List<string>();
+            var controller = mainController as AnimatorController;
+            if (controller == null) return;
+            foreach (var layer in controller.layers)
+                foreach (var childAnimatorState in layer.stateMachine.states)
+                    states.Add(childAnimatorState.state.name);
+        }
+
+        private void CreateSetters()
+        {
+            InitGroup();
+            if (animatorControllers.Count <= 0)
+            {
+                Debug.LogError("animatorControllers.Count <= 0");
+                return;
+            }
+
+            if (animatorControllers.Count > spawnPath.x * spawnPath.y)
+            {
+                var sqrt = Mathf.CeilToInt(Mathf.Sqrt(animatorControllers.Count));
+                spawnPath = new Vector2Int(sqrt, sqrt);
+                Debug.Log($"animatorControllers.Count > x * y , NewVector:{spawnPath}");
+            }
+
+            int index = 0;
+            for (int x = 0; x < spawnPath.x; x++)
+            {
+                for (int y = 0; y < spawnPath.y; y++)
+                {
+                    if (index >= animatorControllers.Count) break;
+                    var spawnPathY = (y - (spawnPath.y / 2)) * offset;
+                    var spawnPathX = (-x + (spawnPath.x / 2)) * offset;
+                    var pos        = new Vector3(spawnPathY, spawnPathX);
+
+                    var animCheckSetter = Instantiate(prefab, pos, Quaternion.identity, group.transform);
+                    animCheckSetter.SetInfo(index, animatorControllers[index], defautlStateName);
+
+                    setterList.Add(animCheckSetter);
+                    index++;
+                }
+            }
+        }
+
+        private void InitGroup()
+        {
+            var gameObjects = FindObjectsOfType<GameObject>();
+            foreach (var obj in gameObjects)
+            {
+                if (!obj.name.Equals(GroupName)) continue;
+                DestroyImmediate(obj);
+            }
+
+            group = new GameObject(GroupName);
+            setterList.Clear();
+        }
+
+    #endregion
+    }
+}
