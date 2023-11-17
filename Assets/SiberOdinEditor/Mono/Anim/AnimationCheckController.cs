@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Sirenix.OdinInspector;
 using UnityEditor.Animations;
 using UnityEngine;
@@ -58,6 +57,10 @@ namespace SiberOdinEditor.Mono.Anim
         [BoxGroup(Spawn)]
         [SerializeField]
         private float offset = 1.5f;
+        
+        [BoxGroup(Spawn)]
+        [SerializeField]
+        private float offsetCenterY = 0f;
 
 
         private bool                  isKeepPlaying;
@@ -150,10 +153,23 @@ namespace SiberOdinEditor.Mono.Anim
         }
         
         [PropertyOrder(14)]
-        [Button("預先生產")] [ButtonGroup]
+        [Button("生產")] [ButtonGroup("2")]
         private void OnSpawn()
         {
             CreateSetters();
+        }
+        
+        [PropertyOrder(15)]
+        [Button("刪除")] [ButtonGroup("2")]
+        private void DestroyGroup()
+        {
+            setterList.Clear();
+            var gameObjects = FindObjectsOfType<GameObject>();
+            foreach (var obj in gameObjects)
+            {
+                if (obj.name.Equals(GroupName))
+                    DestroyImmediate(obj);
+            }
         }
 
     #endregion
@@ -172,7 +188,8 @@ namespace SiberOdinEditor.Mono.Anim
 
         private void CreateSetters()
         {
-            InitGroup();
+            DestroyGroup();
+            group = new GameObject(GroupName);
             if (animatorControllers.Count <= 0)
             {
                 Debug.LogError("animatorControllers.Count <= 0");
@@ -192,9 +209,9 @@ namespace SiberOdinEditor.Mono.Anim
                 for (int y = 0; y < spawnPath.y; y++)
                 {
                     if (index >= animatorControllers.Count) break;
-                    var spawnPathY = (y - (spawnPath.y / 2)) * offset;
-                    var spawnPathX = (-x + (spawnPath.x / 2)) * offset;
-                    var pos        = new Vector3(spawnPathY, spawnPathX);
+                    var spawnPathX = (y - (spawnPath.y / 2)) * offset;
+                    var spawnPathY = (-x + (spawnPath.x / 2)) * offset + offsetCenterY;
+                    var pos        = new Vector3(spawnPathX, spawnPathY);
 
                     var animCheckSetter = Instantiate(prefab, pos, Quaternion.identity, group.transform);
                     animCheckSetter.SetInfo(index, animatorControllers[index], defautlStateName);
@@ -203,19 +220,6 @@ namespace SiberOdinEditor.Mono.Anim
                     index++;
                 }
             }
-        }
-
-        private void InitGroup()
-        {
-            var gameObjects = FindObjectsOfType<GameObject>();
-            foreach (var obj in gameObjects)
-            {
-                if (!obj.name.Equals(GroupName)) continue;
-                DestroyImmediate(obj);
-            }
-
-            group = new GameObject(GroupName);
-            setterList.Clear();
         }
 
     #endregion
