@@ -1,5 +1,5 @@
 {
-    "name": "SiberOdinEditor.Core",
+    "name": "SiberOdinEditor.EditorDatas",
     "rootNamespace": "",
     "references": [
         "SiberUtility.Tools"
