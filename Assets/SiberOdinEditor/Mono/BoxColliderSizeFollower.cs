@@ -15,11 +15,14 @@ namespace SiberOdinEditor.Mono
         [SerializeField]
         private float scale = 1f;
 
+        [SerializeField]
         private Vector2 changeBoundSize;
+        
+        [SerializeField]
         private Vector2 changeCenter;
 
         [Button("跟隨 Sprite Size")]
-        private void FollowSize()
+        private void AutoFollowSize()
         {
             var boundsSize = (Vector2)spriteRenderer.sprite.bounds.size * scale;
             var centerPos  = new Vector2(0, boundsSize.y / 2);
@@ -31,6 +34,16 @@ namespace SiberOdinEditor.Mono
                 if (i != 0) continue; // 記錄一次
                 changeBoundSize = boundsSize;
                 changeCenter    = centerPos;
+            }
+        }
+
+        [Button("直接設定 Size & Offset")]
+        private void FollowValueSize()
+        {
+            for (var i = 0; i < colliders.Count; i++)
+            {
+                colliders[i].size   = changeBoundSize;
+                colliders[i].offset = changeCenter;
             }
         }
 

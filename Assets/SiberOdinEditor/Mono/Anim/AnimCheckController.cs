@@ -2,10 +2,11 @@
 using Sirenix.OdinInspector;
 using UnityEditor.Animations;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace SiberOdinEditor.Mono.Anim
 {
-    public class AnimationCheckController : MonoBehaviour
+    public class AnimCheckController : MonoBehaviour
     {
     #region ========== [Private Variables] ==========
 
@@ -32,12 +33,13 @@ namespace SiberOdinEditor.Mono.Anim
         [InlineButton(nameof(UpdateAnimatorStates), SdfIconType.Recycle, "")]
         private string playStateName;
 
+        [FormerlySerializedAs("defautlStateName")]
         [BoxGroup(Setting)]
         [PropertyOrder(3)]
         [SerializeField]
         [ValueDropdown(nameof(States))]
         [InlineButton(nameof(UpdateAnimatorStates), SdfIconType.Recycle, "")]
-        private string defautlStateName = "Idle";
+        private string defaultStateName = "Idle";
 
 
         [BoxGroup(Setting)]
@@ -56,8 +58,8 @@ namespace SiberOdinEditor.Mono.Anim
 
         [BoxGroup(Spawn)]
         [SerializeField]
-        private float offset = 1.5f;
-        
+        private Vector2 offset = new Vector2(1.5f, 1.5f);
+
         [BoxGroup(Spawn)]
         [SerializeField]
         private float offsetCenterY = 0f;
@@ -149,16 +151,16 @@ namespace SiberOdinEditor.Mono.Anim
             if (!Application.isPlaying) return;
             isKeepPlaying = false;
             foreach (var setter in setterList)
-                setter.PlayAnim(defautlStateName, false);
+                setter.PlayAnim(defaultStateName, false);
         }
-        
+
         [PropertyOrder(14)]
         [Button("生產")] [ButtonGroup("2")]
         private void OnSpawn()
         {
             CreateSetters();
         }
-        
+
         [PropertyOrder(15)]
         [Button("刪除")] [ButtonGroup("2")]
         private void DestroyGroup()
@@ -167,6 +169,7 @@ namespace SiberOdinEditor.Mono.Anim
             var gameObjects = FindObjectsOfType<GameObject>();
             foreach (var obj in gameObjects)
             {
+                if (obj == null) continue;
                 if (obj.name.Equals(GroupName))
                     DestroyImmediate(obj);
             }
@@ -209,12 +212,12 @@ namespace SiberOdinEditor.Mono.Anim
                 for (int y = 0; y < spawnPath.y; y++)
                 {
                     if (index >= animatorControllers.Count) break;
-                    var spawnPathX = (y - (spawnPath.y / 2)) * offset;
-                    var spawnPathY = (-x + (spawnPath.x / 2)) * offset + offsetCenterY;
+                    var spawnPathX = (y - (spawnPath.y / 2)) * offset.x;
+                    var spawnPathY = (-x + (spawnPath.x / 2)) * offset.y + offsetCenterY;
                     var pos        = new Vector3(spawnPathX, spawnPathY);
 
                     var animCheckSetter = Instantiate(prefab, pos, Quaternion.identity, group.transform);
-                    animCheckSetter.SetInfo(index, animatorControllers[index], defautlStateName);
+                    animCheckSetter.SetInfo(index, animatorControllers[index], defaultStateName);
 
                     setterList.Add(animCheckSetter);
                     index++;
