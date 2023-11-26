@@ -13,6 +13,7 @@ namespace SiberOdinEditor.Tools
         /// <summary> 資料儲存路徑 </summary>
         /// <example> 例如: Assets/Resources </example>
         string DataPath { get; }
+
         /// <summary> 檔案名稱 (記得+ .json) </summary>
         /// /// <example> 例如: EditorSaveFile.json </example>
         string FileName { get; }
@@ -20,8 +21,76 @@ namespace SiberOdinEditor.Tools
     #endregion
     }
 
+#region ========== [BaseEditorSaveSystem T,D] ==========
+
     /// <summary> 基底 - 編輯儲存系統 </summary>
     /// <typeparam name="T"> 請放入有繼承 IEditorSaveFileInfo 的客製化腳本 </typeparam>
+    /// <typeparam name="D"> 自定義 Class Data , ex: EditorSaveFile </typeparam>
+    public abstract class BaseEditorSaveSystem<T, D> where T : class, IEditorSaveFileInfo
+                                                     where D : class, new()
+    {
+    #region ========== [Public Variables] ==========
+
+        public static D SaveFile;
+
+        protected static T Instance;
+
+    #endregion
+
+    #region ========== [Private Variables] ==========
+
+        private static string DataPath => Instance.DataPath;
+        private static string FileName => Instance.FileName;
+
+    #endregion
+
+    #region ========== [Public Methods] ==========
+
+        public static void Delete()
+        {
+            SaveCheck.Contract(Instance, FileName, DataPath);
+            SaveHelper.DeleteJson(FileName, DataPath);
+            SaveFile = null;
+            AssetDatabase.Refresh();
+            SaveCheck.LogFileMessage(SaveFile);
+        }
+
+        public static void Load()
+        {
+            SaveCheck.Contract(Instance, FileName, DataPath);
+            var editorSaveFile = SaveHelper.LoadFromJson<D>(FileName, DataPath);
+            if (editorSaveFile == null)
+            {
+                editorSaveFile = new D();
+                SaveHelper.SaveByJson(FileName, editorSaveFile, DataPath);
+            }
+
+            SaveFile = editorSaveFile;
+            AssetDatabase.Refresh();
+            SaveCheck.LogFileMessage(SaveFile);
+        }
+
+        public static void Save(D newSaveFile = null)
+        {
+            newSaveFile ??= SaveFile;
+            SaveCheck.Contract(Instance, FileName, DataPath);
+            SaveHelper.SaveByJson(FileName, newSaveFile, DataPath);
+            AssetDatabase.Refresh();
+            SaveCheck.LogFileMessage(SaveFile);
+        }
+
+        public static A GetSaveFile<A>() where A : class
+        {
+            return SaveFile as A;
+        }
+
+    #endregion
+    }
+
+#endregion
+
+#region ========== [BaseEditorSaveSystem T] ==========
+
     public abstract class BaseEditorSaveSystem<T> where T : class, IEditorSaveFileInfo
     {
     #region ========== [Public Variables] ==========
@@ -43,16 +112,16 @@ namespace SiberOdinEditor.Tools
 
         public static void Delete()
         {
-            Contract();
+            SaveCheck.Contract(Instance, FileName, DataPath);
             SaveHelper.DeleteJson(FileName, DataPath);
             SaveFile = null;
             AssetDatabase.Refresh();
-            LogFileMessage();
+            SaveCheck.LogFileMessage(SaveFile);
         }
 
         public static void Load()
         {
-            Contract();
+            SaveCheck.Contract(Instance, FileName, DataPath);
             var editorSaveFile = SaveHelper.LoadFromJson<EditorSaveFile>(FileName, DataPath);
             if (editorSaveFile == null)
             {
@@ -62,40 +131,55 @@ namespace SiberOdinEditor.Tools
 
             SaveFile = editorSaveFile;
             AssetDatabase.Refresh();
-            LogFileMessage();
+            SaveCheck.LogFileMessage(SaveFile);
         }
 
         public static void Save(EditorSaveFile newSaveFile = null)
         {
             newSaveFile ??= SaveFile;
-            Contract();
+            SaveCheck.Contract(Instance, FileName, DataPath);
             SaveHelper.SaveByJson(FileName, newSaveFile, DataPath);
             AssetDatabase.Refresh();
-            LogFileMessage();
+            SaveCheck.LogFileMessage(SaveFile);
         }
 
-    #endregion
-
-    #region ========== [Private Methods] ==========
-
-        /// <summary> 檢查實例、名稱、路徑 </summary>
-        private static void Contract()
+        public static A GetSaveFile<A>() where A : EditorSaveFile
         {
-            Assert.IsNotNull(Instance, "EditorSaveSystem's Instance is Null 需要建立一份 Static 的資料");
-            Assert.IsFalse(string.IsNullOrEmpty(FileName), "FileName is NullOrEmpty");
-            Assert.IsFalse(string.IsNullOrEmpty(DataPath), "DataPath is NullOrEmpty");
-        }
-
-        /// <summary> Debug.Log 紀錄檔案是否存在 </summary>
-        private static void LogFileMessage()
-        {
-            if (SaveHelper.IsShowLog)
-                Debug.Log($"EditorSaveFile !=null: [{SaveFile != null}]");
+            return SaveFile as A;
         }
 
     #endregion
     }
-    
+
+#endregion
+
+#region ========== [Common] ==========
+
+    internal struct SaveCheck
+    {
+    #region ========== [Private Methods] ==========
+
+        /// <summary> 檢查實例、名稱、路徑 </summary>
+        public static void Contract<T>
+            (T instance, string fileName, string dataPath) where T : class, IEditorSaveFileInfo
+        {
+            Assert.IsNotNull(instance, "EditorSaveSystem's Instance is Null 需要建立一份 Static 的資料");
+            Assert.IsFalse(string.IsNullOrEmpty(fileName), "FileName is NullOrEmpty");
+            Assert.IsFalse(string.IsNullOrEmpty(dataPath), "DataPath is NullOrEmpty");
+        }
+
+        /// <summary> Debug.Log 紀錄檔案是否存在 </summary>
+        public static void LogFileMessage<T>(T saveFile) where T : class
+        {
+            if (SaveHelper.IsShowLog)
+                Debug.Log($"EditorSaveFile !=null: [{saveFile != null}]");
+        }
+
+    #endregion
+    }
+
+#endregion
+
     // <Lazy Example>
     // public class EditorSaveSystem : BaseEditorSaveSystem<EditorSaveSystem>, IEditorSaveFileInfo
     // {

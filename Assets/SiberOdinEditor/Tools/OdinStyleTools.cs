@@ -98,6 +98,17 @@ namespace SiberOdinEditor.Tools
             return content;
         }
 
+        public static GUIContent CustomGUIContent(string text, string tooltip)
+        {
+            var content = new GUIContent
+            {
+                text    = text,
+                image   = null,
+                tooltip = tooltip
+            };
+            return content;
+        }
+
     #region ========== [CustomToolbarButton] ==========
 
         private const  int   Default_IconSize  = 18;
@@ -162,6 +173,33 @@ namespace SiberOdinEditor.Tools
          int         iconSize = Default_IconSize,
          bool        isExpand = Default_IsExpand) =>
             CustomToolbarButton(string.Empty, sdfIconType, iconColor, iconSize: iconSize, isExpand: isExpand);
+
+        /// <summary> 實現可以使用 SdfIconType 的 ToolbarButton </summary>
+        public static bool CustomToolbarButton
+        (string label,
+         string tooltip,
+         int    textSize = Default_TextSize,
+         bool   isExpand = Default_IsExpand)
+        {
+            var resultLabel = !string.IsNullOrEmpty(label) ? $" {label} " : string.Empty;
+            var guiContent  = CustomGUIContent(resultLabel, tooltip);
+            var guiStyle    = SirenixGUIStyles.ToolbarButton;
+            guiStyle.fontSize = textSize;
+            var options = GUILayoutOptions.Height(SirenixEditorGUI.currentDrawingToolbarHeight).ExpandWidth(isExpand);
+
+            if (!GUILayout.Button(guiContent, guiStyle, options))
+                return false;
+            GUIHelper.RemoveFocusControl();
+            GUIHelper.RequestRepaint();
+            return true;
+        }
+
+        /// <summary> 實現可以使用 SdfIconType 的 ToolbarButton </summary>
+        public static bool CustomToolbarButton
+            (string label, int textSize = Default_TextSize, bool isExpand = Default_IsExpand)
+        {
+            return CustomToolbarButton(label, label, textSize, isExpand);
+        }
 
     #endregion
 

@@ -25,7 +25,9 @@ namespace SiberOdinEditor.Core
             var data = FindEditorInfoData(searchID);
             if (data == null)
             {
-                data = new EditorInfoData(searchID, newName);
+                data = new EditorInfoData();
+                data.SetName(newName);
+                data.SetID(searchID);
                 infoDataList.Add(data);
             }
 
@@ -36,7 +38,7 @@ namespace SiberOdinEditor.Core
 
     #region ========== [Private Methods] ==========
 
-        private EditorInfoData FindEditorInfoData(string searchID)
+        protected EditorInfoData FindEditorInfoData(string searchID)
         {
             var data = infoDataList.Find(a => a.SearchID.Equals(searchID));
             return data;
@@ -51,10 +53,17 @@ namespace SiberOdinEditor.Core
         public string SearchID;
         public string Name;
 
+        public EditorInfoData() { }
+        
         public EditorInfoData(string searchID, string newName)
         {
-            SearchID = searchID;
+            SetID(searchID);
             SetName(newName);
+        }
+
+        public void SetID(string id)
+        {
+            SearchID = id;
         }
 
         public void SetName(string newName)

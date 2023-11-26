@@ -1,10 +1,13 @@
 {
-    "name": "SiberOdinEditor.Datas",
+    "name": "SiberOdinEditor.AttributeDrawers",
     "rootNamespace": "",
     "references": [
-        "GUID:ad968d605628d06499b62cdc30f11cf8"
+        "GUID:ad968d605628d06499b62cdc30f11cf8",
+        "GUID:160578c5330e5674c9126d6d79ee4500"
     ],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

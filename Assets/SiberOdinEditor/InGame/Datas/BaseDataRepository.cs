@@ -17,7 +17,7 @@ namespace SiberOdinEditor.Datas
     #endregion
 
     #region ========== [Private Variables] ==========
-        
+
         [SerializeField]
         protected List<T> datas = new List<T>();
 
@@ -36,7 +36,7 @@ namespace SiberOdinEditor.Datas
                 datas[i].SetData(baseData);
             }
         }
-        
+
         public void Set(object data)
         {
             var baseData = (T)data;
@@ -44,7 +44,7 @@ namespace SiberOdinEditor.Datas
             var i = datas.IndexOf(baseData);
             datas[i].SetData(baseData);
         }
-        
+
         public void Add(object data)
         {
             var baseData = (T)data;
@@ -64,7 +64,7 @@ namespace SiberOdinEditor.Datas
             if (i >= 0 && i < datas.Count)
                 datas.RemoveAt(i);
         }
-        
+
         public void RemoveByID(string dataId)
         {
             var data = GetDataByID(dataId);
@@ -80,6 +80,11 @@ namespace SiberOdinEditor.Datas
         public bool EqualDataType(IData data)
         {
             return data.GetType() == typeof(T);
+        }
+
+        public List<IData> GetDatas()
+        {
+            return Datas.Cast<IData>().ToList();
         }
 
     #endregion
