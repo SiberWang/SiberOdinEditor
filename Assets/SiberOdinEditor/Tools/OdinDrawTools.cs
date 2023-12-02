@@ -94,6 +94,19 @@ namespace SiberOdinEditor.Tools
                 onDeleteAction?.Invoke();
             });
         }
+        
+        /// <summary> 複製當前檔案 Button (Clone) </summary>
+        /// <param name="condition"> 顯示此 Button 的判斷 </param>
+        /// <param name="onCloneAction"> 自定義事件 - 複製 </param>
+        public static void Draw_Button_CloneData(bool condition = true, Action onCloneAction = null)
+        {
+            if (!condition) return;
+            CustomGUIHelper.ColorBackGround(new Color(0.64f, 1f, 0.73f) * 1.2f, () =>
+            {
+                if (!OdinStyleTools.CustomToolbarButton("Clone", SdfIconType.Subtract)) return;
+                onCloneAction?.Invoke();
+            });
+        }
 
         /// <summary> 當前選擇檔案名稱 Label </summary>
         public static void Draw_Label_CurrentSelectName(OdinMenuItem selected)

@@ -15,8 +15,7 @@ namespace SiberOdinEditor.Datas
     #endregion
 
     #region ========== [Protected Variables] ==========
-
-        [HideInInspector]
+        
         [SerializeField]
         protected string dataID;
 

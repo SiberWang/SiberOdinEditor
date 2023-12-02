@@ -2,11 +2,12 @@
 using System.Linq;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace SiberOdinEditor.Datas
 {
     public abstract class BaseDataRepository<T> : SerializedScriptableObject, IDataRepository
-    where T : IData
+    where T : class, IData
     {
     #region ========== [Public Variables] ==========
 
@@ -87,6 +88,26 @@ namespace SiberOdinEditor.Datas
             return Datas.Cast<IData>().ToList();
         }
 
+        public T GetDataByIDWithType(string dataId)
+        {
+            var data = GetDataByID(dataId).Cast<T>();
+            return data;
+        }
+
     #endregion
     }
+
+#region ========== [MyRegion] ==========
+
+    public static class BaseDataExtensions
+    {
+        public static T Cast<T>(this IData data) where T : class, IData
+        {
+            var result = data as T;
+            Assert.IsNotNull(result, $"Data is not equal [{typeof(T).Name}]");
+            return result;
+        }
+    }
+
+#endregion
 }

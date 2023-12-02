@@ -31,7 +31,7 @@ namespace SiberOdinEditor.Tools
         /// <returns>IEnumerable OdinMenuItem</returns>
         public static IEnumerable<OdinMenuItem> AddAllAssetsAtPath<A>
         (this OdinMenuTree tree,                          string menuPath, string assetFolderPath,
-         bool              includeSubDirectories = false, bool   flattenSubDirectories = false) where A : IEditorDataInfo
+         bool              includeSubDirectories = false, bool flattenSubDirectories = false) where A : IEditorDataInfo
         {
         #region --- Origin Odin AddAllAssetsAtPath Content ---
 
@@ -190,7 +190,7 @@ namespace SiberOdinEditor.Tools
             var length = menuPath.LastIndexOf('/');
             path = length == -1 ? "" : menuPath.Substring(0, length);
         }
-        
+
         /// <summary> 截自於 OdinMenuTreeExtensions.SplitMenuPath <br/>
         /// 由於 Odin 把它設為 Private 所以自己複製一份過來
         /// </summary>
@@ -218,7 +218,7 @@ namespace SiberOdinEditor.Tools
         {
             foreach (var odinMenuItem in tree.EnumerateTree())
             {
-                if (odinMenuItem.SdfIcon != SdfIconType.None) continue;
+                if (odinMenuItem.Value != null) continue;
                 odinMenuItem.AddIcon(sdfIconType);
             }
         }
