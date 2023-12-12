@@ -1,8 +1,11 @@
 ﻿using System.Collections.Generic;
 using Sirenix.OdinInspector;
-using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.Assertions;
+
+#if UNITY_EDITOR
+using UnityEditor.Animations;
+#endif
 
 namespace SiberOdinEditor.Mono.Anim
 {
@@ -46,7 +49,7 @@ namespace SiberOdinEditor.Mono.Anim
             }
         }
 
-        private bool isKeepPlaying;
+        private bool         isKeepPlaying;
         private List<string> states;
 
     #endregion
@@ -59,7 +62,7 @@ namespace SiberOdinEditor.Mono.Anim
             if (!isStartSpawn) return;
             animator.Play(playStateName);
         }
-        
+
         private void Update()
         {
             if (!isKeepPlaying) return;
@@ -81,6 +84,7 @@ namespace SiberOdinEditor.Mono.Anim
                 Debug.Log("Animation Name is Empty");
                 return;
             }
+
             isKeepPlaying    = true;
             animator.enabled = true;
         }
@@ -114,11 +118,14 @@ namespace SiberOdinEditor.Mono.Anim
         {
             states = new List<string>();
             if (animator == null) return;
+            
+        #if UNITY_EDITOR
             var controller = animator.runtimeAnimatorController as AnimatorController;
             if (controller == null) return;
             foreach (var layer in controller.layers)
                 foreach (var childAnimatorState in layer.stateMachine.states)
                     states.Add(childAnimatorState.state.name);
+        #endif
         }
 
     #endregion

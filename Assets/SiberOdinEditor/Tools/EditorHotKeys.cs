@@ -21,9 +21,14 @@ namespace SiberOdinEditor.Tools
         public static bool IsKeyDelete  => current.keyCode == KeyCode.Delete;
         public static bool IsKeyY       => current.keyCode == KeyCode.Y;
         public static bool IsKeyN       => current.keyCode == KeyCode.N;
+        public static bool IsKeyQ       => current.keyCode == KeyCode.Q;
+        public static bool IsKeyW       => current.keyCode == KeyCode.W;
+        public static bool IsKeyE       => current.keyCode == KeyCode.E;
+        public static bool IsKeyA       => current.keyCode == KeyCode.A;
+        public static bool IsKeyD       => current.keyCode == KeyCode.D;
 
         // 官方說大 Enter 就是 Return
-        public static bool IsKeyEnter => current.keyCode == KeyCode.Return || current.keyCode == KeyCode.KeypadEnter;
+        public static bool IsKeyEnter => current.keyCode is KeyCode.Return or KeyCode.KeypadEnter;
         public static bool IsKeyESC   => current.keyCode == KeyCode.Escape;
 
         public static bool IsCtrlShift => current.modifiers == (EventModifiers.Control | EventModifiers.Shift);
@@ -36,60 +41,38 @@ namespace SiberOdinEditor.Tools
 
     #region ========== [Public Methods] ==========
 
-        public static void CtrlS(Action action)
-        {
-            if (IsKeyDown && current.modifiers == EventModifiers.Control && IsKeyS)
-            {
-                if (!isDoOnce)
-                {
-                    action?.Invoke();
-                    isDoOnce = true;
-                }
-            }
-
-
-            if (IsKeyUp && IsKeyS)
-                isDoOnce = false;
-        }
-
-        public static void Delete(Action action)
-        {
-            if (IsKeyDown && IsKeyDelete)
-            {
-                if (!isDoOnce)
-                {
-                    action?.Invoke();
-                    isDoOnce = true;
-                }
-            }
-
-            if (IsKeyUp && IsKeyDelete)
-                isDoOnce = false;
-        }
-
         public static void Init()
         {
-            if (isDoOnce) isDoOnce = false;
-        }
-
-        public static void Y(Action action)
-        {
-            if (IsKeyDown && IsKeyY)
-            {
-                if (!isDoOnce)
-                {
-                    action?.Invoke();
-                    isDoOnce = true;
-                }
-            }
-
-            if (IsKeyUp && IsKeyY)
+            if (isDoOnce)
                 isDoOnce = false;
         }
 
-        public static void N(Action action)
+        public static void CtrlS(Action action) =>
+            GetKeyDown(action, current.modifiers == EventModifiers.Control && IsKeyS, IsKeyS);
+
+        public static void Delete(Action action) => GetKeyDown(action, IsKeyDelete);
+        public static void Y(Action      action) => GetKeyDown(action, IsKeyY);
+        public static void N(Action      action) => GetKeyDown(action, IsKeyN);
+        public static void Enter(Action  action) => GetKeyDown(action, IsKeyEnter);
+
+        public static void ESC(Action action) => GetKeyDown(action, IsKeyESC);
+        public static void Q(Action   action) => GetKeyDown(action, IsKeyQ);
+        public static void W(Action   action) => GetKeyDown(action, IsKeyW);
+        public static void E(Action   action) => GetKeyDown(action, IsKeyE);
+        public static void A(Action   action) => GetKeyDown(action, IsKeyA);
+        public static void D(Action   action) => GetKeyDown(action, IsKeyD);
+        public static void S(Action   action) => GetKeyDown(action, IsKeyS);
+
+    #endregion
+
+    #region ========== [Private Methods] ==========
+
+        /// <summary> 按鍵事件 </summary>
+        /// <param name="action"> 執行事件 </param>
+        /// <param name="isKey"> Condition: KeyUp and KeyDown </param>
+        private static void GetKeyDown(Action action, bool isKey)
         {
-            if (IsKeyDown && IsKeyN)
+            if (IsKeyDown && isKey)
             {
                 if (!isDoOnce)
                 {
@@ -98,13 +81,17 @@ namespace SiberOdinEditor.Tools
                 }
             }
 
-            if (IsKeyUp && IsKeyN)
+            if (IsKeyUp && isKey)
                 isDoOnce = false;
         }
 
-        public static void Enter(Action action)
+        /// <summary> 按鍵事件 </summary>
+        /// <param name="action"> 執行事件 </param>
+        /// <param name="isKeyDown"> Condition: keyDown </param>
+        /// <param name="isKeyUp"> Condition: keyUp </param>
+        private static void GetKeyDown(Action action, bool isKeyDown, bool isKeyUp)
         {
-            if (IsKeyDown && IsKeyEnter)
+            if (IsKeyDown && isKeyDown)
             {
                 if (!isDoOnce)
                 {
@@ -113,22 +100,7 @@ namespace SiberOdinEditor.Tools
                 }
             }
 
-            if (IsKeyUp && IsKeyEnter)
-                isDoOnce = false;
-        }
-
-        public static void ESC(Action action)
-        {
-            if (IsKeyDown && IsKeyESC)
-            {
-                if (!isDoOnce)
-                {
-                    action?.Invoke();
-                    isDoOnce = true;
-                }
-            }
-
-            if (IsKeyUp && IsKeyESC)
+            if (IsKeyUp && isKeyUp)
                 isDoOnce = false;
         }
 

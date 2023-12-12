@@ -1,8 +1,11 @@
 ﻿using System.Collections.Generic;
 using Sirenix.OdinInspector;
-using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.Serialization;
+
+#if UNITY_EDITOR
+using UnityEditor.Animations;
+#endif
 
 namespace SiberOdinEditor.Mono.Anim
 {
@@ -182,11 +185,13 @@ namespace SiberOdinEditor.Mono.Anim
         private void UpdateAnimatorStates()
         {
             states = new List<string>();
+        #if UNITY_EDITOR
             var controller = mainController as AnimatorController;
             if (controller == null) return;
             foreach (var layer in controller.layers)
                 foreach (var childAnimatorState in layer.stateMachine.states)
                     states.Add(childAnimatorState.state.name);
+        #endif
         }
 
         private void CreateSetters()
