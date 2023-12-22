@@ -35,6 +35,7 @@ namespace SiberOdinEditor.Tools
         public static bool IsCtrlAlt   => current.modifiers == (EventModifiers.Control | EventModifiers.Alt);
         public static bool IsAltShift  => current.modifiers == (EventModifiers.Alt | EventModifiers.Shift);
 
+        public static bool IsCtrl    => current.modifiers == (EventModifiers.Control);
         public static bool IsKeyESCDown => IsKeyESC && IsKeyDown;
 
     #endregion
