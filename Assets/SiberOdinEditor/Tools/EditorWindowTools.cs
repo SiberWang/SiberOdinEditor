@@ -6,6 +6,13 @@ namespace SiberOdinEditor.Tools
 {
     public static class EditorWindowTools
     {
+        private const string Str_FileSave = "Saved File";
+        private const string Str_Error    = "Error";
+        private const string Str_Warning  = "Warning";
+        private const string Str_Success  = "Success";
+        private const string Str_Fail     = "Fail";
+        private const string Str_Delete   = "Deleted successfully";
+
         private const int   IconSize    = 50;
         private const float FadeoutWait = 1f;
 
@@ -27,7 +34,7 @@ namespace SiberOdinEditor.Tools
         public static void ShowSaveNotification(this EditorWindow window, string context = null)
         {
             if (window == null) return;
-            var resultContext = string.IsNullOrEmpty(context) ? "檔案儲存!!" : context;
+            var resultContext = string.IsNullOrEmpty(context) ? Str_FileSave : context;
             window.ShowCustomNotification(resultContext, Color.green, SdfIconType.Save);
         }
 
@@ -35,7 +42,7 @@ namespace SiberOdinEditor.Tools
         /// <param name="window"> 有繼承 OdinEditorWindow 的 Editor編輯視窗 </param>
         public static void ShowErrorNotification(this EditorWindow window, string context)
         {
-            var resultContext = string.IsNullOrEmpty(context) ? "發生錯誤!!" : context;
+            var resultContext = string.IsNullOrEmpty(context) ? Str_Error : context;
             window.ShowCustomNotification(resultContext, Color.red, SdfIconType.BugFill);
         }
 
@@ -44,7 +51,7 @@ namespace SiberOdinEditor.Tools
         /// <param name="context"> 內容 </param>
         public static void ShowWarningNotification(this EditorWindow window, string context)
         {
-            var resultContext = string.IsNullOrEmpty(context) ? "發生警告!!" : context;
+            var resultContext = string.IsNullOrEmpty(context) ? Str_Warning : context;
             window.ShowCustomNotification(resultContext, Color.yellow, SdfIconType.Bug);
         }
 
@@ -53,7 +60,7 @@ namespace SiberOdinEditor.Tools
         /// <param name="context"> 內容 </param>
         public static void ShowSucceedNotification(this EditorWindow window, string context = null)
         {
-            var resultContext = string.IsNullOrEmpty(context) ? "成功!!" : context;
+            var resultContext = string.IsNullOrEmpty(context) ? Str_Success : context;
             window.ShowCustomNotification(resultContext, Color.green, SdfIconType.Check);
         }
 
@@ -62,7 +69,7 @@ namespace SiberOdinEditor.Tools
         /// <param name="context"> 內容 </param>
         public static void ShowFailedNotification(this EditorWindow window, string context = null)
         {
-            var resultContext = string.IsNullOrEmpty(context) ? "失敗!!" : context;
+            var resultContext = string.IsNullOrEmpty(context) ? Str_Fail : context;
             window.ShowCustomNotification(resultContext, Color.red, SdfIconType.EmojiDizzy);
         }
 
@@ -70,7 +77,7 @@ namespace SiberOdinEditor.Tools
         /// <param name="window"> 有繼承 OdinEditorWindow 的 Editor編輯視窗 </param>
         public static void ShowDeleteNotification(this EditorWindow window, string context = null)
         {
-            var resultContext = string.IsNullOrEmpty(context) ? "刪除成功!!" : context;
+            var resultContext = string.IsNullOrEmpty(context) ? Str_Delete : context;
             window.ShowCustomNotification(resultContext, Color.red, SdfIconType.Trash2);
         }
 
